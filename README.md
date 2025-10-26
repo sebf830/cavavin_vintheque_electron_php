@@ -1,9 +1,6 @@
 # cavavin_vintheque_electron_php
 
-Nom de l'application : CAVAVIN.
-Version : BETA 1.0.
-Date 11/10/2025.
-Développeur : Sébastien Flouvat.
+CAVAVIN version BETA 1.0, développé par Sébastien Flouvat.
 
 CAVAVIN est un gestionnaire de cave à vin prêt à l'emploi offrant des outils (inventaire, enregistrements, notation, journal de bord..)
 L'application s'éxecute sur un environnement MACOS ou WINDOWS.
