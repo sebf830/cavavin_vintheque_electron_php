@@ -18,9 +18,10 @@ Stack technique : php . node . sqlite . alpineJS
 
 
 I - Installer les dependances back du projet
-1. Se rendre à 'cd {chemin_vers_le_projet}/build/back' et executer la commande : 
+1. Se rendre à 'cd {chemin_vers_le_projet}/build/back' et executer les commandes : 
 ```
     composer install --no-dev --optimize-autoloader
+    composer boot
 ```
 Assurez vous d'avoir composer d'installé sur votre machine. (https://getcomposer.org/)
 
