@@ -7,8 +7,8 @@ L'application s'éxecute sur un environnement MACOS ou WINDOWS.
 L'application est libre d'utilisation et gratuite, merci d'en faire un usage non commercial et non public.
 
 <div style="display:flex;justify-content:space-between gap:10px;">
-<img width="350" height="180" alt="img1" src="https://github.com/sebf830/cavavin_vintheque_electron_php/blob/master/screenshots/1.png">
-<img width="350" height="180"alt="img1" src="https://github.com/sebf830/cavavin_vintheque_electron_php/blob/master/screenshots/2.png">
+<img width="320" height="180" alt="img1" src="https://github.com/sebf830/cavavin_vintheque_electron_php/blob/master/screenshots/1.png">
+<img width="320" height="180"alt="img1" src="https://github.com/sebf830/cavavin_vintheque_electron_php/blob/master/screenshots/2.png">
 </div>
 
 Version BETA :
