@@ -12,8 +12,7 @@ node_modules/
 /front/build/
 
 # ============ BACK (Symfony) ==============
-/back/var/
 /back/vendor/
+/back/var/cache
 /back/.env.local
 /back/.env.*.local
-/back/public/bundles/
