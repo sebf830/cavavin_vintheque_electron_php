@@ -10,9 +10,9 @@ L'application s'éxecute sur un environnement MACOS ou WINDOWS.
 L'application est libre d'utilisation et gratuite, merci d'en faire un usage non commercial et non public.
 
 <div style="display:flex; gap:30px;">
-<img style="border:1px solid lightgrey" width="322" height="180" alt="img1" src="https://github.com/sebf830/cavavin_vintheque_electron_php/blob/master/screenshots/1.png">
-<img width="322" height="180"alt="img1" src="https://github.com/sebf830/cavavin_vintheque_electron_php/blob/master/screenshots/2.png">
-<img width="322" height="180" alt="img1" src="https://github.com/sebf830/cavavin_vintheque_electron_php/blob/master/screenshots/3.png">
+<img style="padding:0 10px" width="322" height="180" alt="img1" src="https://github.com/sebf830/cavavin_vintheque_electron_php/blob/master/screenshots/1.png">
+<img style="padding:0 10px" width="322" height="180"alt="img1" src="https://github.com/sebf830/cavavin_vintheque_electron_php/blob/master/screenshots/2.png">
+<img style="padding:0 10px" width="322" height="180" alt="img1" src="https://github.com/sebf830/cavavin_vintheque_electron_php/blob/master/screenshots/3.png">
 </div>
 
 Version BETA :
