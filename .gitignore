@@ -12,6 +12,6 @@ node_modules/
 
 
 # ============ BACK (Symfony) ==============
-
-front/build/back/vendor/
-front/build/back/var/cache/
+/back
+/front/build/back/vendor/
+/front/build/back/var/cache/
