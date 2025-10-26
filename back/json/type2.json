@@ -1,0 +1,13 @@
+[
+    { "name": "sec", "description": "Peu ou pas de sucres résiduels (<4 g/L)." },
+    { "name": "demi-sec", "description": "Légèrement doux (4-12 g/L de sucres résiduels)." },
+    { "name": "moelleux", "description": "Douceur perceptible (12-45 g/L de sucres)." },
+    { "name": "liquoreux", "description": "Très doux, souvent issu de vendanges tardives ou passerillage (>45 g/L)." },
+
+    { "name": "nature", "description": "Vin mousseux sans sucre ajouté (0 g/L)." },
+    { "name": "brut nature", "description": "Ultra sec, très vif (0 à 3 g/L)." },
+    { "name": "extra brut", "description": "Moins de sucre que brut (0-6 g/L)." },
+    { "name": "brut", "description": "Très peu de sucre ajouté, surtout pour vins mousseux (0-12 g/L)." },
+    { "name": "extra sec", "description": "Légèrement doux (12-17 g/L)." }
+]
+

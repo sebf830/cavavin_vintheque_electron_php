@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Ajouter une bouteille | Cavavin</title>
+  <link rel="stylesheet" href="../public/assets/global_style.css" />
+  
+  <!-- Alpine JS local & initialization -->
+  <script defer type="module">
+    import Alpine from '../public/vendor/alpine/module.esm.js';
+    window.Alpine = Alpine;
+    Alpine.start();
+  </script>
+
+  <!-- Local Tailwind : self generated -->
+  <link rel="stylesheet" href="../libs/tailwind.css" />
+  
+</head>
+<body x-data="{ sidebarOpen: false }" class="bg-creme flex h-screen bg-gray-50 font-sans">
+
+  <!-- Overlay mobile -->
+  <div 
+    class="fixed inset-0 bg-black bg-opacity-50 z-30 md:hidden"
+    x-show="sidebarOpen"
+    x-transition.opacity
+    @click="sidebarOpen = false"
+  ></div>
+
+  <!-- Sidebar -->
+  <aside 
+    class="fixed md:static z-40 inset-y-0 left-0 w-64 bg-gray-900 text-white transform md:translate-x-0 transition-transform duration-200 ease-in-out"
+    :class="{ '-translate-x-full': !sidebarOpen }"
+  >
+    <div class="p-6 text-2xl font-bold">🍷 Cavavin</div>
+    <nav class="space-y-2 px-4">
+      <a href="#" onclick="window.location.href='dashboard.html'" class="block px-4 py-2 rounded hover:bg-gray-700">📊 Tableau de bord</a>
+      <a href="#" onclick="window.location.href='addBottle.html'" class="block px-4 py-2 rounded hover:bg-gray-700">➕ Ajouter</a>
+      <a href="#" onclick="window.location.href='inventaire.html'" class="block px-4 py-2 rounded hover:bg-gray-700">📦 Inventaire</a>
+      <a href="#" onclick="window.location.href='journal.html'" class="block px-4 py-2 rounded hover:bg-gray-700">📕 Journal de dégustation</a>
+      <a href="#" onclick="window.location.href='parametres.html'" class="block px-4 py-2 rounded hover:bg-gray-700">⚙️ Paramètres</a>
+    </nav>
+  </aside>
+
+  <!-- Contenu principal -->
+  <div class="flex-1 flex flex-col overflow-hidden bg-creme">
+    <!-- Topbar -->
+    <header class="bg-white shadow-md p-4 flex items-center justify-between md:hidden">
+      <button @click="sidebarOpen = !sidebarOpen" class="text-gray-700 text-2xl">
+        ☰
+      </button>
+      <h1 class="text-xl font-bold text-liedevin">Cavavin</h1>
+    </header>
+
+    <!-- Contenu -->
+    <main class="flex-1 overflow-y-auto p-6 " x-data="bottleForm()" x-init="init()">
+  <h1 class="text-3xl font-bold text-liedevin mb-8 text-center">➕ Ajouter une bouteille</h1>
+
+  <form @submit.prevent="submitForm" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+    <template x-if="errors.general">
+        <div class="md:col-span-2 bg-red-100 border border-red-300 text-red-700 px-4 py-3 rounded relative">
+            <p class="text-sm font-semibold" x-text="errors.general"></p>
+        </div>
+    </template>
+
+    <!-- Champ: Nom -->
+    <div class="relative">
+      <label for="name" class="block text-sm font-semibold mb-1">
+        <div class="flex items-center gap-1">
+          <span>Appellation</span>
+          <span class="text-red-500">*</span>
+
+          <!-- Icône + infobulle -->
+          <div class="relative group flex items-center mt-[2px]">
+            <!-- Icône SVG (info) -->
+            <svg class="w-4 h-4 text-gray-400 cursor-pointer" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M10 18a8 8 0 100-16 8 8 0 000 16zm.75-12.75a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM9 8.25h2v5.5H9v-5.5z" />
+            </svg>
+
+            <!-- Infobulle -->
+            <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 w-52 px-2 py-1 text-xs text-white bg-gray-700 rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-10">
+              Renseignez le nom précis de l'appellation (accents, traits d'union...)".
+            </div>
+          </div>
+        </div>
+      </label>
+      <input 
+        type="text" 
+        id="name" 
+        x-model="name"
+        @keyup.debounce.300="searchName"
+        @blur="hideSuggestions"
+        @focus="showSuggestions = true"
+        maxlength="200"
+        :class="name ? 'border-green-500' : 'border-gray-300'"
+        required
+        class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none "
+        placeholder="Ex: Pouilly-Fuissé"
+      />
+
+      <!-- Suggestions -->
+      <ul 
+        x-show="showSuggestions && suggestions.length > 0" 
+        class="absolute z-10 left-0 right-0 bg-white border border-gray-300 rounded mt-1 shadow max-h-48 overflow-y-auto"
+      >
+        <template x-for="(suggestion, index) in suggestions" :key="index">
+          <li 
+            @click="selectSuggestion(suggestion)" 
+            class="px-4 py-2 hover:bg-purple-100 cursor-pointer text-gray-800"
+            x-text="suggestion.name"
+          ></li>
+        </template>
+      </ul>
+    </div>
+
+    <!-- region -->
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-1">Region viticole<span class="text-red-500">*</span></label>
+      <input 
+      type="text" 
+      required 
+      x-model="region" 
+      class="w-full rounded border border-gray-300 px-3 py-2" 
+      :class="region ? 'border-green-500' : 'border-gray-300'"
+      placeholder="Ex : Bourgogne" />
+      <template x-if="errors.region">
+        <p class="text-red-600 text-sm mt-1" x-text="errors.region"></p>
+      </template>
+    </div>
+
+    <!-- Domaine -->
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-1">Domaine<span class="text-red-500">*</span></label>
+      <input 
+      type="text" 
+      x-model="domaine" 
+      maxlength="150" 
+      class="w-full border rounded px-3 py-2"  
+      :class="domaine ? 'border-green-500' : 'border-gray-300'"
+      placeholder="Ex: Château du clos"/>
+      <template x-if="errors.domaine">
+        <p class="text-red-600 text-sm mt-1" x-text="errors.domaine"></p>
+      </template>
+    </div>
+
+    <!-- Type -->
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-1">Couleur<span class="text-red-500">*</span></label>
+      <select 
+      x-model="type" 
+      required 
+      class="w-full rounded border focus:outline-none focus:ring-1 transition px-3 py-2" 
+      :class="type ? 'border-green-500 focus:ring-green-500' : 'border-gray-300 focus:ring-gray-300'">
+        <option value="">-- Sélectionner une couleur --</option>
+        <template x-for="option in typeOptions" :key="option.name">
+          <option :value="option.name" x-text="option.name"></option>
+        </template>
+      </select>
+    </div>
+
+    <!-- Type 2 -->
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-1">Caractéristique de sucrosité<span class="text-red-500">*</span></label>
+      <select x-model="type2" 
+      required 
+      class="w-full rounded border px-3 py-2 focus:outline-none focus:ring-1 transition" 
+      :class="type2 ? 'border-green-500 focus:ring-green-500' : 'border-gray-300 focus:ring-gray-300'">
+        <option value="">-- Sélectionner une caractéristique --</option>
+        <template x-for="option in type2Options" :key="option.name">
+          <option :value="option.name" x-text="option.description ? `${option.name} - ${option.description}` : `${option.name}`"></option>
+        </template>
+      </select>
+    </div>
+
+    <!-- Année -->
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-1">Millésime</span></label>
+      <input type="text" 
+      x-model="year" 
+      maxlength="4" 
+      class="w-full border rounded px-3 py-2" 
+      :class="year ? 'border-green-500' : 'border-gray-300'"
+      placeholder="Ex: 1990"/>
+      <template x-if="errors.year">
+        <p class="text-red-600 text-sm mt-1" x-text="errors.year"></p>
+      </template>
+    </div>
+
+    <!-- Quantité -->
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-1">Quantité<span class="text-red-500">*</span></label>
+      <input
+        type="number" 
+        x-model="quantity" 
+        min="1" 
+        max="99"
+        class="w-full border rounded px-3 py-2"
+        :class="quantity ? 'border-green-500' : 'border-gray-300'" />
+      <template x-if="errors.quantity">
+        <p class="text-red-600 text-sm mt-1" x-text="errors.quantity"></p>
+      </template>
+    </div>
+
+    <!-- Pays -->
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-1">Pays<span class="text-red-500">*</span></label>
+      <input type="text" 
+      x-model="country" 
+      class="w-full border rounded px-3 py-2 " 
+      :class="country ? 'border-green-500' : 'border-gray-300'"
+      />
+      <template x-if="errors.country">
+        <p class="text-red-600 text-sm mt-1" x-text="errors.country"></p>
+      </template>
+    </div>
+
+    <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Texte descriptif - commentaires(facultatif)</label>
+        <textarea x-model="comments" class="w-full h-40 border rounded p-4"></textarea>
+    </div>
+
+    <!-- Upload image -->
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-2">Image de la bouteille(facultatif)</label>
+      <div 
+        @dragover.prevent 
+        @drop.prevent="handleImageUpload({ target: { files: $event.dataTransfer.files } })"
+        @click="$refs.imageInput.click()"
+        class="w-full border-2 border-dashed border-gray-300 rounded-md p-6 text-center cursor-pointer hover:border-purple-500 hover:bg-gray-50 transition"
+      >
+        <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M7 16V4a1 1 0 011-1h8a1 1 0 011 1v12m-4 4h4m0 0h-4m4 0v-4m0 4v-4m0 4l-4-4m0 0L9 20m0 0h4" />
+        </svg>
+        <p class="mt-2 text-sm text-gray-600">
+          Glissez-déposez une image ou <span class="text-purple-600 font-medium underline">cliquez ici</span><br>
+          <span class="text-xs text-gray-400">Formats acceptés : JPG, JPEG, PNG</span>
+        </p>
+        <input type="file" accept=".jpg,.jpeg,.png" class="hidden" x-ref="imageInput" @change="handleImageUpload" />
+      </div>
+
+      <template x-if="imagePreview">
+        <div class="mt-3 bg-gray-100 p-3 rounded-md flex items-center justify-between">
+          <div>
+            <p class="text-sm font-medium text-gray-800" x-text="imagePreview.name"></p>
+            <p class="text-xs text-gray-500" x-text="imagePreview.size"></p>
+          </div>
+          <button @click="resetImage" class="text-red-500 hover:text-red-700 text-lg">&times;</button>
+        </div>
+      </template>
+    </div>
+
+    <!-- Submit -->
+    <div class="md:col-span-2 flex justify-center mt-6 gap-2">
+      <a 
+            onclick="window.location.href='dashboard.html'"
+            href="#" 
+          class="bg-liedevin-gradient text-white px-8 py-3 rounded hover:bg-gradient-to-b from-[#2f2f2f] to-[#101010] transition"
+        >
+          Retour dashboard
+      </a>
+
+      <button 
+        type="submit" 
+        class="bg-red-800 text-white px-8 py-3 rounded hover:bg-gradient-to-b from-[#2f2f2f] to-[#101010] transition"
+      >
+        Enregistrer la bouteille
+      </button>
+    </div>
+    <span class="text-xs"><span class="text-red-500">*</span> champs requis</span>
+  </form>
+
+
+</main>
+</div>
+
+
+<script>
+
+  // const backendUrl = await window.electronAPI.getBackendUrl();
+ // console.log(backendUrl) {% endcomment %}
+  
+
+document.addEventListener('alpine:init', () => {
+  Alpine.data('bottleForm', () => ({
+    initialized: false,
+    name: '',
+    year: '',
+    type: '',
+    type2: '',
+    type3: '',
+    region:'',
+    country:'',
+    cepage_mandatory:[],
+    cepage_optional:[],
+    domaine: '',
+    comments: '',
+    vignoble: '',
+    accords: '',
+    quantity: null,
+    errors: {},
+    suggestions: [],
+    showSuggestions: false,
+    typeOptions: [],
+    type2Options: [],
+    image: null,
+    imagePreview: null,
+    rawCepages : [],
+    backendUrl: '',
+
+    async init() {
+      if (this.initialized) return;
+        this.initialized = true;
+
+       this.backendUrl = await window.electronAPI.getBackendUrl();
+      this.loadTypeOptions()
+    },
+
+    validateForm() {
+        this.errors = {}
+
+        // Domaine
+        if (!this.domaine.trim()) {
+            this.errors.domaine = 'Le domaine est requis.'
+        } else if (this.domaine.length > 150) {
+            this.errors.domaine = 'Le domaine ne doit pas dépasser 150 caractères.'
+        }
+
+        // Pays
+        if (!this.country.trim()) {
+            this.errors.country = 'Le pays est requis.'
+        } else if (this.country.length > 150) {
+            this.errors.country = 'Le pays ne doit pas dépasser 150 caractères.'
+        }
+
+        // region
+        if (!this.region.trim()) {
+            this.errors.region = 'Le region est requis.'
+        } else if (this.region.length > 150) {
+            this.errors.region = 'Le region ne doit pas dépasser 150 caractères.'
+        }
+
+        // Année
+        if (this.year && !/^\d{4}$/.test(this.year)) {
+            this.errors.year = 'L’année doit contenir exactement 4 chiffres.'
+        }
+
+        // Quantité
+        if (this.quantity === null || this.quantity === '') {
+            this.errors.quantity = 'La quantité est requise.'
+        } else if (isNaN(this.quantity) || this.quantity <= 0) {
+            this.errors.quantity = 'La quantité doit être supérieure à 0.'
+        } else if (this.quantity > 99) {
+            this.errors.quantity = 'La quantité maximale est de 99.'
+        }
+
+
+        // Retourne true si aucune erreur
+        return Object.keys(this.errors).length === 0
+    },
+
+
+    // 🔍 Autocomplétion depuis l’API
+    searchName() {
+      if (this.name.trim().length === 0) {
+        this.suggestions = []
+        return
+      }
+
+      fetch(`${this.backendUrl}/api/search-reference`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ query: this.name })
+      })
+        .then(res => res.json())
+        .then(data => {
+          this.suggestions = data
+          this.showSuggestions = true
+        })
+        .catch(err => {
+          console.error("Erreur lors de la recherche :", err)
+        })
+    },
+
+    // ✅ Sélection d'une suggestion de vin
+    selectSuggestion(suggestion) {
+      this.name = suggestion.name
+      this.showSuggestions = false
+
+      fetch(`${this.backendUrl}/api/reference/${suggestion.id}`)
+        .then(res => res.json())
+        .then(data => {
+
+            console.log('reçu depuis l’API :', data.cepages)
+
+            this.rawCepages = data.cepages
+
+            this.region = data.region ?? ''
+            this.accords = data.accords ?? ''
+            this.vignoble = data.vignoble
+            this.type3 = data.type3
+            this.country = data.country
+
+            this.typeOptions = data.type ?? []
+            this.type2Options = data.type2 ?? []
+
+            // 🆕 Sélectionne la première valeur automatiquement
+            this.type = data.type?.[0]?.name ?? ''
+            this.type2 = data.type2?.[0]?.name ?? ''
+
+        })
+        .catch(err => {
+          console.error("Erreur lors du chargement des détails :", err)
+        })
+    },
+
+    hideSuggestions() {
+      setTimeout(() => {
+        this.showSuggestions = false
+      }, 200)
+    },
+
+    // 🔄 Charger les options de type / type2
+    loadTypeOptions() {
+      fetch(`${this.backendUrl}/api/types`)
+        .then(res => res.json())
+        .then(data => {
+          this.typeOptions = data.type ?? []
+          this.type2Options = data.type2 ?? []
+        })
+        .catch(err => {
+          console.error('Erreur lors du chargement des types de vin :', err)
+        })
+    },
+
+    handleImageUpload(event) {
+        const file = event.target.files[0]
+        if (!file) return
+
+        const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg']
+        if (!allowedTypes.includes(file.type)) {
+            alert('Seuls les fichiers JPG, JPEG et PNG sont autorisés.')
+            return
+        }
+
+        this.image = file
+        this.imagePreview = {
+            name: file.name,
+            size: (file.size / 1024).toFixed(1) + ' KB'
+        }
+    },
+
+    resetImage() {
+        this.image = null
+        this.imagePreview = null
+        this.$refs.imageInput.value = null
+    },
+    submitForm() {
+
+        if (!this.validateForm()) {
+            return 
+        }
+
+        let couleur = this.type
+
+        if(this.rawCepages.mandatory && this.rawCepages.optional){
+          this.cepage_mandatory = this.rawCepages.mandatory ?? []
+          this.cepage_optional = this.rawCepages.optional ?? []
+        }
+        else if(this.rawCepages[couleur].mandatory && this.rawCepages[couleur].optional) {
+          this.cepage_mandatory = this.rawCepages[couleur].mandatory ?? []
+          this.cepage_optional = this.rawCepages[couleur].optional ?? []
+        }
+
+
+        const formData = new FormData()
+            formData.append('name', this.name)
+            formData.append('type', this.type)
+            formData.append('type2', this.type2)
+            formData.append('type3', this.type3)
+            formData.append('region', this.region)
+            formData.append('year', this.year)
+            formData.append('country', this.country)
+            formData.append('comments', this.comments)
+            formData.append('domaine', this.domaine)
+            formData.append('quantity', this.quantity)
+            formData.append('image', this.image) 
+            formData.append('accords', this.accords) 
+            formData.append('vignoble', this.vignoble) 
+
+            let mandatory = []
+            this.cepage_mandatory.forEach((el) => {
+              formData.append('mandatory[]', el);
+            });
+
+            let optional = []
+            this.cepage_optional.forEach((el) => {
+              formData.append('optional[]', el);
+            });
+
+            fetch(`${this.backendUrl}/api/bottle-create`, {
+                method: 'POST',
+                body: formData
+            })
+            .then(async res => {
+                const data = await res.json()
+
+                    if (!res.ok) {
+                        
+                        if (data && data.error) {
+                            this.errors.general = data.error
+                        } else {
+                            this.errors.general = "Une erreur est survenue lors de l'ajout de la bouteille."
+                        }
+                        throw new Error(this.errors.general)
+                    }
+                    this.resetForm()
+            })
+            .then(data => {
+                alert('Bouteille enregistrée')
+            })
+            .catch(err => {
+                console.error('Erreur :', err)
+            })
+        },
+        resetForm() {
+            this.name = ''
+            this.region = ''
+            this.type = ''
+            this.type2 = ''
+            this.domaine = ''
+            this.year = ''
+            this.quantity = ''
+            this.country = ''
+            this.comments = '',
+            this.imageFile = null
+            this.imagePreview = null
+            this.suggestions = []
+            this.showSuggestions = false
+            this.errors = {
+                domaine: null,
+                region: null,
+                year: null,
+                quantity: null,
+                general: null,
+                country: null
+            }
+        }
+
+   }));
+});
+</script>
+
+</body>
+</html>

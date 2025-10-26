@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Inventaire | Cavavin</title>
+  <link rel="stylesheet" href="../public/assets/global_style.css" />
+  
+  <script defer type="module">
+    import Alpine from '../public/vendor/alpine/module.esm.js';
+    window.Alpine = Alpine;
+    Alpine.start();
+  </script>
+
+  <link rel="stylesheet" href="../libs/tailwind.css" />
+</head>
+<body x-data="{ sidebarOpen: false }" class="bg-creme flex h-screen bg-gray-50 font-sans">
+
+  <!-- Overlay mobile -->
+  <div 
+    class="fixed inset-0 bg-black bg-opacity-50 z-30 md:hidden"
+    x-show="sidebarOpen"
+    x-transition.opacity
+    @click="sidebarOpen = false"
+  ></div>
+
+  <!-- Sidebar -->
+  <aside 
+    class="fixed md:static z-40 inset-y-0 left-0 w-64 bg-gray-900 text-white transform md:translate-x-0 transition-transform duration-200 ease-in-out"
+    :class="{ '-translate-x-full': !sidebarOpen }"
+  >
+    <div class="p-6 text-2xl font-bold">🍷 Cavavin</div>
+    <nav class="space-y-2 px-4">
+      <a href="#" onclick="window.location.href='dashboard.html'" class="block px-4 py-2 rounded hover:bg-gray-700">📊 Tableau de bord</a>
+      <a href="#" onclick="window.location.href='addBottle.html'" class="block px-4 py-2 rounded hover:bg-gray-700">➕ Ajouter</a>
+      <a href="#" onclick="window.location.href='inventaire.html'" class="block px-4 py-2 rounded hover:bg-gray-700">📦 Inventaire</a>
+      <a href="#" onclick="window.location.href='journal.html'" class="block px-4 py-2 rounded hover:bg-gray-700">📕 Journal de dégustation</a>
+      <a href="#" onclick="window.location.href='parametres.html'" class="block px-4 py-2 rounded hover:bg-gray-700">⚙️ Paramètres</a>
+    </nav>
+  </aside>
+
+  <!-- Contenu principal -->
+  <div class="flex-1 flex flex-col overflow-hidden">
+    <!-- Topbar -->
+    <header class="bg-white shadow-md p-4 flex items-center justify-between md:hidden">
+      <button @click="sidebarOpen = !sidebarOpen" class="text-gray-700 text-2xl">
+        ☰
+      </button>
+      <h1 class="text-xl font-bold text-liedevin">Cavavin</h1>
+    </header>
+
+    <!-- Contenu -->
+    <main class="flex-1 overflow-y-auto p-6 bg-creme" x-data="inventory()" x-init="fetchBottles()">
+        <h1 class="text-3xl font-bold text-liedevin mb-8 text-center">Inventaire</h1>
+
+        <!-- Barre de contrôle -->
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 gap-4">
+        <!-- Sélecteur nombre par page -->
+        <div class="flex items-center gap-2">
+            <label class="text-sm font-medium text-gray-700">Afficher</label>
+            <select x-model="perPage" @change="fetchBottles()" class="border-gray-300 rounded px-2 py-1 text-sm">
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+            </select>
+            <span class="text-sm text-gray-500">bouteilles</span>
+        </div>
+
+        <!-- Filtres et recherche -->
+        <div class="flex flex-wrap items-center gap-4">
+            <!-- Champ recherche -->
+            <input 
+            type="text" 
+            x-model="search" 
+            placeholder="🔍 Rechercher..."
+            class="border-gray-300 rounded px-3 py-1 text-sm w-64"
+            @input.debounce.300="fetchBottles"
+            />
+
+            <!-- Filtres -->
+            <template x-for="filter in filters" :key="filter.key">
+                <label class="inline-flex items-center text-sm text-gray-700 mr-2 mb-2 relative group">
+                <input type="checkbox" 
+                        x-model="activeFilters" 
+                        :value="filter.key" 
+                        class="mr-1">
+                <span x-text="filter.label"></span>
+                </label>
+        </template>
+        </div>
+    </div>
+
+
+        <!-- Pagination -->
+        <div class="mt-8 mb-4 flex justify-start items-center gap-2 text-sm text-center">
+        <button 
+            @click="changePage(currentPage - 1)" 
+            :disabled="currentPage === 1" 
+            class="px-2 py-1 rounded border text-gray-700 hover:bg-gray-100 disabled:opacity-50"
+        >
+            ← Précédent
+        </button>
+
+        <template x-for="page in totalPages" :key="page">
+            <button 
+            @click="changePage(page)" 
+            :class="{
+                'bg-liedevin-gradient text-white': currentPage === page,
+                'text-gray-700 hover:bg-gray-100': currentPage !== page
+            }"
+            class="px-3 py-1 rounded border"
+            x-text="page"
+            ></button>
+        </template>
+
+        <button 
+            @click="changePage(currentPage + 1)" 
+            :disabled="currentPage === totalPages" 
+            class="px-2 py-1 rounded border text-gray-700 hover:bg-gray-100 disabled:opacity-50"
+        >
+            Suivant →
+        </button>
+        </div>
+
+
+
+        <!-- Table -->
+        <div class="overflow-x-auto bg-white shadow-md rounded-lg">
+            <div class="overflow-x-auto bg-white shadow-md rounded-lg">
+                <table class="min-w-full divide-y divide-gray-200 text-sm">
+                <thead class="bg-gray-100 text-gray-700 uppercase text-xs tracking-wider">
+                    <tr>
+                    <th class="px-6 py-3 text-left">Nom</th>
+                    <th class="px-6 py-3 text-left">Domaine</th>
+                    <th class="px-6 py-3 text-left">Millésime</th>
+                    <th class="px-6 py-3 text-left">Couleur</th>
+                    <th class="px-6 py-3 text-left">Type</th>
+                    <th class="px-6 py-3 text-left">Region</th>
+                    <th class="px-6 py-3 text-left">Qté</th>
+                    <th class="px-6 py-3 text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-100 text-gray-800">
+                    <template x-for="bottle in filteredBottles" :key="bottle.id">
+                    <tr class="hover:bg-purple-50 transition">
+                        <td class="px-6 py-4 font-medium text-purple-800" x-text="bottle.name"></td>
+                        <td class="px-6 py-4" x-text="bottle.domaine"></td>
+                        <td class="px-6 py-4" x-text="bottle.year"></td>
+                        <td class="px-6 py-4" x-text="bottle.type"></td>
+                        <td class="px-6 py-4" x-text="bottle.type2"></td>
+                        <td class="px-6 py-4" x-text="bottle.region"></td>
+                        <td class="px-6 py-4" x-text="bottle.quantity"></td>
+                        <td class="px-6 py-4 text-center">
+                            <a :href="`fiche.html?id=${bottle.id}`" class="text-sm text-purple-700 hover:underline">Voir</a><br>
+                            <a :href="`editBottle.html?id=${bottle.id}`" class="text-sm text-yellow-600 hover:underline">Modifier</button><br>
+                        </td>
+                    </tr>
+                    </template>
+                </tbody>
+                </table>
+        </div>
+    </main>
+<script>
+document.addEventListener('alpine:init', () => {
+  Alpine.data('inventory', () => ({
+    initialized: false,
+    bottles: [],
+    perPage: 50,
+    currentPage: 1,
+    totalPages: 1,
+    activeFilters: [],
+    search: '',
+    backendUrl: '',
+    filters: [
+        { key: 'name', label: 'Nom' },
+        { key: 'domaine', label: 'Domaine' },
+        { key: 'year', label: 'Année' },
+        { key: 'type', label: 'Couleur' },
+        { key: 'type2', label: 'Sucrosité*' },
+        { key: 'region', label: 'Région' }
+    ],
+
+    async fetchBottles() {
+
+      if (this.initialized) return;
+      this.initialized = true;
+
+      this.backendUrl = await window.electronAPI.getBackendUrl();
+
+      const params = new URLSearchParams({
+        limit: this.perPage,
+        page: this.currentPage,
+        search: this.search,
+        filters: this.activeFilters.join(',')
+      })
+
+      fetch(`${this.backendUrl}/api/bottles?${params.toString()}`)
+        .then(res => res.json())
+        .then(data => {
+          this.bottles = data.items // ou data.bottles selon ta réponse
+          this.totalPages = data.totalPages
+        })
+        .catch(err => {
+          console.error("Erreur lors du chargement des bouteilles :", err)
+        })
+    },
+
+    changePage(page) {
+      if (page < 1 || page > this.totalPages) return
+      this.currentPage = page
+      this.fetchBottles()
+    },
+
+    get filteredBottles() {
+      if (this.activeFilters.length === 0) return this.bottles
+
+      return this.bottles.map(bottle => {
+        const filtered = {}
+        this.activeFilters.forEach(field => {
+          filtered[field] = bottle[field]
+        })
+        return bottle
+      })
+    },
+
+    formatDate(dateStr) {
+      const date = new Date(dateStr)
+      return date.toLocaleDateString('fr-FR')
+    }
+  }));
+});
+</script>
+</body>
+</html>

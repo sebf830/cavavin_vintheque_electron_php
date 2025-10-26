@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Ajouter une note | Cavavin</title>
+  <link rel="stylesheet" href="../public/assets/global_style.css" />
+
+  <script defer type="module">
+    import Alpine from '../public/vendor/alpine/module.esm.js';
+    window.Alpine = Alpine;
+    Alpine.start();
+  </script>
+
+  <!-- Local Tailwind : self generated -->
+  <link rel="stylesheet" href="../libs/tailwind.css" />
+<style>
+.img-tape {
+  position: relative;
+  text-align: center;
+  display: inline-block;
+  margin: 20px auto 10px;
+}
+
+.img-tape::before,
+.img-tape::after {
+  background: rgba(255, 255, 235, 0.6);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  content: "";
+  display: block;
+  height: 30px;
+  position: absolute;
+  margin: auto;
+  width: 100px;
+}
+
+.img-tape img {
+  background: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  display: inline-block;
+  height: auto;
+  margin: 0 20px;
+  padding: 8px;
+  text-align: center;
+  vertical-align: top;
+}
+
+.img-tape--1::before {
+  left: 50%;
+  margin-left: -50px;
+  top: -10px;
+}
+
+.img-tape--1::after {
+  display: none;
+}
+
+.img-tape--2::before {
+  left: 0;
+  top: 10px;
+  transform: rotate(-35deg);
+}
+
+.img-tape--2::after {
+  right: 0;
+  top: 15px;
+  transform: rotate(45deg);
+}
+
+.img-tape--3::before {
+  left: 0;
+  top: 10px;
+  transform: rotate(-45deg);
+}
+
+.img-tape--3::after {
+  bottom: 10px;
+  right: 0;
+  transform: rotate(-35deg);
+}
+
+.img-tape--4::before {
+  left: -30px;
+  margin-top: -15px;
+  top: 50%;
+  transform: rotate(93deg);
+}
+
+.img-tape--4::after {
+  margin-top: -30px;
+  right: -30px;
+  top: 50%;
+  transform: rotate(89deg);
+}
+</style>
+
+</head>
+<body x-data="{ sidebarOpen: false }" class="bg-creme flex h-screen bg-gray-50 font-sans">
+
+  <!-- Overlay mobile -->
+  <div 
+    class="fixed inset-0 bg-black bg-opacity-50 z-30 md:hidden"
+    x-show="sidebarOpen"
+    x-transition.opacity
+    @click="sidebarOpen = false"
+  ></div>
+
+  <!-- Sidebar -->
+  <aside 
+    class="fixed md:static z-40 inset-y-0 left-0 w-64 bg-gray-900 text-white transform md:translate-x-0 transition-transform duration-200 ease-in-out no-print"
+    :class="{ '-translate-x-full': !sidebarOpen }"
+  >
+    <div class="p-6 text-2xl font-bold">🍷 Cavavin</div>
+    <nav class="space-y-2 px-4">
+      <a href="#" onclick="window.location.href='dashboard.html'" class="block px-4 py-2 rounded hover:bg-gray-700">📊 Tableau de bord</a>
+      <a href="#" onclick="window.location.href='addBottle.html'" class="block px-4 py-2 rounded hover:bg-gray-700">➕ Ajouter</a>
+      <a href="#" onclick="window.location.href='inventaire.html'" class="block px-4 py-2 rounded hover:bg-gray-700">📦 Inventaire</a>
+      <a href="#" onclick="window.location.href='journal.html'" class="block px-4 py-2 rounded hover:bg-gray-700">📕 Journal</a>
+      <a href="#" onclick="window.location.href='parametres.html'" class="block px-4 py-2 rounded hover:bg-gray-700">⚙️ Paramètres</a>
+    </nav>
+  </aside>
+
+  <!-- Contenu principal -->
+  <div class="flex-1 flex flex-col overflow-hidden">
+
+    <!-- Topbar -->
+    <header class="bg-white shadow-md p-4 flex items-center justify-between md:hidden">
+      <button @click="sidebarOpen = !sidebarOpen" class="text-gray-700 text-2xl">
+        ☰
+      </button>
+      <h1 class="text-xl font-bold text-liedevin">Cavavin</h1>
+    </header>
+
+    
+    <!-- Contenu -->
+    <main class="flex-1 overflow-y-auto px-6 bg-creme flex items-center justify-center min-h-screen" x-data="noteApp()" x-init="init()">
+      
+      <div class="relative w-[700px] h-[800px] bg-white/90 shadow-md rounded-md border border-gray-300">
+
+      <template x-if="notification">
+        <div class="mb-4 p-3 bg-green-200 text-green-700 border border-green-700 rounded text-center shadow max-w-xl mx-auto">
+          <span x-text="notification"></span>
+        </div>
+      </template>
+
+      <!-- Ligne rouge type marge -->
+      <div class="absolute left-14 top-0 bottom-0 w-[2px] bg-red-400/40 z-10"></div>
+
+      <!-- Trous -->
+      <div class="absolute left-4 top-[10%] w-6 h-6 bg-yellow-100 rounded-full shadow-inner border border-gray-300"></div>
+      <div class="absolute left-4 top-[50%] w-6 h-6 bg-yellow-100 rounded-full shadow-inner border border-gray-300"></div>
+      <div class="absolute left-4 bottom-[10%] w-6 h-6 bg-yellow-100 rounded-full shadow-inner border border-gray-300"></div>
+
+      <!-- Lignes + contenu -->
+      <div class="mt-10 h-full w-full bg-[repeating-linear-gradient(white_0px,white_24px,steelblue_25px)] overflow-y-auto">
+
+        <!-- Zone de texte dynamique -->
+        <div class="absolute top-16 left-20 right-4 bottom-4 pr-2 font-handwriting leading-6 text-gray-800 space-y-4" x-show="note">
+
+          <!-- Titre -->
+          <h1 class="text-2xl font-bold text-[#5d4037]" x-text="note.titre ? note.titre : 'Sans titre'"></h1>
+
+          <!-- Infos vin -->
+          <div class="text-lg text-gray-700">
+            <span x-text="note.bottle ? note.bottle.name : ''"></span> — 
+            <span x-text="note.bottle ? note.bottle.domaine : 'Domaine inconnu'"></span>, 
+            <span x-text="note.bottle ? note.bottle.year : ''"></span>
+          </div>
+
+          <!-- Date -->
+          <div class="text-sm italic text-[#8d6e63]">
+            le <span x-text="note.creation_date ? formatDate(note.creation_date.date) : '(aucune date)'"></span>
+          </div>
+
+          <template x-if="note.rating">
+            <div class="flex items-center gap-1 mb-4">
+              <template  x-for="i in 5">
+                <svg 
+                  :class="{'text-yellow-400': i <= note.rating, 'text-gray-300': i > note.rating}" 
+                  class="w-5 h-5 fill-current" 
+                  viewBox="0 0 20 20" 
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M10 15l-5.878 3.09 1.122-6.545L.488 6.91l6.561-.954L10 0l2.951 5.956 6.561.954-4.756 4.635 1.122 6.545z"/>
+                </svg>
+              </template>
+            </div>
+          </template>
+
+
+          <!-- Image -->
+          <template x-if="note.image">
+            <div class="img-tape img-tape--3">
+              <img :src="`${backendUrl}/uploads/${note.image}`" alt="Image de la note" width="200" height="200" class="w-full max-w-xs rounded shadow my-2">
+            </div>
+          </template>
+
+          <!-- Contenu texte -->
+          <div class="whitespace-pre-line min-h-[200px]" x-text="note.content ? note.content : 'Aucun contenu'"></div>
+
+          <div class="flex justify-center gap-2">
+           <a 
+                onclick="window.location.href='journal.html'"
+                href="#" 
+                class="bg-liedevin-gradient text-white px-8 py-3 rounded hover:bg-gradient-to-b from-[#2f2f2f] to-[#101010] transition"
+            >
+                Retour au journal
+            </a>
+            <button
+              @click="deleteNote(note.id)"
+              class="bg-liedevin-gradient hover:bg-gradient-to-b from-[#2f2f2f] to-[#101010] text-white px-8 py-1 rounded text-lg font-semibold transition"
+            >
+              supprimer
+          </button>
+        </div>
+
+        </div>
+        
+
+        <!-- Loader -->
+        <template x-if="loading">
+          <div class="absolute top-1/2 left-1/2 -translate-x-1/2 text-gray-500">Chargement...</div>
+        </template>
+
+        <!-- Erreur -->
+        <template x-if="!loading && !note">
+          <div class="absolute top-1/2 left-1/2 -translate-x-1/2 text-red-500">Erreur lors du chargement de la note</div>
+        </template>
+      </div>
+      
+    </div>
+  </main>
+
+    </div>
+
+
+<script>
+document.addEventListener('alpine:init', () => {
+  Alpine.data('noteApp', () => ({
+        initialized:false,
+        notification: null,
+        note: {},
+        loading: true,
+        backendUrl: '',
+
+        async init() {
+          if (this.initialized) return;
+          this.initialized = true;
+
+          this.backendUrl = await window.electronAPI.getBackendUrl();
+
+          const params = new URLSearchParams(window.location.search);
+          const id = params.get("id");
+          if (!id) return;
+
+          try {
+            const res = await fetch(`${this.backendUrl}/api/note/${id}`);
+            if (!res.ok) throw new Error("Erreur de chargement");
+            this.note = await res.json();
+
+          } catch (e) {
+            console.error(e);
+            this.note = null;
+          } finally {
+            this.loading = false;
+          }
+        },
+
+        formatDate(dateStr) {
+          const d = new Date(dateStr);
+          return d.toLocaleDateString('fr-FR', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+          });
+        },
+
+        async deleteNote() {
+        if (!confirm("Voulez-vous vraiment supprimer cette note ?")) return;
+
+        try {
+          const res = await fetch(`${this.backendUrl}/api/delete-note/${this.note.id}`, {
+            method: 'DELETE',
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          });
+
+          if (!res.ok) throw new Error("Échec de la suppression");
+
+          this.notification = "Note supprimée ✅";
+
+        } catch (e) {
+          console.error(e);
+          this.notification = "Erreur lors de la suppression ❌";
+        }
+
+        setTimeout(() => {
+          this.notification = null;
+          window.location.href="journal.html";
+        }, 1500);
+      }
+    }));
+});
+</script>
+</body>
+</html>

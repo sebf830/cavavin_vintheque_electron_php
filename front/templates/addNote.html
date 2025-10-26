@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Ajouter une note | Cavavin</title>
+  <link rel="stylesheet" href="../public/assets/global_style.css" />
+  <!-- Alpine JS local & initialization -->
+  <script defer type="module">
+    import Alpine from '../public/vendor/alpine/module.esm.js';
+    window.Alpine = Alpine;
+    Alpine.start();
+  </script>
+
+  <!-- Local Tailwind : self generated -->
+  <link rel="stylesheet" href="../libs/tailwind.css" />
+</head>
+<body x-data="{ sidebarOpen: false }" class="bg-creme flex h-screen bg-gray-50 font-sans">
+
+  <!-- Overlay mobile -->
+  <div 
+    class="fixed inset-0 bg-black bg-opacity-50 z-30 md:hidden"
+    x-show="sidebarOpen"
+    x-transition.opacity
+    @click="sidebarOpen = false"
+  ></div>
+
+  <!-- Sidebar -->
+  <aside 
+    class="fixed md:static z-40 inset-y-0 left-0 w-64 bg-gray-900 text-white transform md:translate-x-0 transition-transform duration-200 ease-in-out"
+    :class="{ '-translate-x-full': !sidebarOpen }"
+  >
+    <div class="p-6 text-2xl font-bold">🍷 Cavavin</div>
+    <nav class="space-y-2 px-4">
+      <a href="#" onclick="window.location.href='dashboard.html'" class="block px-4 py-2 rounded hover:bg-gray-700">📊 Tableau de bord</a>
+      <a href="#" onclick="window.location.href='addBottle.html'" class="block px-4 py-2 rounded hover:bg-gray-700">➕ Ajouter</a>
+      <a href="#" onclick="window.location.href='inventaire.html'" class="block px-4 py-2 rounded hover:bg-gray-700">📦 Inventaire</a>
+      <a href="#" onclick="window.location.href='journal.html'" class="block px-4 py-2 rounded hover:bg-gray-700">📕 Journal de dégustation</a>
+      <a href="#" onclick="window.location.href='parametres.html'" class="block px-4 py-2 rounded hover:bg-gray-700">⚙️ Paramètres</a>
+    </nav>
+  </aside>
+
+  <!-- Contenu principal -->
+  <div class="flex-1 flex flex-col overflow-hidden">
+    <!-- Topbar -->
+    <header class="bg-white shadow-md p-4 flex items-center justify-between md:hidden">
+      <button @click="sidebarOpen = !sidebarOpen" class="text-gray-700 text-2xl">
+        ☰
+      </button>
+      <h1 class="text-xl font-bold text-liedevin">Cavavin</h1>
+    </header>
+
+    <!-- Contenu -->
+    <main class="flex-1 overflow-y-auto p-6 bg-creme flex items-center justify-center min-h-screen rounded" x-data="noteFormApp()" x-init="fetchBottles()">
+  <form 
+    @submit.prevent="submitForm"
+    class="relative w-[700px] h-[850px] bg-white/90 shadow-md rounded-md border border-gray-300"
+  >
+
+
+    <!-- Trous -->
+    <div class="absolute left-4 top-[10%] w-6 h-6 bg-yellow-100 rounded-full shadow-inner border border-gray-300"></div>
+    <div class="absolute left-4 top-[50%] w-6 h-6 bg-yellow-100 rounded-full shadow-inner border border-gray-300"></div>
+    <div class="absolute left-4 bottom-[10%] w-6 h-6 bg-yellow-100 rounded-full shadow-inner border border-gray-300"></div>
+
+    <!-- Lignes de papier -->
+    <div class="mt-10 h-full w-full bg-white">
+      
+      <!-- Form content -->
+      <div class="absolute top-16 left-20 right-8 bottom-4 overflow-y-auto font-handwriting leading-6 space-y-6">
+
+        <!-- Titre -->
+        <div>
+          <label class="block mb-1 text-sm text-gray-600 font-bold uppercase">Titre de la note</label>
+          <input type="text" x-model="title" class="w-full bg-transparent border-b border-gray-400 focus:outline-none" required  placeholder="le titre ici"/>
+        </div>
+
+        <!-- Bouteille -->
+        <div>
+          <label class="block mb-1 text-sm text-gray-600 font-bold uppercase">Bouteille</label>
+          <select x-model="bottle" class="w-full bg-transparent border-b border-gray-400 focus:outline-none" required>
+            <option value="">-- Choisir --</option>
+            <template x-for="b in bottles" :key="b.id">
+              <option :value="b.id" x-text="`${b.name} (${b.year}) - ${b.domaine || ''}`"></option>
+            </template>
+          </select>
+        </div>
+
+        <!-- Image -->
+        <div>
+          <label class="block mb-1 text-sm text-gray-600 font-bold uppercase">Image</label>
+          <input type="file" @change="handleImageUpload" class="block w-full text-sm" />
+        </div>
+
+        <!-- Note (rating) -->
+        <div>
+          <label class="block mb-1 text-sm text-gray-600 font-bold uppercase">Noter la dégustation</label>
+          <div class="flex space-x-1">
+            <template x-for="star in 5">
+              <svg @click="rating = star" :class="rating >= star ? 'text-yellow-500' : 'text-gray-300'" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 cursor-pointer fill-current" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.19 3.675a1 1 0 00.95.69h3.862c.969 0 1.371 1.24.588 1.81l-3.124 2.27a1 1 0 00-.364 1.118l1.19 3.675c.3.921-.755 1.688-1.54 1.118l-3.124-2.27a1 1 0 00-1.175 0l-3.124 2.27c-.784.57-1.838-.197-1.539-1.118l1.19-3.675a1 1 0 00-.364-1.118L2.32 9.102c-.783-.57-.38-1.81.588-1.81h3.862a1 1 0 00.95-.69l1.19-3.675z"/>
+              </svg>
+            </template>
+          </div>
+        </div>
+
+        <!-- Texte -->
+        <div>
+          <label class="block mb-1 text-sm text-gray-600 font-bold uppercase">Commentaire</label>
+          <textarea x-model="content" rows="12" class="w-full h-50 bg-transparent border border-gray-300 rounded p-2 focus:outline-none" placeholder="Votre texte ici"></textarea>
+        </div>
+
+      <div class="md:col-span-2 flex justify-center mt-6 gap-2">
+          <a 
+                onclick="window.location.href='dashboard.html'"
+                href="#" 
+              class="bg-liedevin-gradient text-white px-8 py-3 rounded hover:bg-gradient-to-b from-[#2f2f2f] to-[#101010] transition"
+            >
+              Retour dashboard
+          </a>
+          <a 
+                onclick="window.location.href='journal.html'"
+                href="#" 
+              class="bg-liedevin-gradient text-white px-8 py-3 rounded hover:bg-gradient-to-b from-[#2f2f2f] to-[#101010] transition"
+            >
+              Retour journal
+          </a>
+          <button 
+              @click.prevent="submitForm"
+              class="bg-liedevin-gradient text-white px-8 py-3 rounded hover:bg-gradient-to-b from-[#2f2f2f] to-[#101010] transition"
+            >
+              💾 Valider
+          </button>
+      </div>
+    </div>
+      <!--<p x-show="message" class="mt-2 text-green-600 font-medium" x-text="message"></p>
+      <p x-show="error" class="mt-2 text-red-600 font-medium" x-text="error"></p>-->
+      </div>
+    </div>
+  </form>
+</main>
+
+</div>
+
+<script>
+document.addEventListener('alpine:init', () => {
+  Alpine.data('noteFormApp', () => ({
+    title: '',
+    bottle: '',
+    content: '',
+    rating: 0,
+    image: null,
+    backendUrl: '',
+    bottles: [],
+
+    async fetchBottles() {
+      this.backendUrl = await window.electronAPI.getBackendUrl();
+
+      try {
+        const res = await fetch(`${this.backendUrl}/api/bottles/stock`);
+        if (!res.ok) throw new Error('Erreur chargement bouteilles');
+        this.bottles = await res.json();
+      } catch (e) {
+        console.error(e);
+      }
+    },
+
+    handleImageUpload(e) {
+      this.image = e.target.files[0];
+    },
+
+    async submitForm() {
+      const formData = new FormData();
+      formData.append('title', this.title);
+      formData.append('bottle', this.bottle);
+      formData.append('content', this.content);
+      formData.append('rating', this.rating);
+      if (this.image) formData.append('image', this.image);
+
+      try {
+        const res = await fetch(`${this.backendUrl}/api/note_create`, {
+          method: 'POST',
+          body: formData
+        });
+        if (!res.ok) throw new Error('Erreur enregistrement');
+        alert('Note enregistrée avec succès 🍷');
+
+          this.title =  null;
+          this.bottle =  null;
+          this.content =  null;
+          this.rating = null;
+          this.image = null;
+      } catch (e) {
+        console.error(e);
+        alert("Échec de l'enregistrement");
+      }
+    }
+  }));
+});
+</script>
+
+</body>
+</html>

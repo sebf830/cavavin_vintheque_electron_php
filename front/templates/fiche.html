@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Fiche bouteille | Cavavin</title>
+  <link rel="stylesheet" href="../public/assets/global_style.css" />
+
+  <!-- Alpine JS local & initialization -->
+  <script defer type="module">
+    import Alpine from '../public/vendor/alpine/module.esm.js';
+    window.Alpine = Alpine;
+    Alpine.start();
+  </script>
+
+  <!-- Local Tailwind : self generated -->
+  <link rel="stylesheet" href="../libs/tailwind.css" />
+</head>
+<body x-data="{ sidebarOpen: false }" class="bg-creme flex min-h-screen bg-gray-50 font-sans">
+
+  <!-- Overlay mobile -->
+  <div 
+    class="fixed inset-0 bg-black bg-opacity-50 z-30 md:hidden"
+    x-show="sidebarOpen"
+    x-transition.opacity
+    @click="sidebarOpen = false"
+  ></div>
+
+  <!-- Sidebar -->
+  <aside 
+    class="fixed md:static z-40 inset-y-0 left-0 w-64 bg-gray-900 text-white transform md:translate-x-0 transition-transform duration-200 ease-in-out"
+    :class="{ '-translate-x-full': !sidebarOpen }"
+  >
+    <div class="p-6 text-2xl font-bold">🍷 Cavavin</div>
+    <nav class="space-y-2 px-4">
+      <a href="#" onclick="window.location.href='dashboard.html'" class="block px-4 py-2 rounded hover:bg-gray-700">📊 Tableau de bord</a>
+      <a href="#" onclick="window.location.href='addBottle.html'" class="block px-4 py-2 rounded hover:bg-gray-700">➕ Ajouter</a>
+      <a href="#" onclick="window.location.href='inventaire.html'" class="block px-4 py-2 rounded hover:bg-gray-700">📦 Inventaire</a>
+      <a href="#" onclick="window.location.href='journal.html'" class="block px-4 py-2 rounded hover:bg-gray-700">📕 Journal de dégustation</a>
+      <a href="#" onclick="window.location.href='parametres.html'" class="block px-4 py-2 rounded hover:bg-gray-700">⚙️ Paramètres</a>
+    </nav>
+  </aside>
+
+
+  <!-- Contenu principal -->
+  <div class="flex-1 flex flex-col overflow-hidden">
+    <!-- Topbar -->
+    <header class="bg-white shadow-md p-4 flex items-center justify-between md:hidden">
+      <button @click="sidebarOpen = !sidebarOpen" class="text-gray-700 text-2xl">
+        ☰
+      </button>
+      <h1 class="text-xl font-bold text-liedevin">Cavavin</h1>
+    </header>
+
+    <!-- Contenu -->
+<main class="bg-creme min-h-screen flex items-center justify-center px-4 py-10" x-data="ficheBouteille" x-init="init()">
+
+    <div 
+      x-show="notification"
+      x-text="notification"
+      class="fixed top-4 right-4 bg-green-100 text-green-800 px-4 py-2 rounded shadow z-50"
+      x-transition
+    ></div>
+    
+    <template x-if="error">
+        <p x-text="error" class="text-red-500"></p>
+    </template>
+
+  <div class="bg-creme w-full max-w-5xl bg-white rounded shadow-md p-8">
+  
+    <h1 class="text-2xl font-bold text-liedevin mb-8 text-center">Fiche <span x-text="bottle.name"></span></h1>
+
+    <div class="flex flex-col items-center lg:flex-row gap-12 items-start">
+      <!-- Image -->
+      <div class="w-full max-w-[12rem] mx-auto lg:mx-0">
+        <div class="aspect-w-3 aspect-h-4 bg-gray-100 rounded overflow-hidden shadow-inner">
+          <img 
+            x-show="backendUrl"
+            :src="backendUrl ? (bottle.image ? `${backendUrl}/uploads/${bottle.image}` : `${backendUrl}/uploads/placeholder.jpg`) : ''"
+            alt="Bouteille de vin"
+            class="object-cover w-full h-full"
+          />
+        </div>
+      </div>
+
+  <!-- Infos -->
+  <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4 ml-12">
+    <!-- Colonne 1 -->
+    <div class="space-y-2">
+      
+      <div>
+        <span class="text-sm font-bold text-liedevin uppercase">Domaine :</span>
+        <span class="text-gray-800 ml-1" x-text="bottle.domaine"></span>
+      </div>
+      <div>
+        <span class="text-sm font-bold text-liedevin uppercase">Millésime :</span>
+        <span class="text-gray-800 ml-1" x-text="bottle.year"></span>
+      </div>
+      <div>
+        <span class="text-sm font-bold text-liedevin uppercase">Stock :</span>
+        <span class="text-gray-800 ml-1"><span x-text="bottle.quantity"></span> bouteilles</span>
+      </div>
+      <div>
+        <span class="text-sm font-bold text-liedevin uppercase">Note :</span>
+        <span class="text-gray-800 ml-1" x-text="bottle.note ? bottle.note + '/10' : 'pas encore noté'"></span>
+      </div>
+    </div>
+
+    <!-- Colonne 2 -->
+    <div class="space-y-2">
+      <div>
+        <span class="text-sm font-bold text-liedevin uppercase">Couleur :</span>
+        <span class="text-gray-800 ml-1" x-text="bottle.type"></span>
+      </div>
+      <div>
+        <span class="text-sm font-bold text-liedevin uppercase">Sucrosité :</span>
+        <span class="text-gray-800 ml-1" x-text="bottle.type2"></span>
+      </div>
+      <div>
+        <span class="text-sm font-bold text-liedevin uppercase">Région :</span>
+        <span class="text-gray-800 ml-1" x-text="bottle.region"></span>
+      </div>
+      <div>
+        <span class="text-sm font-bold text-liedevin uppercase">Vignoble :</span>
+        <span class="text-base text-gray-800 ml-1" x-text="bottle.vignoble"></span>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
+    <!-- Cépages -->
+    <div class="mt-10 border-t pt-6">
+      <h3 class="text-lg font-semibold text-gray-800 mb-2">🍇 Cépages </h3>
+      <template x-if="bottle.cepage_mandatory">
+        <div class="text-sm text-gray-700 space-y-2">
+            <span class="font-semibold">obligatoires : </span>
+            <span x-text="bottle.cepage_mandatory.join(', ') || 'Aucun'"></span>
+        </div>
+      </template>
+      <template x-if="bottle.cepage_optional">
+        <div class="text-sm text-gray-700 space-y-2">
+            <span class="font-semibold">optionnels : </span>
+            <span x-text="bottle.cepage_optional.join(', ') || 'Aucun'"></span>
+        </div>
+      </template>
+    </div>
+
+    <!-- Cépages -->
+    <div class="mt-10 border-t pt-6">
+      <h3 class="text-lg font-semibold text-gray-800 mb-2">🍽️ Accords mets et vins conseillés</h3>
+      <template x-if="bottle.accords">
+        <div class="text-sm text-gray-700 space-y-2">
+            <span x-text="bottle.accords || 'Aucun accord disponible'"></span>
+        </div>
+      </template>
+    </div>
+
+    <div class="flex justify-center gap-4">
+
+        <!-- Commentaires -->
+        <div class="flex-1 mt-8 border-t pt-6">
+          <h3 class="text-lg font-semibold text-gray-800 mb-2">📝 Description/commentaire</h3>
+          <div class="bg-gray-100 p-4 rounded-md text-sm text-gray-700" x-text="bottle.comments || 'Aucun commentaire enregistré.'"></div>
+        </div>
+
+          <!-- Commentaires -->
+          <div class="flex-1 mt-8 border-t pt-6">
+            <h3 class="text-lg font-semibold text-gray-800 mb-2">📕 Notes de dégustation</h3>
+            <div 
+              class="bg-gray-100 p-4 rounded-md text-sm text-gray-700" 
+              x-text="bottle.notes ? bottle.notes.length + ' note(s) de dégustation' : 'Aucune note de dégustation rédigée'"></div>
+          </div>
+      </div>
+
+      <!--<canvas id="wineChart" style="width: 100%; max-width: 500px; height:200px" ></canvas>-->
+      
+
+        <!-- Actions -->
+        <div class="mt-10 border-t pt-6 flex flex-col md:flex-row justify-end gap-4">
+          <a 
+            :href="`editBottle.html?id=${bottle.id}`"
+            class="bg-liedevin-gradient text-white px-8 py-3 rounded hover:bg-gradient-to-b from-[#2f2f2f] to-[#101010] transition flex justify-center items-center">
+            <span>Modifier</span>
+          </a>
+          <button 
+          @click="deleteBottle" 
+          class="bg-liedevin-gradient text-white px-8 py-3 rounded hover:bg-gradient-to-b from-[#2f2f2f] to-[#101010] transition flex justify-center items-center">
+            <span>Supprimer</span>
+          </button>
+          <a href="inventaire.html"class="bg-liedevin-gradient text-white px-8 py-3 rounded hover:bg-gradient-to-b from-[#2f2f2f] to-[#101010] transition flex justify-center items-center">
+            <span>Retour</span>
+          </a>
+        </div>
+  </div>
+</main>
+
+<script>
+
+
+document.addEventListener('alpine:init', () => {
+  Alpine.data('ficheBouteille', () => ({
+    initialized: false,
+    bottle: {},
+    isLoading: true,
+    error: null,
+    backendUrl: '',
+
+    async init() {
+      
+      if (this.initialized) return;
+      this.initialized = true;
+      
+      this.backendUrl = await window.electronAPI.getBackendUrl(); 
+
+      const params = new URLSearchParams(window.location.search)
+      const id = params.get('id')
+      
+      if (!id) {
+          this.error = "Aucune bouteille sélectionnée."
+          this.isLoading = false
+          return
+        }
+        
+      try {
+        const response = await fetch(`${this.backendUrl}/api/bottle/${id}`)
+        if (!response.ok)  throw new Error("Impossible de charger la bouteille")
+            
+        const data = await response.json()
+        this.bottle = data
+      } catch (err) {
+        console.error(err)
+        this.error = "Erreur lors du chargement des données"
+      } finally {
+        this.isLoading = false
+      }
+    },
+
+    notification: null,
+      deleteBottle: async function () {
+      if (!confirm("Voulez-vous vraiment supprimer cette bouteille ?")) {
+        return
+      }
+
+      try {
+        const response = await fetch(`${this.backendUrl}/api/delete-bottle/${this.bottle.id}`, {
+          method: 'DELETE',
+          headers: {  'Content-Type': 'application/json'}
+        })
+
+        if (!response.ok) throw new Error("Erreur lors de la suppression")
+        
+        this.notification = "Bouteille supprimée avec succès ✅"
+
+        setTimeout(() => {
+          window.location.href = "inventaire.html"
+        }, 1500)
+
+      } catch (err) {
+        this.notification = "Erreur lors de la suppression ❌"
+      }
+    }
+  }))
+})
+</script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+
+[x-cloak] { display: none !important;}
+
+.bg-vertdoux{
+	background-color: #8cba9e
+}
+.bg-cuivre{
+	background-color:#C9A66B
+}
+.bg-marronclair{
+	background-color:#d7bfae
+}
+.bg-creme{
+	background-color:#eeeadc 
+}
+.text-anthracite{
+	color: #2c2c2c
+}
+.text-liedevin{
+	color:#6f0025;
+}
+.bg-liedevin-gradient{
+	background: linear-gradient(to bottom, #6f0025 0%, #40000f 100%);
+}
+.liedevin-gradient{
+	background: linear-gradient(to bottom, #6f0025 0%, #40000f 100%);
+}
+.bg-dark-gradient{
+	background: linear-gradient(to bottom, #2f2f2f 0%, #101010 100%);
+}
+
+body {
+	 background-color: #eeeadc ;
+}
+ .bottle {
+	 position: absolute;
+	 top: 50%;
+	 left: 50%;
+	 transform: translate(-50%, -50%);
+	 height: 100px;
+	 width: 26px;
+}
+ .bottle:before {
+	 content: '';
+	 width: 40px;
+	 height: 5px;
+	 background: #000;
+	 opacity: 0.1;
+	 position: absolute;
+	 top: 100%;
+	 left: 50%;
+	 margin-left: -20px;
+	 border-radius: 50%;
+	 animation: shadow 900ms linear infinite;
+}
+ .bottle svg {
+	 height: 100px;
+	 opacity: 0.7;
+	 width: 26px;
+	 animation: bottle 900ms linear infinite;
+}
+ @keyframes shadow {
+	 0%, 100% {
+		 transform: scale(1, 1);
+	}
+	 50% {
+		 transform: scale(1.3, 1);
+	}
+}
+ @keyframes bottle {
+	 0%, 100% {
+		 transform: translateY(0);
+	}
+	 50% {
+		 transform: translateY(-15%);
+	}
+}

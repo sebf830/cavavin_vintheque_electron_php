@@ -1,0 +1,468 @@
+{
+  "bordeaux": {
+    "appellations_regionales": [
+      {
+        "name": "Bordeaux",
+        "type": ["rouge", "blanc", "rose"],
+        "type2": ["sec", "moelleux", "demi-sec"],
+        "cepages": {
+          "rouge": {
+            "mandatory": ["Merlot", "Cabernet Sauvignon", "Cabernet Franc"],
+            "optional": ["Malbec", "Petit Verdot"]
+          },
+          "blanc": {
+            "mandatory": ["Sauvignon Blanc", "Sémillon"],
+            "optional": ["Muscadelle"]
+          },
+          "rose": {
+            "mandatory": [],
+            "optional": ["Merlot", "Cabernet Sauvignon", "Cabernet Franc"]
+          }
+        },
+        "accords": "Entrecôte grillée, confit de canard, magret de canard, assiette de charcuterie, fromage de chèvre, poisson en sauce (blanc), poulet rôti, salade composée (rosé)."
+      },
+      {
+        "name": "Bordeaux Supérieur",
+        "type": ["rouge", "blanc"],
+        "type2": ["sec", "moelleux"],
+        "cepages": {
+          "rouge": {
+            "mandatory": ["Merlot", "Cabernet Sauvignon", "Cabernet Franc"],
+            "optional": ["Malbec", "Petit Verdot"]
+          },
+          "blanc": {
+            "mandatory": ["Sauvignon Blanc", "Sémillon"],
+            "optional": ["Muscadelle"]
+          }
+        },
+        "accords": "Côte de bœuf, civet de lièvre, cassoulet, fromages fermiers, volailles en sauce, risotto aux champignons, poisson grillé (blanc)."
+      },
+      {
+        "name": "Crémant de Bordeaux",
+        "type": ["blanc", "rose"],
+        "type2": ["brut", "extra brut", "nature"],
+        "cepages": {
+          "mandatory": ["Sémillon", "Sauvignon Blanc", "Muscadelle", "Cabernet Franc", "Merlot", "Cabernet Sauvignon", "Malbec"],
+          "optional": []
+        },
+        "accords": "Apéritif avec toasts, huîtres, sashimi, carpaccio de Saint-Jacques, foie gras, petits fours salés, saumon fumé, tartelette aux fruits."
+      },
+      {
+        "name": "Bordeaux Clairet",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Merlot", "Cabernet Sauvignon", "Cabernet Franc"],
+          "optional": ["Malbec", "Petit Verdot"]
+        },
+        "accords": "Charcuterie ibérique, grillades d’été, salade composée, pizza gourmet, tapas, poulet rôti, ratatouille, cuisses de grenouilles."
+      },
+      {
+        "name": "Bordeaux rose",
+        "type": ["rose"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": [],
+          "optional": ["Merlot", "Cabernet Sauvignon", "Cabernet Franc"]
+        },
+        "accords": "Terrine de poisson, salade méditerranéenne, gambas grillées, tartare de tomates, brochettes de poulet, melon & jambon cru, cuisine asiatique légère."
+      }
+    ],
+    "appellations_communales": [
+      {
+        "name": "Médoc",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Cabernet Sauvignon", "Merlot"],
+          "optional": ["Cabernet Franc", "Petit Verdot", "Malbec"]
+        },
+        "accords": "Carré d’agneau rôti, filet de bœuf, côte de bœuf, tournedos Rossini, gibier à plume, fromages affinés, civet de sanglier, magret de canard."
+      },
+      {
+        "name": "Haut-Médoc",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Cabernet Sauvignon", "Merlot"],
+          "optional": ["Cabernet Franc", "Petit Verdot", "Malbec"]
+        },
+        "accords": "Entrecôte aux herbes, côte de boeuf, civet de cerf, boeuf bourguignon revisité, canard à l’orange, plateau de fromages, magret grillé, lièvre à la royale."
+      },
+      {
+        "name": "Margaux",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Cabernet Sauvignon", "Merlot"],
+          "optional": ["Cabernet Franc", "Petit Verdot"]
+        },
+        "accords": "Filet de bœuf en croûte, tournedos, veau aux morilles, ris de veau, pigeonneau rôti, fromages à pâte pressée, civet de lapin."
+      },
+      {
+        "name": "Pauillac",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Cabernet Sauvignon", "Merlot"],
+          "optional": ["Cabernet Franc", "Petit Verdot", "Malbec"]
+        },
+        "accords": "Bœuf grillé, côte de bœuf, gibier en sauce, carré d’agneau, canard laqué, foie gras poêlé, fromages puissants, civet de biche."
+      },
+      {
+        "name": "Saint-Julien",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Cabernet Sauvignon", "Merlot"],
+          "optional": ["Cabernet Franc", "Petit Verdot"]
+        },
+        "accords": "Magret de canard grillé, filet mignon aux girolles, bœuf en croûte, civet de lièvre, canard aux cerises, fromages affinés, pavé de cerf, risotto forestier."
+      },
+      {
+        "name": "Saint-Estèphe",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Cabernet Sauvignon", "Merlot"],
+          "optional": ["Cabernet Franc", "Petit Verdot", "Malbec"]
+        },
+        "accords": "Agneau rôti, boeuf grillé aux herbes, civet de sanglier, gigot d’agneau, bœuf bourguignon élevé, canard confit, fromages corsés, lièvre à la royale."
+      },
+      {
+        "name": "Listrac-Médoc",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Cabernet Sauvignon", "Merlot"],
+          "optional": ["Cabernet Franc", "Petit Verdot"]
+        },
+        "accords": "Saucisson chaud, canard fumé, gigot d’agneau, bœuf à la bordelaise, civet de lapin, magret au poivre, fromages affinés, terrine gibier."
+      },
+      {
+        "name": "Moulis-en-Médoc",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Cabernet Sauvignon", "Merlot"],
+          "optional": ["Cabernet Franc", "Petit Verdot"]
+        },
+        "accords": "Filet de bœuf aux champignons, magret de canard aux figues, civet de sanglier, agneau rôti, risotto forestier, canard à l’orange, fromages à pâte pressée."
+      },
+      {
+        "name": "Graves",
+        "type": ["rouge", "blanc"],
+        "type2": ["sec", "moelleux"],
+        "cepages": {
+          "rouge": {
+            "mandatory": ["Cabernet Sauvignon", "Merlot"],
+            "optional": ["Cabernet Franc", "Petit Verdot", "Malbec"]
+          },
+          "blanc": {
+            "mandatory": ["Sauvignon Blanc", "Sémillon"],
+            "optional": ["Muscadelle"]
+          }
+        },
+        "accords": "Canard rôti, côte de bœuf, tajine d’agneau, caille farcie, poissons en sauce (blanc), fruits de mer, fromages de chèvre affinés, terrine de poisson."
+      },
+      {
+        "name": "Pessac-Léognan",
+        "type": ["rouge", "blanc"],
+        "type2": ["sec", "moelleux"],
+        "cepages": {
+          "rouge": {
+            "mandatory": ["Cabernet Sauvignon", "Merlot", "Cabernet Franc"],
+            "optional": ["Petit Verdot", "Malbec"]
+          },
+          "blanc": {
+            "mandatory": ["Sauvignon Blanc", "Sémillon"],
+            "optional": ["Muscadelle"]
+          }
+        },
+        "accords": "Veau à la bordelaise, canard aux pruneaux, filet de bœuf, gigot d’agneau, homard rôti (blanc), risotto aux asperges, foie gras poêlé, fromage de chèvre demi‑sec."
+      },
+      {
+        "name": "Sauternes",
+        "type": ["blanc"],
+        "type2": ["moelleux", "liquoreux"],
+        "cepages": {
+          "mandatory": ["Sémillon", "Sauvignon Blanc"],
+          "optional": ["Muscadelle"]
+        },
+        "accords": "Foie gras (mi-cuit ou poêlé), tarte Tatin, poulet à la crème, roquefort, desserts aux fruits confits, pain d’épices, crème brûlée, gâteaux à base de noix."
+      },
+      {
+        "name": "Barsac",
+        "type": ["blanc"],
+        "type2": ["moelleux", "liquoreux"],
+        "cepages": {
+          "mandatory": ["Sémillon", "Sauvignon Blanc"],
+          "optional": ["Muscadelle"]
+        },
+        "accords": "Foie gras, terrine sucrée‑salée, gâteau aux abricots, fromages bleus, tarte aux poires, crème brûlée, saumon en sauce sucrée, confiture de figues."
+      },
+      {
+        "name": "Cérons",
+        "type": ["blanc"],
+        "type2": ["moelleux"],
+        "cepages": {
+          "mandatory": ["Sémillon", "Sauvignon Blanc"],
+          "optional": ["Muscadelle"]
+        },
+        "accords": "Foie gras en terrine, desserts aux fruits jaunes, gâteaux moelleux, fromages bleus, crème de marrons, tarte flambée sucrée, biscuits aux noix."
+      },
+      {
+        "name": "Loupiac",
+        "type": ["blanc"],
+        "type2": ["moelleux"],
+        "cepages": {
+          "mandatory": ["Sémillon"],
+          "optional": ["Sauvignon Blanc", "Muscadelle"]
+        },
+        "accords": "Foie gras, tarte aux mirabelles, clafoutis aux fruits jaunes, gâteaux aux amandes, fromages bleus, crème caramel, compote de fruits, biscuit aux épices."
+      },
+      {
+        "name": "Cadillac",
+        "type": ["blanc"],
+        "type2": ["moelleux"],
+        "cepages": {
+          "mandatory": ["Sémillon", "Sauvignon Blanc"],
+          "optional": ["Muscadelle"]
+        },
+        "accords": "Foie gras mi-cuit, tarte aux pommes, nectarine rôtie, gâteau brioché, fromages bleus, crèmes dessert, confitures fines, financiers aux fruits."
+      },
+      {
+        "name": "Sainte-Croix-du-Mont",
+        "type": ["blanc"],
+        "type2": ["moelleux"],
+        "cepages": {
+          "mandatory": ["Sémillon"],
+          "optional": ["Sauvignon Blanc", "Muscadelle"]
+        },
+        "accords": "Foie gras, tarte aux poires, gâteaux à la noisette, crème renversée, fromages persillés, pain d’épices, confiture d’abricot, sablés."
+      },
+      {
+        "name": "Entre-Deux-Mers",
+        "type": ["blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Sauvignon Blanc", "Sémillon"],
+          "optional": ["Muscadelle"]
+        },
+        "accords": "Poisson grillé, huîtres, moules marinières, salade de chèvre chaud, asperges, fromage de chèvre frais, volaille à la crème, cuisine asiatique légère."
+      },
+      {
+        "name": "Blaye",
+        "type": ["rouge", "blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "rouge": {
+            "mandatory": ["Merlot"],
+            "optional": ["Cabernet Sauvignon", "Cabernet Franc"]
+          },
+          "blanc": {
+            "mandatory": ["Sauvignon Blanc", "Sémillon"],
+            "optional": []
+          }
+        },
+        "accords": "Confit de canard, bœuf braisé, magret, grillades d’été, poisson au beurre blanc (blanc), plats de crustacés, fromage de chèvre, salade grecque."
+      },
+      {
+        "name": "Côtes de Blaye",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Merlot"],
+          "optional": ["Cabernet Sauvignon", "Cabernet Franc"]
+        },
+        "accords": "Tajine d’agneau, civet de lapin, côtes d’agneau, ragoût de bœuf, magret, fromages affinés, terrine de gibier."
+      },
+      {
+        "name": "Bourg",
+        "type": ["rouge", "blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "rouge": {
+            "mandatory": ["Merlot"],
+            "optional": ["Cabernet Sauvignon", "Cabernet Franc"]
+          },
+          "blanc": {
+            "mandatory": ["Sauvignon Blanc", "Sémillon"],
+            "optional": []
+          }
+        },
+        "accords": "Gigot d’agneau, civet de sanglier, magret aux fruits rouges, poissons aux herbes (blanc), huîtres, crustacés, fromages de chèvre, quiche lorraine."
+      },
+      {
+        "name": "Côtes de Bourg",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Merlot"],
+          "optional": ["Cabernet Sauvignon", "Cabernet Franc"]
+        },
+        "accords": "Rôti de bœuf, canard confit, magret aux épices, civet de lapin, goulasch, fromages affinés, brochettes de gibier."
+      },
+      {
+        "name": "Fronsac",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Merlot", "Cabernet Franc"],
+          "optional": ["Cabernet Sauvignon", "Malbec"]
+        },
+        "accords": "Filet de bœuf, agneau au romarin, magret poêlé, civet de lièvre, canard aux figues, fromages corsés, civet de sanglier."
+      },
+      {
+        "name": "Canon-Fronsac",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Merlot", "Cabernet Franc"],
+          "optional": ["Cabernet Sauvignon", "Malbec"]
+        },
+        "accords": "Rôti de veau, civet de sanglier, magret grillé, gibier en sauce, caille rôtie, fromages de caractère, cuisse de canard."
+      },
+      {
+        "name": "Lalande-de-Pomerol",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Merlot"],
+          "optional": ["Cabernet Franc", "Cabernet Sauvignon"]
+        },
+        "accords": "Magret de canard, rôti de porc aux herbes, civet de gibier, cotelette d’agneau, terrine de campagne, fromages moelleux, canard aux cerises."
+      },
+      {
+        "name": "Pomerol",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Merlot"],
+          "optional": ["Cabernet Franc", "Cabernet Sauvignon"]
+        },
+        "accords": "Magret de canard, filet de bœuf, caille farcie, civet de lièvre, risotto truffé, fromages crémeux, poularde rôtie."
+      },
+      {
+        "name": "Saint-Émilion",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Merlot", "Cabernet Franc"],
+          "optional": ["Cabernet Sauvignon"]
+        },
+        "accords": "Gigot d’agneau, civet de sanglier, boeuf bourguignon, tournedos, canard laqué, magret aux agrumes, fromages affinés, civet de lapin."
+      },
+      {
+        "name": "Saint-Émilion Grand Cru",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Merlot", "Cabernet Franc"],
+          "optional": ["Cabernet Sauvignon"]
+        },
+        "accords": "Filet de bœuf en croûte, pigeon rôti, civet de cerf, magret laqué, foie gras, ris de veau, fromages affinés, lièvre à la royale."
+      },
+      {
+        "name": "Montagne-Saint-Émilion",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Merlot", "Cabernet Franc"],
+          "optional": ["Cabernet Sauvignon"]
+        },
+        "accords": "Confit de canard, civet de lapin, canard rôti, gigot d’agneau aux herbes, magret poêlé, champignons sauvages, fromages de caractère."
+      },
+      {
+        "name": "Lussac-Saint-Émilion",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Merlot", "Cabernet Franc"],
+          "optional": ["Cabernet Sauvignon"]
+        },
+        "accords": "Magret grillé, rôti de porc aux pruneaux, civet de lièvre, terrine de gibier, champignons à la crème, fromages affinés, cuisse de canard."
+      },
+      {
+        "name": "Puisseguin-Saint-Émilion",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Merlot", "Cabernet Franc"],
+          "optional": ["Cabernet Sauvignon"]
+        },
+        "accords": "Confit de canard, civet de lapin, gigot d’agneau, magret aux épices, charcuteries corsées, champignons grillés, fromages, terrine."
+      },
+      {
+        "name": "Saint-Georges-Saint-Émilion",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Merlot", "Cabernet Franc"],
+          "optional": ["Cabernet Sauvignon"]
+        },
+        "accords": "Filet mignon aux morilles, gigot d’agneau, civet de cerf, canard laqué, magret farci, fromages affinés, risotto truffé."
+      },
+      {
+        "name": "Castillon - Côtes de Bordeaux",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Merlot", "Cabernet Franc"],
+          "optional": ["Cabernet Sauvignon"]
+        },
+        "accords": "Côtes d’agneau, bœuf bourguignon, civet de lapin, magret aux fruits rouges, terrine de gibier, fromages crémeux, rôti de porc."
+      },
+      {
+        "name": "Francs - Côtes de Bordeaux",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Merlot", "Cabernet Franc"],
+          "optional": ["Cabernet Sauvignon"]
+        },
+        "accords": "Gigot d’agneau rôti, civet de cerf, magret grillé, ragoût de bœuf, terrine de gibier, champignons sauvages, fromages doux."
+      },
+      {
+        "name": "Cadillac - Côtes de Bordeaux",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Merlot", "Cabernet Franc"],
+          "optional": ["Cabernet Sauvignon"]
+        },
+        "accords": "Magret au poivre, civet de lapin, rôti de porc rôti aux herbes, terrine, champignons grillés, fromages affinés, agneau."
+      },
+      {
+        "name": "Sainte-Foy - Côtes de Bordeaux",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Merlot", "Cabernet Franc"],
+          "optional": ["Cabernet Sauvignon"]
+        },
+        "accords": "Civet de sanglier, gigot d’agneau, magret aux figues, ragoût de bœuf, terrine de gibier, fromages de caractère, canard rôti."
+      },
+      {
+        "name": "Lillet",
+        "type": ["blanc, rouge, rose"],
+        "type2": ["moelleux"],
+        "cepages": {
+          "blanc": {
+            "mandatory": ["Sémillon", "Sauvignon Blanc"],
+            "optional": []
+          },
+          "rouge": {
+            "mandatory": ["Merlot", "Cabernet Sauvignon"],
+            "optional": []
+          },
+          "rose": {
+            "mandatory": ["Merlot", "Cabernet Franc", "Sémillon"],
+            "optional": []
+          }
+        },
+        "accords": "Blanc : Olives, foie gras, fruits secs, huîtres chaudes, apéritif sur glace. <br>Rouge : Charcuterie, fromages affinés, desserts au chocolat noir.<br>Rosé : Apéritif frais, fraises, melon, salades estivales"
+      }
+    ]
+  }
+}

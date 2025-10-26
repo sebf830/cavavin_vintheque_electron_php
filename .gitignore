@@ -1,0 +1,19 @@
+# ============ GLOBAL =============
+.DS_Store
+Thumbs.db
+*.log
+node_modules/
+
+# ============ FRONT ==============
+/front/node_modules/
+/front/.env*
+/front/dist/
+/front/.vite/
+/front/build/
+
+# ============ BACK (Symfony) ==============
+/back/var/
+/back/vendor/
+/back/.env.local
+/back/.env.*.local
+/back/public/bundles/

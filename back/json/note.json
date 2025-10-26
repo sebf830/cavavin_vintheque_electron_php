@@ -1,0 +1,10 @@
+[
+    {
+        "titre" : "Bonne degust(exemple à supprimer)" ,
+        "content": "Tres belle bouteille, dégustation agréable et moment sympa partagés entre amis",
+        "creation_date" : "2025-09-11",
+        "image": "placeholder.jpg",
+        "bottle": "bottle_1",
+        "rating": 5
+    }
+]

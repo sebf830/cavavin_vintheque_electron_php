@@ -1,0 +1,110 @@
+{
+  "jura": {
+    "appellations_regionales": [
+      {
+        "name": "Côtes du Jura",
+        "type": ["rouge", "blanc", "rose"],
+        "type2": ["sec", "moelleux", "petillant"],
+        "cepages": {
+          "mandatory": [],
+          "optional": ["Chardonnay", "Savagnin", "Poulsard", "Trousseau"]
+        },
+        "accords": "Rouge : coq au vin jaune, saucisse de Morteau, rôti de porc.<br>Blanc : comté affiné, truite au vin jaune, poulet aux morilles.<br>Rosé : charcuterie jurassienne, salade composée, tarte aux légumes."
+      },
+      {
+        "name": "Crémant du Jura",
+        "type": ["blanc", "rose"],
+        "type2": ["petillant", "sec"],
+        "cepages": {
+          "mandatory": [],
+          "optional": ["Chardonnay", "Pinot Noir", "Poulsard", "Trousseau"]
+        },
+        "accords": "Blanc : gougères, fruits de mer, comté jeune, apéritif festif.<br>Rosé : saumon fumé, tartelettes salées, desserts aux fruits rouges."
+      },
+      {
+        "name": "Macvin du Jura",
+        "type": ["vin doux"],
+        "type2": ["liquoreux", "moelleux"],
+        "cepages": {
+          "mandatory": [],
+          "optional": ["Chardonnay", "Savagnin", "Poulsard", "Trousseau"]
+        },
+        "accords": "Foie gras, desserts à base de fruits secs, bleu de Gex, tarte aux noix, pâtisseries fines."
+      }
+    ],
+    "appellations_communales": [
+      {
+        "name": "Arbois",
+        "type": ["rouge", "blanc", "rose"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": [],
+          "optional": ["Poulsard", "Trousseau", "Chardonnay", "Savagnin"]
+        },
+        "accords": "Rouge : fondue jurassienne, potée comtoise, terrine de gibier.<br>Blanc : filet de sandre, morilles à la crème, fromages à pâte pressée.<br>Rosé : quiches, charcuteries, gratin de légumes."
+      },
+      {
+        "name": "Arbois Pupillin",
+        "type": ["rouge", "blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": [],
+          "optional": ["Poulsard", "Trousseau", "Chardonnay", "Savagnin"]
+        },
+        "accords": "Rouge : viande en sauce, jambon fumé, tartiflette jurassienne.<br>Blanc : poulet aux morilles, truite meunière, comté affiné."
+      },
+      {
+        "name": "L'Étoile",
+        "type": ["blanc"],
+        "type2": ["sec", "moelleux"],
+        "cepages": {
+          "mandatory": ["Savagnin"],
+          "optional": ["Chardonnay"]
+        },
+        "accords": "Comté vieux, quenelles de brochet, escargots à la jurassienne, poissons en sauce."
+      },
+      {
+        "name": "Château-Chalon",
+        "type": ["blanc"],
+        "type2": ["vin jaune", "sec"],
+        "cepages": {
+          "mandatory": ["Savagnin"],
+          "optional": []
+        },
+        "accords": "Volaille aux morilles, homard rôti, comté 24 mois, tajine d'agneau aux épices douces, cuisine exotique aux noix de cajou."
+      }
+    ],
+    "styles_typiques": [
+      {
+        "name": "Vin Jaune",
+        "desc": "Vin blanc sec élevé sous voile, exclusivement à base de cépage Savagnin.",
+        "accords": "Poulet aux morilles, comté affiné, curry doux, croûte aux morilles, quenelles au vin jaune."
+      },
+      {
+        "name": "Vin de Paille",
+        "desc": "Vin liquoreux issu de raisins séchés, généralement à base de Chardonnay, Savagnin et Poulsard.",
+        "accords": "Foie gras, dessert aux fruits secs (tarte aux noix, pain d'épices), bleu de Gex, chocolat noir."
+      },
+      {
+        "name": "Macvin",
+        "desc": "Vin de liqueur obtenu par mutage du moût avec de l'eau-de-vie de marc du Jura.",
+        "accords": "Apéritif, melon, fromage persillé, sablés au comté, desserts aux noix ou à la figue."
+      },
+      {
+        "name": "Savagnin ouillé",
+        "desc": "Vin blanc sec élevé sans voile, à base de cépage Savagnin.",
+        "accords": "Fruits de mer, fromages affinés, poisson grillé, risotto aux champignons."
+      },
+      {
+        "name": "Trousseau",
+        "desc": "Cépage rouge typique du Jura, produisant des vins rouges et rosés.",
+        "accords": "Viande grillée, magret de canard, gratin dauphinois, terrines rustiques."
+      },
+      {
+        "name": "Poulsard (Ploussard)",
+        "desc": "Cépage rouge léger produisant vins rouges et rosés fruités.",
+        "accords": "Charcuterie, rillettes, raclette légère, volaille rôtie, fromages doux."
+      }
+    ]
+  }
+}

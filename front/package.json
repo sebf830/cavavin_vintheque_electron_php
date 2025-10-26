@@ -1,0 +1,54 @@
+{
+  "name": "cavavin",
+  "version": "1.0.0",
+  "description": "Le gestionnaire personnel de ma cave à vin",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder",
+    "package-mac": "electron-packager . cavavin --overwrite --platform=darwin --arch=x64 --no-asar --icon=build/icon.icns --prune=true --out=executable-mac",
+    "package-win": "electron-packager . electron-tutorial-app --overwrite --no-asar --platform=win32 --arch=ia32 --icon=build/icon.ico --prune=true --out=executable-win"
+  },
+  "keywords": [
+    "vin, vins, cave à vins, gestionnaire"
+  ],
+  "author": "seb dev",
+  "license": "ISC",
+  "build": {
+    "asar": false,
+    "compression": "maximum",
+    "appId": "com.sf.cavavin",
+    "productName": "Cavavin",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "**/*",
+      "build/**/*",
+      "!node_modules/**/test/**",
+      "!node_modules/**/docs/**",
+      "!node_modules/.bin/**",
+      "!node_modules/*/{test,__tests__}/**",
+      "!**/*.md"
+    ],
+    "mac": {
+      "category": "public.app-category.utilities",
+      "target": "dmg",
+      "icon": "build/icon.icns"
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ],
+      "icon": "build/icon.ico"
+    }
+  },
+  "devDependencies": {
+    "electron": "^38.2.1",
+    "electron-packager": "^17.1.2"
+  },
+  "dependencies": {
+    "get-port": "^5.1.1"
+  }
+}

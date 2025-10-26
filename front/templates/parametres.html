@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Ajouter une note | Cavavin</title>
+  <link rel="stylesheet" href="../public/assets/global_style.css" />
+
+  <script defer type="module">
+    import Alpine from '../public/vendor/alpine/module.esm.js';
+    window.Alpine = Alpine;
+    Alpine.start();
+  </script>
+
+  <!-- Local Tailwind : self generated -->
+  <link rel="stylesheet" href="../libs/tailwind.css" />
+ 
+</head>
+<body x-data="{ sidebarOpen: false }" class="bg-creme flex h-screen font-sans">
+
+  <!-- Overlay mobile -->
+  <div 
+    class="fixed inset-0 bg-black bg-opacity-50 z-30 md:hidden"
+    x-show="sidebarOpen"
+    x-transition.opacity
+    @click="sidebarOpen = false"
+  ></div>
+
+  <!-- Sidebar -->
+  <aside 
+    class="fixed md:static z-40 inset-y-0 left-0 w-64 bg-gray-900 text-white transform md:translate-x-0 transition-transform duration-200 ease-in-out"
+    :class="{ '-translate-x-full': !sidebarOpen }"
+  >
+    <div class="p-6 text-2xl font-bold">🍷 Cavavin</div>
+    <nav class="space-y-2 px-4">
+		<a href="#" onclick="window.location.href='dashboard.html'" class="block px-4 py-2 rounded hover:bg-gray-700">📊 Tableau de bord</a>
+      <a href="#" onclick="window.location.href='addBottle.html'" class="block px-4 py-2 rounded hover:bg-gray-700">➕ Ajouter</a>
+      <a href="#" onclick="window.location.href='inventaire.html'" class="block px-4 py-2 rounded hover:bg-gray-700">📦 Inventaire</a>
+      <a href="#" onclick="window.location.href='journal.html'" class="block px-4 py-2 rounded hover:bg-gray-700">📕 Journal</a>
+      <a href="#" onclick="window.location.href='parametres.html'" class="block px-4 py-2 rounded hover:bg-gray-700">⚙️ Paramètres</a>
+    </nav>
+  </aside>
+
+  <!-- Contenu principal -->
+  <div class="flex-1 flex flex-col overflow-hidden">
+
+    <!-- Topbar -->
+    <header class="bg-white shadow-md p-4 flex items-center justify-between md:hidden">
+      <button @click="sidebarOpen = !sidebarOpen" class="text-gray-700 text-2xl">
+        ☰
+      </button>
+      <h1 class="text-xl font-bold text-liedevin">Cavavin</h1>
+    </header>
+
+    
+    <!-- Contenu -->
+    <main class="overflow-y-auto px-12 bg-creme flex items-center justify-center min-h-screen" x-data="settings" x-init="init()">
+
+		<div class="flex flex-col gap-2 w-full px-12">
+
+			<!-- ALERTES -->
+			<div 
+				class="flex justify-between items-start">
+				<div>
+					<span class="text-lg font-medium">Activer les notifications de stocks épuisés</span><br>
+					<small class="text-sm italic">Lorsqu'un stock est épuisé, un bandeau rouge s'affiche sur votre tableau de bord.</small><br>
+					<small class="text-sm italic">Vous pouvez le masquer à tout moment pour qu'il ne réapparaisse plus.</small>
+				</div>
+				<button
+					x-model="enabledStockNotification"
+					@click="toggleStockNotification"
+					:class="enabledStockNotification == true ? 'bg-violet-700' : 'bg-gray-400'"
+					class="relative inline-flex items-center h-6 rounded-full w-11 transition-colors focus:outline-none"
+				>
+					<span class="sr-only">Toggle</span>
+					<span
+					:class="enabledStockNotification == true ? 'translate-x-6' : 'translate-x-1'"
+					class="inline-block w-4 h-4 transform bg-white rounded-full transition-transform"
+					></span>
+				</button>
+				</div>
+
+
+			<div 
+				class="flex justify-between items-start">
+				<div>
+					<span class="text-lg font-medium">Activer le correcteur de données</span><br>
+					<small class="text-sm italic">Il analyse votre cave et détecte des informations incohérentes ou manquantes.</small><br>
+					<small class="text-sm italic">En cas de problème, un rapport d'erreur est affiché sur votre tableau de bord.</small>
+				</div>
+				<button
+					x-model="enabledInspector"
+					@click="toggleInspectorNotification"
+					:class="enabledInspector ? 'bg-violet-700' : 'bg-gray-400'"
+					class="relative inline-flex items-center h-6 rounded-full w-11 transition-colors focus:outline-none"
+				>
+					<span class="sr-only">Toggle</span>
+					<span
+					:class="enabledInspector ? 'translate-x-6' : 'translate-x-1'"
+					class="inline-block w-4 h-4 transform bg-white rounded-full transition-transform"
+					></span>
+				</button>
+			</div>
+
+
+      <div class="flex justify-between items-start">
+        <div class="flex flex-col items-start">
+            <div class="relative group flex items-center gap-2">
+              <!-- SVG représentant une flèche dans un cercle -->
+              <span class="text-lg font-medium">Vider le cache de l'application</span>
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#434343"><path d="M440-280h80v-240h-80v240Zm40-320q17 0 28.5-11.5T520-640q0-17-11.5-28.5T480-680q-17 0-28.5 11.5T440-640q0 17 11.5 28.5T480-600Zm0 520q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
+
+              <!-- Infobulle -->
+              <div class="absolute bottom-full w-full mb-2 left-1/2 transform -translate-x-1/2 px-3 py-2 text-sm text-white bg-black rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                Pour améliorer les performances, l'app stocke les données que vous avez visualisé dans une mémoire dite 'cache'.
+              </div>
+
+            </div>
+            <div><span class="text-sm italic">Peut résoudre certains problèmes liés à l'affichage et libère de l'espace mémoire</span></div>
+        </div>
+
+          <button 
+            class="bg-liedevin-gradient text-white px-2 py-0 rounded hover:bg-gradient-to-b from-[#2f2f2f] to-[#101010] transition flex justify-center items-center"
+            @click="clearCache">
+            Vider le cache
+          </button>
+      </div>
+
+			<!-- BDD -->
+			 <div class="flex justify-between items-start">
+				<div>
+					<span class="text-lg font-medium">Sauvegarder vos données </span><br>
+					<small class="text-sm italic">En cas de problème ou de mise à jour de l'application, vous pouvez sauver vos données.</small><br>
+					<small class="text-sm italic">Vous récupérez un dossier zippé contenant vos images et la base de données de l'application.</small><br>
+				</div>
+				<button 
+					x-data 
+					class="bg-liedevin-gradient text-white px-2 py-0 rounded hover:bg-gradient-to-b from-[#2f2f2f] to-[#101010] transition flex justify-center items-center"
+					@click="backendUrl ? window.location.href = `${backendUrl}/export-sqlite` : '' ">
+					telecharger
+				</button>
+			</div>
+		</div>
+</main>
+</div>
+</body>
+
+<script>
+document.addEventListener('alpine:init', () => {
+    Alpine.data('settings', () => ({
+      initialized: false,
+      enabledStockNotification: false,
+      enabledInspector: false,
+      backendUrl: '',
+      
+      async init() {
+        if (this.initialized) return;
+        this.initialized = true;
+
+        try {
+          this.backendUrl = await window.electronAPI.getBackendUrl();
+
+          const response = await fetch(`${this.backendUrl}/settings/parameters`);
+          const data = await response.json();
+
+          if (data.hasStockNotification !== undefined) this.enabledStockNotification = data.hasStockNotification;
+          if (data.hasInspectorNotification !== undefined) this.enabledInspector = data.hasInspectorNotification;
+
+        } catch (error) {
+          console.error("Erreur lors du chargement des paramètres", error);
+        }
+      },
+
+	  toggleStockNotification() {
+        this.enabledStockNotification = !this.enabledStockNotification;
+        fetch(`${this.backendUrl}/setting/outofstock`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ enabled: this.enabledStockNotification })
+        })
+        .then(response => response.json())
+        .then(data => {
+          this.enabledStockNotification = data.value;
+        })
+        .catch(error => {});
+      },
+
+	  toggleInspectorNotification() {
+        this.enabledInspector = !this.enabledInspector;
+        fetch(`${this.backendUrl}/setting/inspector`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ enabled: this.enabledInspector })
+        })
+        .then(response => response.json())
+        .then(res => {
+          this.enabledInspector = res.value;
+        })
+        .catch(error => {});
+      },
+
+      async clearCache() {
+        try {
+         
+          const response = await fetch(`${this.backendUrl}/clear-cache`, { method: 'POST' });
+          const result = await response.json();
+          if (result.status === 'success') console.log(result.message);
+
+          localStorage.clear(); 
+          console.clear();
+
+          if ('caches' in window) {
+            const cacheNames = await caches.keys();
+            await Promise.all(cacheNames.map(name => caches.delete(name)));
+          }
+
+          alert('Cache vidé avec succès.');
+        } catch (e) {
+          console.error('Erreur lors du vidage du cache:', e);
+          alert('Erreur lors du vidage du cache.');
+        }
+      }
+    }));
+  });
+
+</script>
+</html>

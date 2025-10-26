@@ -1,0 +1,284 @@
+{
+  "provence": {
+    "appellations_regionales": [
+      {
+        "name": "Coteaux d'Aix-en-Provence",
+        "type": ["rouge", "rose", "blanc"],
+        "type2": ["sec"],
+        "cepages": {
+            "rouge": {
+              "mandatory": ["Mourvèdre", "Grenache", "Syrah"],
+              "optional": []
+            },
+            "rose": {
+               "mandatory": ["Mourvèdre", "Grenache", "Cinsault"],
+               "optional": []
+            },
+            "blanc": {
+              "mandatory": ["Clairette", "Ugni Blanc", "Bourboulenc"],
+              "optional": []
+            }
+        },
+        "accords": "Rouge : daube provençale, agneau aux herbes de Provence, ratatouille.<br>Rosé : salade niçoise, soupe au pistou, grillades méditerranéennes.<br>Blanc : poissons grillés, soupe de poissons, fromages de chèvre frais."
+      },
+      {
+        "name": "Coteaux Varois en Provence",
+        "type": ["rouge", "rose", "blanc"],
+        "type2": ["sec"],
+        "cepages": {
+            "rouge": {
+              "mandatory": ["Grenache", "Mourvèdre", "Syrah"],
+              "optional" : []
+            },
+            "rose": {
+              "mandatory": ["Grenache", "Cinsault", "Mourvèdre"],
+              "optional" : []
+            },
+            "blanc": {
+              "mandatory": ["Ugni Blanc", "Clairette"],
+              "optional" : []
+            }
+        },
+        "accords": "Rouge : agneau rôti, tapenade, caille aux olives.<br>Rosé : anchoïade, salade de tomates provençales, calamars grillés.<br>Blanc : fruits de mer, soupe de poisson, aïoli."
+      },
+      {
+        "name": "Côtes de Provence",
+        "type": ["rouge", "rose", "blanc"],
+        "type2": ["sec"],
+        "cepages": {
+            "rouge": {
+              "mandatory" : ["Grenache", "Mourvèdre", "Syrah"],
+              "optional" : []
+            },
+            "rose": {
+              "mandatory" : ["Grenache", "Cinsault", "Mourvèdre"],
+              "optional" : []
+            },
+            "blanc": {
+              "mandatory" : ["Clairette", "Ugni Blanc", "Bourboulenc"],
+              "optional" : []
+            }
+        },
+        "accords": "Rouge : bouillabaisse, gibier, viande grillée.<br>Rosé : apéritifs, salade de melon, grillades.<br>Blanc : soupe de poissons, fruits de mer, fromages de chèvre."
+      },
+      {
+        "name": "Côtes de Provence Sainte-Victoire",
+        "type": ["rouge", "rose", "blanc"],
+        "type2": ["sec"],
+        "cepages": {
+            "rouge": {
+              "mandatory" : ["Mourvèdre", "Grenache", "Syrah"],
+              "optional" : []
+            },
+            "rose": {
+              "mandatory" : ["Grenache", "Cinsault", "Mourvèdre"],
+              "optional" : []
+            },
+            "blanc": {
+              "mandatory" : ["Clairette", "Bourboulenc"],
+              "optional" : []
+            }
+        },
+        "accords": "Rouge : gigot d'agneau, plats mijotés, légumes provençaux.<br>Rosé : salade méditerranéenne, ratatouille froide.<br>Blanc : poissons en sauce, fromage de chèvre, soupe au pistou."
+      },
+      {
+        "name": "Côtes de Provence Fréjus",
+        "type": ["rouge", "rose", "blanc"],
+        "type2": ["sec"],
+        "cepages": {
+            "rouge": {
+              "mandatory" :["Mourvèdre", "Grenache", "Syrah"],
+              "optional" : []
+            },
+            "rose": {
+              "mandatory" :["Grenache", "Cinsault", "Mourvèdre"],
+              "optional" : []
+            },
+            "blanc": {
+              "mandatory" :["Ugni Blanc", "Clairette"],
+              "optional" : []
+            }
+        },
+        "accords": "Rouge : civet de sanglier, légumes grillés, charcuterie.<br>Rosé : apéritif, salade de tomates, poissons grillés.<br>Blanc : fruits de mer, aïoli, fromage frais."
+      },
+      {
+        "name": "Coteaux de Pierrevert",
+        "type": ["rouge", "rose", "blanc"],
+        "type2": ["sec"],
+        "cepages": {
+            "rouge": {
+              "mandatory" : ["Grenache", "Syrah", "Mourvèdre"],
+              "optional" : []
+            },
+            "rose": {
+              "mandatory" : ["Grenache", "Cinsault", "Syrah"],
+              "optional" : []
+            },
+            "blanc": {
+              "mandatory" : ["Ugni Blanc", "Clairette", "Bourboulenc"],
+              "optional" : []
+            }
+        },
+        "accords": "Rouge : plats en sauce, gibier, légumes du sud.<br>Rosé : salade fraîche, apéritif, légumes grillés.<br>Blanc : poissons grillés, fromages de chèvre, légumes vapeur."
+      },
+      {
+        "name": "Palette",
+        "type": ["rouge", "rose", "blanc"],
+        "type2": ["sec"],
+        "cepages": {
+            "rouge": {
+              "mandatory" : ["Mourvèdre", "Grenache", "Syrah"],
+              "optional" : []
+            },
+            "rose": {
+              "mandatory" : ["Grenache", "Cinsault", "Mourvèdre"],
+              "optional" : []
+            },
+            "blanc": {
+              "mandatory" : ["Clairette", "Bourboulenc", "Ugni Blanc"],
+              "optional" : []
+            }
+        },
+        "accords": "Rouge : civet de lièvre, gibiers, plats raffinés aux truffes.<br>Rosé : salade de poulpe, plats méditerranéens.<br>Blanc : poissons nobles, fromages affinés, cuisine provençale délicate."
+      }
+    ],
+    "appellations_communales": [
+      {
+        "name": "Bandol",
+        "type": ["rouge", "rose", "blanc"],
+        "type2": ["sec"],
+        "cepages": {
+            "rouge": {
+              "mandatory" : ["Mourvèdre"],
+              "optional" : []
+            },
+            "rose": {
+              "mandatory" : ["Mourvèdre", "Grenache", "Cinsault"],
+              "optional" : []
+            },
+            "blanc": {
+              "mandatory" : ["Clairette", "Bourboulenc", "Ugni Blanc"],
+              "optional" : []
+            }
+        },
+        "accords": "Rouge : daube provençale, bouillabaisse, gigot d’agneau.<br>Rosé : apéritif, salade niçoise, grillades.<br>Blanc : poissons grillés, aïoli, légumes vapeur."
+      },
+      {
+        "name": "Bellet",
+        "type": ["rouge", "rose", "blanc"],
+        "type2": ["sec"],
+        "cepages": {
+            "rouge": {
+              "mandatory" : ["Braquet", "Folle Noire"],
+              "optional" : []
+            },
+            "rose": {
+              "mandatory" : ["Braquet", "Folle Noire"],
+              "optional" : []
+            },
+            "blanc": {
+              "mandatory" : ["Vermentino (Rolle)", "Bourboulenc"],
+              "optional" : []
+            }
+        },
+        "accords": "Rouge : plats à base de gibier, civet, charcuterie locale.<br>Rosé : salade de tomates, poissons grillés.<br>Blanc : fruits de mer, fromages frais, légumes provençaux."
+      },
+      {
+        "name": "Les Baux-de-Provence",
+        "type": ["rouge", "rose", "blanc"],
+        "type2": ["sec"],
+        "cepages": {
+            "rouge": {
+              "mandatory" : ["Grenache", "Syrah", "Mourvèdre"],
+              "optional" : []
+            },
+            "rose": {
+              "mandatory" : ["Grenache", "Cinsault", "Mourvèdre"],
+              "optional" : []
+            },
+            "blanc": {
+              "mandatory" : ["Clairette", "Bourboulenc"],
+              "optional" : []
+            }
+        },
+        "accords": "Rouge : viande rouge grillée, agneau aux herbes, plats mijotés.<br>Rosé : apéritif, salade méditerranéenne.<br>Blanc : poissons, légumes grillés, fromages de chèvre."
+      },
+      {
+        "name": "Cassis",
+        "type": ["blanc", "rose"],
+        "type2": ["sec"],
+        "cepages": {
+            "blanc": {
+              "mandatory" : ["Clairette", "Marsanne", "Ugni Blanc"],
+              "optional" : []
+            },
+            "rose": {
+              "mandatory" : ["Grenache", "Cinsault"],
+              "optional" : []
+            }
+        },
+        "accords": "Blanc : bouillabaisse, poissons blancs, fruits de mer.<br>Rosé : apéritif, salade fraîche, poissons grillés."
+      },
+      {
+        "name": "La Londe",
+        "type": ["rouge", "rose", "blanc"],
+        "type2": ["sec"],
+        "cepages": {
+            "rouge": {
+              "mandatory" : ["Mourvèdre", "Grenache", "Syrah"],
+              "optional" : []
+            },
+            "rose": {
+              "mandatory" : ["Grenache", "Cinsault", "Mourvèdre"],
+              "optional" : []
+            },
+            "blanc": {
+              "mandatory" : ["Clairette", "Ugni Blanc", "Bourboulenc"],
+              "optional" : []
+            }
+        },
+        "accords": "Rouge : plats mijotés, viande grillée, ratatouille.<br>Rosé : apéritif, salades, poissons grillés.<br>Blanc : poissons en sauce, fruits de mer, fromage frais."
+      },
+      {
+        "name": "Pierrefeu",
+        "type": ["rouge", "rose", "blanc"],
+        "type2": ["sec"],
+        "cepages": {
+            "rouge": {
+              "mandatory" : ["Mourvèdre", "Grenache", "Syrah"],
+              "optional" : []
+            },
+            "rose": {
+              "mandatory" : ["Grenache", "Cinsault", "Mourvèdre"],
+              "optional" : []
+            },
+            "blanc": {
+              "mandatory" : ["Clairette", "Ugni Blanc"],
+              "optional" : []
+            }
+        },
+        "accords": "Rouge : gibier, plats épicés, daube.<br>Rosé : grillades, salade fraîche.<br>Blanc : fruits de mer, poissons grillés, légumes vapeur."
+      },
+      {
+        "name": "Palette",
+        "type": ["rouge", "rose", "blanc"],
+        "type2": [ "sec"],
+        "cepages": {
+            "rouge": {
+              "mandatory" : ["Mourvèdre", "Grenache", "Syrah"],
+              "optional" : []
+            },
+            "rose": {
+              "mandatory" : ["Grenache", "Cinsault", "Mourvèdre"],
+              "optional" : []
+            },
+            "blanc": {
+              "mandatory" : ["Clairette", "Bourboulenc", "Ugni Blanc"],
+              "optional" : []
+            }
+        },
+        "accords": "Rouge : plats raffinés, gibiers, truffes.<br>Rosé : salade de poulpe, plats méditerranéens.<br>Blanc : poissons nobles, fromages affinés."
+      }
+    ]
+  }
+}

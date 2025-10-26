@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tableau de bord | Cavavin</title>
+  <link rel="stylesheet" href="../public/assets/global_style.css" />
+
+  <script defer type="module">
+    import Alpine from '../public/vendor/alpine/module.esm.js';
+    window.Alpine = Alpine;
+    Alpine.start();
+  </script>
+
+  <!-- Local Tailwind : self generated -->
+  <link rel="stylesheet" href="../libs/tailwind.css" />
+</head>
+<body x-data="{ sidebarOpen: false }" class="bg-creme flex h-screen bg-gray-50 font-sans">
+
+  <!-- Overlay mobile -->
+  <div 
+    class="fixed inset-0 bg-black bg-opacity-50 z-30 md:hidden"
+    x-show="sidebarOpen"
+    x-transition.opacity
+    @click="sidebarOpen = false"
+  ></div>
+
+  <!-- Sidebar -->
+  <aside 
+    class="fixed md:static z-40 inset-y-0 left-0 w-64 bg-gray-900 text-white transform md:translate-x-0 transition-transform duration-200 ease-in-out"
+    :class="{ '-translate-x-full': !sidebarOpen }"
+  >
+    <div class="p-6 text-2xl font-bold">🍷 Cavavin</div>
+    <nav class="space-y-2 px-4">
+      <a href="#" onclick="window.location.href='dashboard.html'" class="block px-4 py-2 rounded hover:bg-gray-700">📊 Tableau de bord</a>
+      <a href="#" onclick="window.location.href='addBottle.html'" class="block px-4 py-2 rounded hover:bg-gray-700">➕ Ajouter</a>
+      <a href="#" onclick="window.location.href='inventaire.html'" class="block px-4 py-2 rounded hover:bg-gray-700">📦 Inventaire</a>
+      <a href="#" onclick="window.location.href='journal.html'" class="block px-4 py-2 rounded hover:bg-gray-700">📕 Journal de dégustation</a>
+      <a href="#" onclick="window.location.href='parametres.html'" class="block px-4 py-2 rounded hover:bg-gray-700">⚙️ Paramètres</a>
+
+    </nav>
+  </aside>
+
+
+  <!-- Contenu principal -->
+  <div class="flex-1 flex flex-col overflow-hidden">
+    <!-- Topbar -->
+    <header class="bg-white shadow-md p-4 flex items-center justify-between md:hidden">
+      <button @click="sidebarOpen = !sidebarOpen" class="text-gray-700 text-2xl">
+        ☰
+      </button>
+      <h1 class="text-xl font-bold text-liedevin">Cavavin</h1>
+    </header>
+
+    <!-- Contenu -->
+    <main class="flex-1 overflow-y-auto p-6 bg-creme" x-data="ratingApp()" x-init="loadBottles()" >
+
+        <div class="p-6 max-w-xl mx-auto">
+
+  <!-- Pancarte explicative -->
+  <div class="mb-6 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 rounded">
+    <p class="font-semibold">Système de notation</p>
+    <p class="text-sm">Notez votre vin entre 0 (mauvais) et 10 (excellent), puis validez votre choix.</p><br>
+    <p class="text-sm">Les vins sans notation se voient attribuer une note correspondante à la moyenne de ses notes de dégustation(voir journal de dégustation).</p>
+  </div>
+
+  <!-- Select vin -->
+  <div class="mb-4">
+    <label for="bottleSelect" class="block text-gray-700 font-semibold mb-2">Choisir une bouteille :</label>
+    <select id="bottleSelect" x-model="selectedId" @change="onBottleChange" class="w-full p-2 border rounded">
+      <option value="">-- Sélectionner un vin --</option>
+      <template x-for="bottle in bottles" :key="bottle.id">
+        <option :value="bottle.id" x-text="`${bottle.name} (${bottle.year})`"></option>
+      </template>
+    </select>
+  </div>
+
+  <!-- Curseur de note -->
+  <div x-show="selectedId" class="mb-4" x-transition x-cloak>
+    <label for="noteSlider" class="inline-block text-gray-700 font-semibold mb-2">Note Actuelle: <span x-text="note"></span>
+      /10
+    </label>
+    <span x-text="!note ? '(pas encore notée)' : '' "></span>
+    <input
+        id="noteSlider"
+        type="range"
+        min="0"
+        max="10"
+        step="1"
+        x-model="note"
+        :class="{
+            'accent-red-500': note <= 3,
+            'accent-orange-500': note >= 4 && note <= 6,
+            'accent-green-500': note >= 7
+        }"
+        class="w-full cursor-pointer"
+        />
+  </div>
+
+  <div class="md:col-span-2 flex justify-center mt-6 gap-2">
+
+    <a 
+        onclick="window.location.href='dashboard.html'"
+        href="#" 
+      class="bg-liedevin-gradient text-white px-8 py-3 rounded hover:bg-gradient-to-b from-[#2f2f2f] to-[#101010] transition"
+    >
+      Retour dashboard
+    </a>
+
+    <!-- Bouton Valider -->
+    <div x-show="selectedId" x-transition x-cloak>
+        <button @click="submitRating"
+                class="bg-liedevin-gradient text-white px-8 py-3 rounded hover:bg-gradient-to-b from-[#2f2f2f] to-[#101010] transition">
+        Valider
+        </button>
+    </div>
+  </div>
+
+  <!-- Alert de confirmation -->
+  <div x-show="successMessage" x-text="successMessage"
+       class="mt-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded"
+       x-transition x-cloak></div>
+
+</div>
+
+
+    </main>
+</div>
+
+<script>
+document.addEventListener('alpine:init', () => {
+  Alpine.data('ratingApp', () => ({
+      initialized: false,
+      bottles: [],
+      selectedId: '',
+      note: '',
+      successMessage: '',
+      backendUrl: '',
+
+      async loadBottles() {
+        if (this.initialized) return;
+        this.initialized = true;
+
+        try {
+          this.backendUrl = await window.electronAPI.getBackendUrl();
+
+          const res = await fetch(`${this.backendUrl}/api/bottles/stock`);
+          const data = await res.json();
+          this.bottles = data;
+        } catch (err) {
+          console.error('Erreur chargement bouteilles:', err);
+        }
+      },
+
+      async onBottleChange() {
+        if (!this.selectedId) return;
+        try {
+          const res = await fetch(`${this.backendUrl}/api/bottle/${this.selectedId}`);
+          const bottle = await res.json();
+          this.note = bottle.note ?? 0;
+        } catch (err) {
+          console.error('Erreur récupération bouteille:', err);
+        }
+      },
+
+      async submitRating() {
+        try {
+          const res = await fetch(`${this.backendUrl}/api/bottle/${this.selectedId}/rate`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ rating: this.note }),
+          });
+
+          if (res.ok) {
+            this.successMessage = '✅ Note enregistrée.';
+            setTimeout(() => this.successMessage = '', 3000);
+          } else {
+            alert('Erreur lors de l’enregistrement.');
+          }
+        } catch (err) {
+          console.error('Erreur lors de l’enregistrement:', err);
+        }
+      },
+   }));
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+{
+  "champagne": {
+    "appellations_regionales": [
+      {
+        "name": "Champagne",
+        "type": ["blanc", "rose"],
+        "type2": [
+          "brut", "extra brut", "brut nature", "extra dry", "sec",
+          "demi-sec", "doux", "millésimé", "non millésimé"
+        ],
+        "cepages": {
+          "mandatory": ["Chardonnay", "Pinot Noir", "Pinot Meunier"],
+          "optional": []
+        },
+        "accords": "Apéritif (gougères, blinis au saumon), fruits de mer, huîtres, sushi, sashimi, tartare de poisson, foie gras (demi-sec), desserts légers (doux), brie de Meaux, crottin de Chavignol, carpaccio de Saint-Jacques, caviar."
+      },
+      {
+        "name": "Bouzy",
+        "type": ["blanc", "rose", "rouge"],
+        "type2": ["brut", "extra brut", "brut nature", "sec", "demi-sec"],
+        "cepages": {
+          "mandatory": ["Pinot Noir", "Chardonnay"],
+          "optional": ["Pinot Meunier"]
+        },
+        "region": "Champagne",
+        "accords": "Bouzy rouge : magret de canard, boudin noir, charcuterie, gibier à plumes. Bouzy blanc/rosé : foie gras, poisson grillé, langoustines, chèvre frais, tarte fine aux fruits, volaille rôtie, saumon fumé, gougères."
+      }
+    ]
+  }
+}
+

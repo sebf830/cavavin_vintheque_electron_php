@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tableau de bord | Cavavin</title>
+
+  <!-- Global CSS -->
+  <link rel="stylesheet" href="../public/assets/global_style.css" />
+  <!-- Local Tailwind : self generated -->
+  <link rel="stylesheet" href="../libs/tailwind.css" />
+  <!-- Alpine JS local & initialization -->
+  <script type="module">
+    import Alpine from '../public/vendor/alpine/module.esm.js';
+    window.Alpine = Alpine;
+    Alpine.start();
+  </script>
+
+  <style>
+  canvas {
+  display: block;
+  width: 200px !important;
+  height: auto !important;
+  max-width: 100%;
+  pointer-events: auto;
+  cursor:defaut;
+}
+</style>
+</head>
+
+
+<body x-data="{ sidebarOpen: false }" class="bg-creme flex h-screen bg-gray-50 font-sans">
+
+  <!-- Overlay mobile -->
+  <div 
+    class="fixed inset-0 bg-black bg-opacity-50 z-30 md:hidden"
+    x-show="sidebarOpen"
+    x-transition.opacity
+    @click="sidebarOpen = false"
+  ></div>
+
+  <!-- Sidebar -->
+  <aside 
+    class="fixed md:static z-40 inset-y-0 left-0 w-64 bg-gray-900 text-white transform md:translate-x-0 transition-transform duration-200 ease-in-out"
+    :class="{ '-translate-x-full': !sidebarOpen }"
+  >
+    <div class="p-6 text-2xl font-bold">🍷 Cavavin</div>
+    <nav class="space-y-2 px-4">
+      <a href="#" onclick="window.location.href='dashboard.html'" class="block px-4 py-2 rounded hover:bg-gray-700">📊 Tableau de bord</a>
+      <a href="#" onclick="window.location.href='addBottle.html'" class="block px-4 py-2 rounded hover:bg-gray-700">➕ Ajouter</a>
+      <a href="#" onclick="window.location.href='inventaire.html'" class="block px-4 py-2 rounded hover:bg-gray-700">📦 Inventaire</a>
+      <a href="#" onclick="window.location.href='journal.html'" class="block px-4 py-2 rounded hover:bg-gray-700">📕 Journal de dégustation</a>
+      <a href="#" onclick="window.location.href='parametres.html'" class="block px-4 py-2 rounded hover:bg-gray-700">⚙️ Paramètres</a>
+
+    </nav>
+  </aside>
+
+
+  <!-- Contenu principal -->
+  <div class="flex-1 flex flex-col overflow-hidden">
+    <!-- Topbar -->
+    <header class="bg-white shadow-md p-4 flex items-center justify-between md:hidden">
+      <button @click="sidebarOpen = !sidebarOpen" class="text-gray-700 text-2xl">
+        ☰
+      </button>
+      <h1 class="text-xl font-bold text-liedevin">Cavavin</h1>
+    </header>
+
+    <!-- Contenu -->
+    <main class="flex-1 overflow-y-auto p-6 bg-creme" x-data="chartDashboard" x-init="init()">
+
+     <div>
+      <!-- 🔴 Affichage des notifications -->
+      <template x-if="notifications.length > 0" x-cloak>
+        <div x-cloak class="bg-orange-200 border border-orange-700 text-orange-900 px-4 py-3 rounded mb-4 flex justify-between items-center">
+          <div x-cloak >
+            <strong class="font-bold text-sm">Notifications :</strong>
+            <ul x-cloak class="mt-2 list-disc list-inside">
+              <template x-cloak x-for="(notif, index) in notifications" :key="index">
+                <li x-text="notif.message" class="text-sm"></li>
+              </template>
+            </ul>
+          </div>
+          
+          <!-- Bouton Ne plus afficher -->
+          <button
+            @click="dismissNotifications"
+            class="ml-4 text-sm bg-orange-700 text-white px-3 py-1 rounded hover:bg-orange-800 transition"
+          >
+            Ne plus afficher
+          </button>
+        </div>
+      </template>
+    </div>
+    <div class="mt-2" x-data="{ isMonday: (new Date().getDay() === 4) }" x-cloak>
+      <template x-if="isMonday">
+        <div 
+        x-show="inspectorNotifications.length > 0" x-cloak
+        style="background-color:#bfd9fa; border-color:#1653a2; color:#1653a2"
+        class="bg-violet-200 border border-red-700 text-red-900 px-4 py-3 rounded mb-4 flex justify-between items-center">
+          <div>
+            <strong class="font-bold text-sm">Rapport de santé de votre application:</strong>
+
+              <ul class="mt-2 list-disc list-inside">
+                <template x-cloak x-for="(notif, index) in inspectorNotifications">
+                  <li x-text="notif.message" class="text-sm"></li>
+                </template>
+              </ul>
+          </div>
+
+              <!-- Bouton Ne plus afficher -->
+          <button 
+            x-cloak
+            x-show="inspectorNotifications.length > 0"
+            style="background-color:#1653a2;"
+            @click="dismissInspectorNotifications"
+            class="ml-4 text-sm bg-red-700 text-white px-3 py-1 rounded  transition"
+          >
+            Ne plus afficher
+          </button> 
+        </div>
+      </template>
+    </div>
+
+    <!-- Dashboard cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+
+      <div class="flex flex-col gap-1 bg-white p-2">
+        <div  class="max-w-md mx-auto">
+          <canvas id="pieType3"></canvas>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-1 bg-white p-2">
+        <div  class="max-w-md mx-auto">
+          <canvas id="pieColors"></canvas>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-1 bg-white p-2">
+        <div class="max-w-md mx-auto">
+          <canvas id="barRegions" width="200" height="200"></canvas>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-1 bg-white p-2">
+        <div class="max-w-md mx-auto">
+          <canvas id="pieType"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Actions rapides -->
+    <div class="my-6">
+      <h2 class="text-xl font-semibold mb-2 text-anthracite">Actions rapides</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <a href="#" onclick="window.location.href='addBottle.html'" class="bg-liedevin-gradient text-white flex items-center justify-center p-4 rounded hover:bg-gradient-to-b from-[#2f2f2f] to-[#101010]"><span>➕ Nouvelle bouteille</span></a>
+        <a href="#" onclick="window.location.href='stock.html'" class="bg-liedevin-gradient text-white p-4 flex items-center justify-center rounded hover:bg-gradient-to-b from-[#2f2f2f] to-[#101010]">🛒 Gérer le stock</a>
+        <a href="#" onclick="window.location.href='rating.html'" class="bg-liedevin-gradient text-white p-4 rounded flex items-center justify-center hover:bg-gradient-to-b from-[#2f2f2f] to-[#101010]">⭐ Noter mes vins</a>
+        <a href="#" onclick="window.location.href='addNote.html'" class="bg-liedevin-gradient text-white flex items-center justify-center p-4 rounded hover:bg-gradient-to-b from-[#2f2f2f] to-[#101010]"><span>📕 Nouvelle note</span></a>
+      </div>
+    </div>
+
+    <h2 class="text-xl font-semibold mb-2 text-anthracite">En bref</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-6 mb-6">
+
+        <div class="flex-1 bg-gray-100 shadow rounded p-4">
+          <h2 class="text-lg font-semibold text-purple-800 text-sm">Total bouteilles</h2>
+          <p class="text-2xl mt-2" x-text="totalBottles"></p>
+        </div>
+        <div class="flex-1 bg-gray-100 shadow rounded p-4">
+          <h2 class="text-lg font-semibold text-purple-800 text-sm">Appellations 🇫🇷</h2>
+          <p class="text-2xl mt-2" x-text="countries.france"></p>
+        </div>
+        <div class="flex-1 bg-gray-100 shadow rounded p-4">
+          <h2 class="text-lg font-semibold text-purple-800 text-sm">Appellations 🌍</h2>
+          <p class="text-2xl mt-2" x-text="countries.world"></p>
+        </div>
+        <div class="flex-1 bg-gray-100 shadow rounded p-4">
+          <h2 class="text-lg font-semibold text-purple-800 text-sm">Regions</h2>
+          <p class="text-2xl mt-2" x-text="regionCount"></p>
+        </div>
+        <div class="flex-1 bg-gray-100 shadow rounded p-4">
+          <h2 class="text-lg font-semibold text-purple-800 text-sm">Notes de Journal</h2>
+          <p class="text-2xl mt-2" x-text="notes_count"></p>
+        </div>
+        <div class="flex-1 bg-gray-100 shadow rounded p-4">
+          <h2 class="text-lg font-semibold text-purple-800 text-sm">+ vieux millésime</h2>
+          <p class="text-2xl mt-2" x-text="oldest.year"></p>
+        </div>
+    </div>
+
+    <!-- À surveiller -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+		<div class="flex flex-col gap-6">
+			<div class="w-full flex flex-col">
+				<h2 class="text-xl font-semibold mb-2 text-anthracite">⚠️ À surveiller</h2>
+				<ul class="bg-gray-100 shadow rounded p-4 space-y-2" x-show="warnings.length">
+					<template x-for="el in warnings">
+						<li> 
+							<strong class="text-gray-600" x-text="el.name"></strong> 
+							<strong class="text-gray-600" x-text="el.year"></strong>
+							<span x-text="el.domaine || 'Domaine non précisé' " class="text-gray-500"></span> —
+							<span x-text="el.message"></span>
+						</li>
+					</template>
+        		</ul> 
+
+				<div 
+				class="bg-gray-100 shadow rounded p-4 space-y-2 text-center text-gray-500 flex flex-col items-center justify-center min-h-[6rem]"
+				x-show="!warnings.length"
+				>
+				<span></span><br>
+				<span>Aucun vin à surveiller pour le moment</span><br>
+				<span></span>
+				</div>
+			</div>
+
+			<!-- Les mieux notées -->
+			<div class="w-full flex flex-col">
+				<h2 class="text-xl font-semibold mb-2 text-anthracite">🏅 Les mieux notés</h2>
+				<ul class="bg-gray-100 shadow rounded p-4 space-y-2" x-show="topRated.length">
+					<template x-for="el in topRated">
+						<li> 
+							<strong class="text-gray-600" x-text="el.name"></strong> 
+							<strong class="text-gray-600" x-text="el.year"></strong>
+							<span x-text="el.domaine || 'Domaine non précisé' " class="text-gray-600"></span> —
+							<span x-text="'Note : ' + el.rating + '/10'"></span></li>
+					</template>
+				</ul>
+
+				<div 
+				class="bg-gray-100 shadow rounded p-4 space-y-2 text-center text-gray-500 flex flex-col items-center justify-center min-h-[6rem]"
+				x-show="!topRated.length"
+				>
+					<span></span><br>
+					<span>Aucun vin noté pour le moment</span><br>
+					<span></span>
+				</div>
+			</div>
+		</div>
+        
+
+		<div class="flex flex-col gap-6">
+			<!-- Derniers ajouts -->
+			<div class="w-full" x-show="recent.length">
+				<h2 class="text-xl font-semibold mb-2 text-anthracite">🕒 Derniers ajouts</h2>
+				<ul class="bg-gray-100 shadow rounded p-4 space-y-2" x-show="recent.length">
+					<template x-for="el in recent">
+						<li>
+							<strong class="text-gray-600" x-text="el.name"></strong>
+							<strong class="text-gray-600" x-text="el.year"></strong> — 
+							<span class="text-gray-600" x-text="el.domaine || 'Domaine non précisé' "></span>
+							<span class="text-gray-500 italic text-sm">(ajouté le <span x-text="el.createdAt"></span>)</span>
+						</li>
+					</template>
+				</ul>
+
+				<div 
+					class="bg-gray-100 shadow rounded p-4 space-y-2 text-center text-gray-500 flex flex-col items-center justify-center min-h-[6rem]"
+					x-show="!recent.length"
+					>
+						<span></span><br>
+						<span>Aucun vin ajouté pour le moment</span><br>
+						<span></span><br>
+				</div>
+			</div>
+
+			<!-- Dernières dégustations -->
+			<div class="w-full">
+				<h2 class="text-xl font-semibold mb-2 text-anthracite">🥂 Dernières dégustations</h2>
+				<ul class="bg-gray-100 shadow rounded p-4 space-y-2" x-show="lastNotes.length">
+					<template x-for="note in lastNotes">
+						<li>
+							<strong class="text-gray-600" x-text="note.bottle.name"></strong> 
+							<strong class="text-gray-600" x-text="note.bottle.year"></strong> -
+
+							<span class="text-gray-600">"<span x-text="note.title"></span>"</span> 
+							<span class="text-gray-500 italic text-sm">(crée le <span x-text="note.creation_date"></span>)</span>
+						</li>
+					</template>
+				</ul>
+
+				<div 
+					class="bg-gray-100 shadow rounded p-4 space-y-2 text-center text-gray-500 flex flex-col items-center justify-center min-h-[6rem]"
+					x-show="!lastNotes.length"
+					>
+						<span></span><br>
+						<span>Aucun vin ajouté pour le moment</span><br>
+						<span></span>
+				</div>
+
+			</div>
+		</div>
+    </div>
+
+  </main>
+  <!-- Chart.js local -->
+  <script type="module" src="../public/vendor/chartjs/chart.umd.js"></script>
+
+<script>
+
+  async function waitForBackendReady(url, timeout = 10000, interval = 500) {
+		const start = Date.now();
+
+		while (Date.now() - start < timeout) {
+			try {
+				const res = await fetch(url);
+				if (res.ok) return true;
+			} catch (e) {
+				// Backend pas encore prêt
+			}
+			await new Promise(resolve => setTimeout(resolve, interval));
+		}
+		throw new Error("Le backend n'est pas prêt après 10s");
+	}
+
+
+document.addEventListener('alpine:init', () => {
+
+  window.Alpine.data('chartDashboard', () => ({
+
+    initialized: false,
+    colors: {},
+    regions: {},
+    types: {},
+    types3: {},
+    charts: {},
+    totalBottles: null,
+    regionCount: null,
+    notes_count: null,
+    namesCount: null,
+    oldest: [],
+    topRated: [],
+    recent: [],
+    lastNotes: [],
+    warnings : [],
+    countries : [],
+    notifications: [],
+    inspectorNotifications: [],
+    backendUrl: "",
+    pieColorsChart: null,
+    barRegionsChart: null,
+    pieTypeChart: null,
+    pieType3Chart: null,
+
+    colorLabelMap: {
+      'Rouge': '#a51d2d',
+      'Blanc': '#f0e68c',
+      'Rose': '#ffb6c1',
+      'sec' : '#ff6347',
+      'demi-sec': '#ffcc00', 
+      'doux': '#dda0dd', 
+      'moelleux' : '#20b2aa', 
+      'liquoreux': '#9acd32',
+      'brut': '#f0e68c',
+      'extra brut': '#ffb6c1',
+      'nature': '#dda0dd',
+      'tranquille': '#4B0082',
+      'effervescent': '#FFA500'
+    },
+
+    async init() {
+
+      if (this.initialized) return;
+      this.initialized = true;
+
+      try {
+        this.backendUrl = await window.electronAPI.getBackendUrl();
+        await waitForBackendReady(`${this.backendUrl}/ping`);
+
+        const response = await fetch(`${this.backendUrl}/api/stats`);
+        const data = await response.json();
+
+        this.colors = data.colors;
+        this.regions = data.regions;
+        this.types = data.types;
+        this.types3 = data.types3;
+        this.oldest = data.oldest;
+        this.totalBottles = data.total_bottles;
+        this.regionCount = data.region_count;
+        this.notes_count = data.notes_count;
+        this.namesCount = data.name_count;
+        this.topRated = data.top_rated;
+        this.recent = data.recent || [];
+        this.lastNotes = data.last_notes || [];
+        this.warnings = data.warnings || [];
+        this.countries = data.countries || [];
+
+        //this.destroyAllCharts();
+        
+        this.renderPieColorsChart(this.colors);
+        this.renderBarRegionsChart(this.regions);
+        this.renderPieTypeChart(this.types);
+        this.renderPieType3Chart(this.types3);
+
+      } catch (error) {
+        console.error('Erreur lors du chargement des statistiques', error);
+      }
+
+      // out of stock Notifications
+      try {
+        const res = await fetch(`${this.backendUrl}/out-of-stock`);
+        const notifDatas = await res.json();
+        if (Array.isArray(notifDatas) && notifDatas.length > 0) {
+          this.notifications = notifDatas;
+        }
+      } catch (error) {
+        console.error('Erreur lors du chargement des notifications :', error);
+      }
+
+      // inspector Notifications
+      try {
+        const res = await fetch(`${this.backendUrl}/inspector-notification`);
+        const notifHarriesDatas = await res.json();
+        if (Array.isArray(notifHarriesDatas) && notifHarriesDatas.length > 0) {
+          this.inspectorNotifications = notifHarriesDatas;
+        }
+      } catch (error) {
+        console.error('Erreur lors du chargement des notifications :', error);
+      }
+    },
+
+
+    renderPieColorsChart(dataObj) {
+      const canvas = document.getElementById('pieColors');
+      if (!canvas) {
+        console.log("Canvas #pieColors non trouvé dans le DOM !");return;
+      }
+
+      const ctx = canvas.getContext('2d');
+
+      if (!ctx) {
+        console.log("Impossible d'obtenir le contexte 2D pour #pieColors !");
+        return;
+      }
+
+      canvas.style.transform = 'translateZ(0)';
+      canvas.style.willChange = 'transform';
+      canvas.style.pointerEvents = 'auto';
+      canvas.style.zIndex = '1';
+
+      const labels = Object.keys(dataObj);
+      const data = Object.values(dataObj);
+      const colors = labels.map(label => this.colorLabelMap[label] || '#cccccc');
+
+      this.pieColorsChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+          labels: labels,
+          datasets: [{
+            data: data,
+            backgroundColor: colors,
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          animation: false,
+          resizeDelay: 0,
+          plugins: {
+            legend: { position: 'bottom' },
+            title: { display: true, text: 'Répartition par couleur', font: { size: 16 } }
+          }
+        }
+      });
+    },
+
+    renderBarRegionsChart(dataObj) {
+
+      const canvas = document.getElementById('barRegions');
+      if (!canvas) return;
+
+      const ctx = canvas.getContext('2d');
+      const labels = Object.keys(dataObj);
+      const data = Object.values(dataObj);
+
+      this.barRegionsChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Régions les plus représentées',
+            data: data,
+            backgroundColor: '#4682b4',
+            borderRadius: 4
+          }]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          animation: false,
+          resizeDelay: 0,
+          plugins: {
+            legend: { display: false },
+            title: { display: true, text: 'Régions les plus représentées', font: { size: 16 } }
+          },
+          scales: {
+            x: { beginAtZero: true }
+          }
+        }
+      });
+    },
+
+    renderPieTypeChart(dataObj) {
+      const canvas = document.getElementById('pieType');
+      if (!canvas) return;
+
+      //if (this.pieTypeChart) this.pieTypeChart.destroy();
+
+      const ctx = canvas.getContext('2d');
+      const labels = Object.keys(dataObj);
+      const data = Object.values(dataObj);
+      const colors = ['#ff6347', '#ffcc00', '#dda0dd', '#20b2aa', '#9acd32'];
+
+      this.pieTypeChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+          labels: labels,
+          datasets: [{
+            data: data,
+            backgroundColor: colors,
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          animation: false,
+          resizeDelay: 0,
+          plugins: {
+            legend: { position: 'bottom' },
+            title: { display: true, text: 'Répartition par sucrosité', font: { size: 16 } }
+          }
+        }
+      });
+    },
+
+    renderPieType3Chart(dataObj) {
+      const canvas = document.getElementById('pieType3');
+      if (!canvas) return;
+
+     // if (this.pieType3Chart) this.pieType3Chart.destroy();
+
+      const ctx = canvas.getContext('2d');
+      const labels = Object.keys(dataObj);
+      const data = Object.values(dataObj);
+      const colors = ['#dda0dd', '#20b2aa'];
+
+      this.pieType3Chart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+          labels: labels,
+          datasets: [{
+            data: data,
+            backgroundColor: colors,
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          animation: false,
+          resizeDelay: 0,
+          plugins: {
+            legend: { position: 'bottom' },
+            title: { display: true, text: 'Répartition vin tranquille/effervescent', font: { size: 16 } }
+          }
+        }
+      });
+    },
+
+
+    destroyAllCharts() {
+      ['pieColorsChart', 'barRegionsChart', 'pieTypeChart', 'pieType3Chart'].forEach(el => {
+        if (this.charts.el) {
+            this.charts.el.clear();
+            this.charts.el.destroy();
+            this.charts.el = null;
+        }
+      });
+    },
+
+    dismissNotifications() {
+      fetch(`${this.backendUrl}/update/stock-notification`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ enabled: false })
+      })
+      .then(res => res.json())
+      .then(data => {
+        
+        this.notifications = []
+      })
+      .catch(error => {
+        console.error('Erreur lors de la désactivation des notifications :', error)
+      })
+    },
+
+    dismissInspectorNotifications() {
+      fetch(`${this.backendUrl}/update/inspector-notification`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ enabled: false })
+      })
+      .then(res => res.json())
+      .then(data => {
+        
+        this.inspectorNotifications = []
+      })
+      .catch(error => {
+        console.error('Erreur lors de la désactivation des notifications :', error)
+      })
+    },
+
+    generateColors(palette, count) {
+      return Array.from({ length: count }, (_, i) => palette[i % palette.length]);
+    }
+  }));
+});
+</script>
+
+</body>
+</html>

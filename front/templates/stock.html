@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Modifier stocks | Cavavin</title>
+  <link rel="stylesheet" href="../public/assets/global_style.css" />
+
+  <script defer type="module">
+    import Alpine from '../public/vendor/alpine/module.esm.js';
+    window.Alpine = Alpine;
+    Alpine.start();
+  </script>
+
+  <!-- Local Tailwind : self generated -->
+  <link rel="stylesheet" href="../libs/tailwind.css" />
+</head>
+<body x-data="{ sidebarOpen: false }" class="bg-creme flex h-screen bg-gray-50 font-sans">
+
+  <!-- Overlay mobile -->
+  <div 
+    class="fixed inset-0 bg-black bg-opacity-50 z-30 md:hidden"
+    x-show="sidebarOpen"
+    x-transition.opacity
+    @click="sidebarOpen = false"
+  ></div>
+
+  <!-- Sidebar -->
+  <aside 
+    class="fixed md:static z-40 inset-y-0 left-0 w-64 bg-gray-900 text-white transform md:translate-x-0 transition-transform duration-200 ease-in-out"
+    :class="{ '-translate-x-full': !sidebarOpen }"
+  >
+    <div class="p-6 text-2xl font-bold">🍷 Cavavin</div>
+    <nav class="space-y-2 px-4">
+      <a href="#" onclick="window.location.href='dashboard.html'" class="block px-4 py-2 rounded hover:bg-gray-700">📊 Tableau de bord</a>
+      <a href="#" onclick="window.location.href='addBottle.html'" class="block px-4 py-2 rounded hover:bg-gray-700">➕ Ajouter</a>
+      <a href="#" onclick="window.location.href='inventaire.html'" class="block px-4 py-2 rounded hover:bg-gray-700">📦 Inventaire</a>
+      <a href="#" onclick="window.location.href='journal.html'" class="block px-4 py-2 rounded hover:bg-gray-700">📕 Journal de dégustation</a>
+      <a href="#" onclick="window.location.href='parametres.html'" class="block px-4 py-2 rounded hover:bg-gray-700">⚙️ Paramètres</a>
+    </nav>
+  </aside>
+
+
+  <!-- Contenu principal -->
+  <div class="flex-1 flex flex-col overflow-hidden">
+    <!-- Topbar -->
+    <header class="bg-white shadow-md p-4 flex items-center justify-between md:hidden">
+      <button @click="sidebarOpen = !sidebarOpen" class="text-gray-700 text-2xl">
+        ☰
+      </button>
+      <h1 class="text-xl font-bold text-liedevin">Cavavin</h1>
+    </header>
+
+    <!-- Contenu -->
+    <main class="flex-1 overflow-y-auto p-6 bg-creme">
+        <h1 class="text-3xl font-bold text-liedevin mb-8 text-center">Gestion rapide de stock</h1>
+        <div x-data="stockManager" x-init="fetchBottles()" class="p-6 max-w-xl mx-auto space-y-6">
+
+            <!-- Sélecteur de bouteille -->
+            <div>
+                <label class="block mb-2 font-semibold">Choisir une bouteille</label>
+                <select x-model="selectedBottleId" @change="loadStock" class="w-full border px-3 py-2 rounded">
+                <option value="">-- Sélectionner --</option>
+                <template x-for="bottle in bottles">
+                    <option :value="bottle.id" x-text="bottle.name + ' - '+ bottle.domaine + ' - ' + bottle.year"></option>
+                </template>
+                </select>
+            </div>
+
+            <!-- Stock actuel -->
+            <div x-show="stock !== null" class="bg-gray-100 p-4 rounded" x-cloak>
+                Stock actuel : <strong x-text="stock"></strong> bouteilles
+            </div>
+
+            <!-- Consommation -->
+            <div x-show="stock !== null" class="space-y-2" x-cloak>
+                <label>🍷 J'ai consommé :</label>
+                <input type="number" min="1" x-model="consumed" class="border px-2 py-1 rounded w-20">
+                <button @click="updateStock(-consumed)" class="bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600">
+                Valider
+                </button>
+            </div>
+
+            <!-- Entrée de stock -->
+            <div x-show="stock !== null" class="space-y-2" x-cloak>
+                <label>📦 Je fais rentrer :</label>
+                <input type="number" min="1" x-model="added" class="border px-2 py-1 rounded w-20">
+                <button @click="updateStock(+added)" class="bg-green-500 text-white px-4 py-1 rounded hover:bg-green-600">
+                Valider
+                </button>
+            </div>
+        </div>
+
+         <div class="md:col-span-2 flex justify-center mt-6 gap-2">
+            <a 
+                onclick="window.location.href='dashboard.html'"
+                href="#" 
+                class="bg-liedevin-gradient text-white px-8 py-3 rounded hover:bg-gradient-to-b from-[#2f2f2f] to-[#101010] transition"
+                >
+                Retour dashboard
+            </a>
+        </div>
+
+    </main>
+</div>
+<script>
+document.addEventListener('alpine:init', () => {
+  Alpine.data('stockManager', () => ({
+    initialized: false,
+    bottles: [],
+    selectedBottleId: '',
+    stock: null,
+    consumed: 1,
+    added: 1,
+    backendUrl: '',
+
+    async fetchBottles() {
+      if (this.initialized) return;
+      this.initialized = true;
+
+      this.backendUrl = await window.electronAPI.getBackendUrl();
+
+      const res = await fetch(`${this.backendUrl}/api/bottles/stock`);
+      this.bottles = await res.json();
+    },
+
+    async loadStock() {
+      if (!this.selectedBottleId) return;
+      const res = await fetch(`${this.backendUrl}/api/bottle/${this.selectedBottleId}`);
+      const data = await res.json();
+      this.stock = data.quantity;
+    },
+
+    async updateStock(amount) {
+      if (!this.selectedBottleId || isNaN(amount)) return;
+
+      const res = await fetch(`${this.backendUrl}/api/bottle/${this.selectedBottleId}/stock`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ amount })
+      });
+
+      if (res.ok) {
+        alert('✅ Stock mis à jour avec succès !');
+        this.loadStock();
+      } else {
+        alert('❌ Erreur lors de la mise à jour du stock.');
+      }
+    }
+  }));
+});
+</script>
+</body>
+</html>
