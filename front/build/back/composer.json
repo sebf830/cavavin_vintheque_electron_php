@@ -62,10 +62,9 @@
             "@auto-scripts"
         ],
         "boot": [
-            "php bin/console d:d:d --force",
-            "php bin/console d:d:c",
-            "php bin/console d:s:u --force",
-            "php bin/console d:f:l --no-interaction"
+            "php bin/console d:d:d --force --env=prod",
+            "php bin/console d:d:c --env=prod",
+            "php bin/console d:s:u --force --env=prod"
         ]
     },
     "conflict": {
