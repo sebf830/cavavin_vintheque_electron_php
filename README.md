@@ -13,7 +13,7 @@ L'application est libre d'utilisation et gratuite, merci d'en faire un usage non
 <img style="padding:0 10px" width="322" height="180" alt="img1" src="https://github.com/sebf830/cavavin_vintheque_electron_php/blob/master/screenshots/1.png">
 <img style="padding:0 10px" width="322" height="180"alt="img1" src="https://github.com/sebf830/cavavin_vintheque_electron_php/blob/master/screenshots/2.png">
 <img style="padding:0 10px" width="322" height="180" alt="img1" src="https://github.com/sebf830/cavavin_vintheque_electron_php/blob/master/screenshots/3.png">
-<img style="padding:0 10px" width="150" height="180" alt="img1" src="https://github.com/sebf830/cavavin_vintheque_electron_php/blob/master/screenshots/3.png">
+<img style="padding:0 10px" width="150" height="180" alt="img1" src="https://github.com/sebf830/cavavin_vintheque_electron_php/blob/master/screenshots/4.png">
 </div>
 
 Version BETA :
