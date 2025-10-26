@@ -51,7 +51,7 @@ Un executable sera crée dans à /front/build/dist/Cavavin.dmg
 <div style="display:flex;justify-content:space-between gap:10px;">
 <img width="320" height="180" alt="img1" src="https://github.com/sebf830/cavavin_vintheque_electron_php/blob/master/screenshots/3.png">
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-<img width="320" height="180"alt="img1" src="https://github.com/sebf830/cavavin_vintheque_electron_php/blob/master/screenshots/5.png">
+<img width="180" height="180"alt="img1" src="https://github.com/sebf830/cavavin_vintheque_electron_php/blob/master/screenshots/4.png">
 </div>
 
 
