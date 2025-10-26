@@ -1,0 +1,136 @@
+[
+  {
+    "country": "France",
+    "region": "Bordeaux",
+    "vignoble": [
+      { "name": "Médoc" },
+      { "name": "Haut-Médoc" },
+      { "name": "Graves" },
+      { "name": "Sauternes" },
+      { "name": "Entre-Deux-Mers" },
+      { "name": "Libournais" },
+      { "name": "Saint-Émilion" },
+      { "name": "Pomerol" },
+      { "name": "Fronsac" }
+    ]
+  },
+  {
+    "country": "France",
+    "region": "Bourgogne",
+    "vignoble": [
+      { "name": "Chablis" },
+      { "name": "Côte de Nuits" },
+      { "name": "Côte de Beaune" },
+      { "name": "Côte Chalonnaise" },
+      { "name": "Mâconnais" },
+      { "name": "Beaujolais" }
+    ]
+  },
+  {
+    "country": "France",
+    "region": "Champagne",
+    "vignoble": [
+      { "name": "Montagne de Reims" },
+      { "name": "Vallée de la Marne" },
+      { "name": "Côte des Blancs" },
+      { "name": "Côte des Bars" }
+    ]
+  },
+  {
+    "country": "France",
+    "region": "Alsace",
+    "vignoble": [
+      { "name": "Bas-Rhin" },
+      { "name": "Haut-Rhin" }
+    ]
+  },
+  {
+    "country": "France",
+    "region": "Rhône",
+    "vignoble": [
+      { "name": "Vallée du Rhône Nord" },
+      { "name": "Vallée du Rhône Sud" },
+      { "name": "Crozes-Hermitage" },
+      { "name": "Hermitage" },
+      { "name": "Saint-Joseph" },
+      { "name": "Cornas" },
+      { "name": "Côte-Rôtie" },
+      { "name": "Châteauneuf-du-Pape" },
+      { "name": "Gigondas" }
+    ]
+  },
+  {
+    "country": "France",
+    "region": "Loire",
+    "vignoble": [
+      { "name": "Pays Nantais" },
+      { "name": "Anjou" },
+      { "name": "Saumur" },
+      { "name": "Touraine" },
+      { "name": "Centre-Loire" }
+    ]
+  },
+  {
+    "country": "France",
+    "region": "Languedoc-Roussillon",
+    "vignoble": [
+      { "name": "Languedoc" },
+      { "name": "Roussillon" },
+      { "name": "Corbières" },
+      { "name": "Minervois" },
+      { "name": "Fitou" }
+    ]
+  },
+  {
+    "country": "France",
+    "region": "Provence",
+    "vignoble": [
+      { "name": "Côte de Provence" },
+      { "name": "Cassis" },
+      { "name": "Bandol" },
+      { "name": "Bellet" }
+    ]
+  },
+  {
+    "country": "France",
+    "region": "Jura",
+    "vignoble": [
+      { "name": "Arbois" },
+      { "name": "L'Étoile" },
+      { "name": "Château-Chalon" }
+    ]
+  },
+  {
+    "country": "France",
+    "region": "Savoie",
+    "vignoble": [
+      { "name": "Bugey" },
+      { "name": "Roussette de Savoie" },
+      { "name": "Apremont" }
+    ]
+  },
+  {
+    "country": "France",
+    "region": "Sud-Ouest",
+    "vignoble": [
+      { "name": "Cahors" },
+      { "name": "Madiran" },
+      { "name": "Jurançon" },
+      { "name": "Bergerac" },
+      { "name": "Gaillac" },
+      { "name": "Buzet" },
+      { "name": "Fronton" }
+    ]
+  },
+  {
+    "country": "France",
+    "region": "Corse",
+    "vignoble": [
+      { "name": "Cap Corse" },
+      { "name": "Patrimonio" },
+      { "name": "Ajaccio" },
+      { "name": "Vin de Corse" }
+    ]
+  }
+]
+

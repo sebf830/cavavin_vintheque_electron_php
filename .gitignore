@@ -9,7 +9,7 @@ node_modules/
 /front/.env*
 /front/dist/
 /front/.vite/
-/front/build/
+
 
 # ============ BACK (Symfony) ==============
 /back/var/

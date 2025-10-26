@@ -1,0 +1,378 @@
+{
+  "languedoc_roussillon": {
+    "appellations_regionales": [
+      {
+        "name": "Languedoc",
+        "type": ["rouge", "blanc", "rose"],
+        "type2": ["sec", "moelleux"],
+        "cepages": {
+          "mandatory": [],
+          "optional": ["Grenache", "Syrah", "Carignan", "Mourvèdre", "Cinsault", "Marsanne", "Roussanne", "Vermentino", "Chardonnay"]
+        },
+        "accords": "Rouge : cassoulet, aligot, braisé de porc aux olives, daube du Languedoc, charcuterie locale, pélardon sec.<br>Blanc : huîtres de l’étang de Thau, gambas grillées, tielles sétoises, brandade, fromages frais de chèvre.<br>Rosé : grillades estivales, ratatouille, pissaladière, salade niçoise, tapenade. Moelleux / petillant : desserts aux fruits (abricot, poire), tarte aux figues, fougasse sucrée."
+      },
+      {
+        "name": "Crémant de Limoux",
+        "type": ["blanc", "rose"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Chardonnay", "Chenins", "Mauzac"],
+          "optional": ["Pinot Noir"]
+        },
+        "accords": "Apéritif : gougères, amandes, canapés.<br>Blanc : coquilles Saint-Jacques, huîtres, saumon fumé.<br>Rosé : tartelettes aux fruits rouges, fraises, desserts légers."
+      },
+      {
+        "name": "Blanquette de Limoux",
+        "type": ["blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Mauzac"],
+          "optional": ["Chardonnay", "Chenins"]
+        },
+        "accords": "Apéritif doux, fougasse aux raisins, madeleines, tarte tatin, desserts à base de pommes ou de coing."
+      },
+      {
+        "name": "Blanquette",
+        "type": ["blanc"],
+        "type2": [ "sec"],
+        "cepages": {
+          "mandatory": ["Mauzac"],
+          "optional": []
+        },
+        "accords": "Fruits frais, tartelette fine aux pommes, biscuits sablés, canistrelli, poires pochées."
+      },
+      {
+        "name": "Clairette du Languedoc",
+        "type": ["blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Clairette"],
+          "optional": []
+        },
+        "accords": "Moules à la bouzigue, sardines grillées, carpaccio de Saint-Jacques, brandade de morue, fromages de chèvre, tielle sétoise en version blanche."
+      },
+      {
+        "name": "Muscat de Mireval",
+        "type": ["blanc", "moelleux"],
+        "type2": ["vin doux naturel"],
+        "cepages": {
+          "mandatory": ["Muscat à Petits Grains"],
+          "optional": []
+        },
+        "accords": "Fruits frais, miels, tarte aux abricots, nougat, canistrelli sucrés, glaces au miel."
+      },
+      {
+        "name": "Muscat de Lunel",
+        "type": ["blanc", "moelleux"],
+        "type2": ["vin doux naturel"],
+        "cepages": {
+          "mandatory": ["Muscat à Petits Grains"],
+          "optional": []
+        },
+        "accords": "Fruits exotiques, macarons, tartelette au citron, sablés aux amandes, gâteaux aux figues."
+      },
+      {
+        "name": "Muscat de Frontignan",
+        "type": ["blanc", "moelleux"],
+        "type2": ["vin doux naturel"],
+        "cepages": {
+          "mandatory": ["Muscat à Petits Grains"],
+          "optional": []
+        },
+        "accords": "Tarte aux agrumes, pain d’épices, fruits confits, gâteaux de Sète, crèmes dessert."
+      },
+      {
+        "name": "Muscat de Saint-Jean-de-Minervois",
+        "type": ["blanc", "moelleux"],
+        "type2": ["vin doux naturel"],
+        "cepages": {
+          "mandatory": ["Muscat à Petits Grains"],
+          "optional": []
+        },
+        "accords": "Desserts à la figue, nougat, tarte aux noix, glaces au miel, fromages bleus doux."
+      },
+      {
+        "name": "Rivesaltes",
+        "type": ["rouge", "blanc", "rose"],
+        "type2": ["vin doux naturel", "moelleux"],
+        "cepages": {
+          "mandatory": [],
+          "optional": ["Grenache", "Macabeu", "Mourvèdre", "Muscat"]
+        },
+        "accords": "Rouge / rosé : gâteaux aux cerises, chocolat noir, mendiants, clafoutis.<br>Blanc : tarte au citron, nougat, desserts aux agrumes, foie gras sucré-salé."
+      },
+      {
+        "name": "Banyuls",
+        "type": ["rouge"],
+        "type2": ["moelleux", "liqueur"],
+        "cepages": {
+          "mandatory": ["Grenache"],
+          "optional": ["Carignan", "Mourvèdre", "Cinsault"]
+        },
+        "accords": "Desserts au chocolat, figues rôties, gâteaux aux amandes, marrons glacés, fromages bleus."
+      },
+      {
+        "name": "Banyuls Grand Cru",
+        "type": ["rouge"],
+        "type2": ["moelleux", "liqueur"],
+        "cepages": {
+          "mandatory": ["Grenache"],
+          "optional": ["Carignan", "Mourvèdre", "Cinsault"]
+        },
+        "accords": "Desserts au chocolat intense, truffes, figues au vin, gâteaux de type tarte tatin, glace vanille."
+      },
+      {
+        "name": "Maury",
+        "type": ["rouge"],
+        "type2": ["moelleux", "liquoreux"],
+        "cepages": {
+          "mandatory": ["Grenache"],
+          "optional": ["Carignan", "Mourvèdre", "Cinsault"]
+        },
+        "accords": "Pâtisseries au chocolat, gâteaux aux noix, tarte Tatin, figues sèches, fromages bleus."
+      },
+      {
+        "name": "Maury Sec",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Grenache"],
+          "optional": ["Carignan", "Mourvèdre", "Cinsault"]
+        },
+        "accords": "Gibier rôti, civet de sanglier, caille grillée, foies gras poêlés, charcuterie corsée."
+      }
+    ],
+    "appellations_communales": [
+      {
+        "name": "Minervois",
+        "type": ["rouge", "blanc", "rose"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": [],
+          "optional": ["Grenache", "Syrah", "Mourvèdre", "Carignan", "Cinsault", "Clairette", "Bourboulenc", "Roussanne"]
+        },
+        "accords": "Rouge : cassoulet, gardiane de taureau, magret grillé, agneau. Blanc : huîtres, brandade, fruits de mer, tarte fine. Rosé : salades gourmandes, grillades, tielle."
+      },
+      {
+        "name": "Minervois-La Livinière",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": [],
+          "optional": ["Grenache", "Syrah", "Mourvèdre", "Carignan"]
+        },
+        "accords": "Daube de bœuf, magret aux figues, civet de lièvre, pigeonneau rôti, fromages de caractère."
+      },
+      {
+        "name": "Corbières",
+        "type": ["rouge", "blanc", "rose"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": [],
+          "optional": ["Grenache", "Carignan", "Syrah", "Mourvèdre", "Cinsault", "Macabeu", "Grenache Blanc"]
+        },
+        "accords": "Rouge : cassoulet, ragoût, daube, viandes en sauce. Blanc : poissons méditerranéens, tartes salées, légumes grillés. Rosé : salades estivales, pizzas, apéritifs."
+      },
+      {
+        "name": "Corbières-Boutenac",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": [],
+          "optional": ["Grenache", "Carignan", "Syrah", "Mourvèdre", "Cinsault"]
+        },
+        "accords": "Gigot d’agneau, cassoulet, civet de sanglier, magret rôti, daube de bœuf."
+      },
+      {
+        "name": "Faugères",
+        "type": ["rouge", "blanc", "rose"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": [],
+          "optional": ["Grenache", "Syrah", "Carignan", "Mourvèdre", "Cinsault", "Clairette", "Bourboulenc"]
+        },
+        "accords": "Rouge : grillades de terroir, agneau aux herbes, daube. Blanc : fruits de mer, salade de poulpe. Rosé : tapenade, tomates confites, apéritif gourmand."
+      },
+      {
+        "name": "Saint-Chinian",
+        "type": ["rouge", "blanc", "rose"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": [],
+          "optional": ["Grenache", "Syrah", "Carignan", "Mourvèdre", "Cinsault", "Marsanne", "Roussanne"]
+        },
+        "accords": "Rouge : rouille d’agneau, confit, gibier, daube. Blanc : poissons grillés, huîtres, salades marines. Rosé : grillades légères, tartes salées, salads méditerranéennes."
+      },
+      {
+        "name": "Saint-Chinian Berlou",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": [],
+          "optional": ["Grenache", "Syrah", "Carignan", "Mourvèdre"]
+        },
+        "accords": "Civet de lièvre, magret aux mûres, cassoulet, jus corsé, fromages forts."
+      },
+      {
+        "name": "Saint-Chinian Roquebrun",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": [],
+          "optional": ["Grenache", "Syrah", "Mourvèdre"]
+        },
+        "accords": "Gibier, tajine aux pruneaux, agneau rôti, saucisse sèche, charcuterie robuste."
+      },
+      {
+        "name": "Pic Saint-Loup",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": [],
+          "optional": ["Syrah", "Grenache", "Mourvèdre"]
+        },
+        "accords": "Gigot d’agneau, cochon de lait, civet de sanglier, pigeonneau rôti, plat de champignons."
+      },
+      {
+        "name": "Terrasses du Larzac",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": [],
+          "optional": ["Syrah", "Grenache", "Mourvèdre", "Carignan"]
+        },
+        "accords": "Civet, gibier, agneau aux herbes, sanglier rôti, grillades robustes."
+      },
+      {
+        "name": "Cabardès",
+        "type": ["rouge", "blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": [],
+          "optional": ["Cabernet Sauvignon", "Merlot", "Grenache", "Syrah", "Mourvèdre", "Carignan", "Marsanne", "Roussanne"]
+        },
+        "accords": "Rouge : entrecôte au feu de bois, daube. Blanc : huîtres, poissons grillés, salade de fruits de mer."
+      },
+      {
+        "name": "Malepère",
+        "type": ["rouge", "blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": [],
+          "optional": ["Cabernet Sauvignon", "Merlot", "Syrah", "Mourvèdre", "Chardonnay", "Viognier"]
+        },
+        "accords": "Rouge : côte de bœuf, plat de champignons, charcuterie. Blanc : escargots, fruits de mer, tarte fine aux légumes."
+      },
+      {
+        "name": "La Clape",
+        "type": ["rouge", "blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": [],
+          "optional": ["Grenache", "Syrah", "Mourvèdre", "Carignan", "Marsanne", "Roussanne", "Vermentino", "Clairette"]
+        },
+        "accords": "Rouge : bouillabaisse revisitée, gibier méditerranéen, grillades corsées.<br>Blanc : coquillages de Gruissan, huîtres, langoustines, beurre à l’ail."
+      },
+      {
+        "name": "Picpoul de Pinet",
+        "type": ["blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Picpoul"],
+          "optional": []
+        },
+        "accords": "Huîtres de l’étang de Thau, moules marinières, coquillages, tapenade, apéritif méditerranéen, poisson grillé, salade iodée."
+      },
+      {
+        "name": "Limoux",
+        "type": ["rouge", "blanc", "rose"],
+        "type2": ["sec", "moelleux"],
+        "cepages": {
+          "mandatory": [],
+          "optional": ["Chardonnay", "Chenin", "Mauzac", "Pinot Noir", "Mourvèdre", "Grenache", "Carignan", "Cinsault"]
+        },
+        "accords": "Rouge : cassoulet, daube, grillades. Blanc : huîtres, poissons grillés, salades. Rosé : tapas, terrine, salade de légumes. Méthode traditionnelle : apéritif, gougères, fruits frais."
+      },
+      {
+        "name": "Fitou",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": [],
+          "optional": ["Carignan", "Grenache", "Mourvèdre", "Syrah", "Cinsault"]
+        },
+        "accords": "Cassoulet, civet de sanglier, magret grillé, plats en sauce, ragoûts méditerranéens."
+      },
+      {
+        "name": "Collioure",
+        "type": ["rouge", "rose"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": [],
+          "optional": ["Grenache", "Syrah", "Mourvèdre", "Carignan", "Cinsault"]
+        },
+        "accords": "Anchois de Collioure, rouille de seiche, tapas catalanes, daube de poissons, charcuterie locale, salade catalane."
+      },
+      {
+        "name": "Côtes du Roussillon",
+        "type": ["rouge", "blanc", "rose"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": [],
+          "optional": ["Grenache", "Syrah", "Mourvèdre", "Carignan", "Cinsault", "Macabeu", "Grenache Blanc"]
+        },
+        "accords": "Rouge : cassoulet, grillades, daube, plats catalans. Blanc : huîtres, poissons grillés, salades iodées. Rosé : tapas, salade de tomates, poissons grillés."
+      },
+      {
+        "name": "Côtes du Roussillon Villages",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": [],
+          "optional": ["Grenache", "Syrah", "Mourvèdre", "Carignan", "Cinsault"]
+        },
+        "accords": "Entrecôte grillée, daube, magret, ragoûts méditerranéens, plats corsés."
+      },
+      {
+        "name": "Côtes du Roussillon Villages Caramany",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": [],
+          "optional": ["Grenache", "Syrah", "Mourvèdre", "Carignan"]
+        },
+        "accords": "Gibier, daube catalane, plats en sauce, magret grillé, charcuterie."
+      },
+      {
+        "name": "Côtes du Roussillon Villages Latour-de-France",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": [],
+          "optional": ["Grenache", "Syrah", "Mourvèdre", "Carignan"]
+        },
+        "accords": "Cassoulet revisité, confit de canard, viande rouge grillée, terrine de campagne."
+      },
+      {
+        "name": "Côtes du Roussillon Villages Lesquerde",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": [],
+          "optional": ["Grenache", "Syrah", "Mourvèdre", "Carignan"]
+        },
+        "accords": "Magret aux herbes, civet, grillades rustiques, charcuterie de montagne."
+      },
+      {
+        "name": "Côtes du Roussillon Villages Tautavel",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": [],
+          "optional": ["Grenache", "Syrah", "Mourvèdre", "Carignan"]
+        },
+        "accords": "Daube catalane, plat de porc aux épices, charcuterie, grillades de gibier."
+      }
+    ]
+  }
+}

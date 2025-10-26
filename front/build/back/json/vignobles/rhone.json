@@ -1,0 +1,476 @@
+{
+  "rhone": {
+    "appellations_regionales": [
+      {
+        "name": "Côtes du Rhône",
+        "type": ["rouge", "blanc", "rose"],
+        "type2": ["sec"],
+        "cepages": {
+            "rouge": {
+              "mandatory" : ["Grenache", "Syrah", "Mourvèdre"],
+              "optional" : []
+            },
+            "blanc": {
+              "mandatory" : ["Grenache Blanc", "Clairette", "Viognier", "Roussanne", "Marsanne"],
+              "optional" : []
+            },
+            "rose": {
+              "mandatory" : ["Grenache", "Syrah", "Cinsault"],
+              "optional" : []
+            }
+        },
+        "accords": "Rouge : Gigot d’agneau, daube provençale, steak grillé, ratatouille, fromages affinés, truffe, caille rôtie, champignons sauvages<br>Blanc : Poisson en sauce, volaille à la crème, fromages de chèvre frais, fruits de mer, quenelles, salade niçoise, soupe de poisson, truite aux amandes<br>Rosé : Salade niçoise, grillades, tapas, charcuterie, légumes grillés, pizza provençale, poissons grillés, poulet rôti"
+      },
+      {
+        "name": "Côtes du Rhône Villages",
+        "type": ["rouge"],
+        "type2": ["sec", "structuré"],
+        "cepages": {
+          "mandatory": ["Grenache", "Syrah", "Mourvèdre"],
+          "optional": []
+        },
+        "accords": "Gigot d’agneau, civet de sanglier, côte de boeuf, champignons à la crème, fromages de caractère (Bleu, Roquefort), cassoulet, truffe, terrine de gibier"
+      },
+      {
+        "name": "Côtes du Rhône Villages (nom de commune)",
+        "type": ["rouge"],
+        "type2": ["sec", "typique"],
+        "cepages": {
+          "mandatory": ["Grenache", "Syrah", "Mourvèdre"],
+          "optional": []
+        },
+        "accords": "Agneau rôti, bœuf bourguignon, poulet aux olives, champignons sauvages, fromages affinés, terrine de gibier, truffe, plats en sauce méditerranéens"
+      },
+      {
+        "name": "Crémant de Die",
+        "type": ["blanc", "rose"],
+        "type2": ["sec", "demi-sec"],
+        "cepages": {
+            "blanc": {
+              "mandatory" : ["Clairette", "Muscat Blanc à Petits Grains"],
+              "optional" : []
+            },
+            "rose": {
+              "mandatory" : ["Clairette", "Muscat Blanc à Petits Grains"],
+              "optional" : []
+            }
+        },
+        "accords": "Blanc : Apéritifs, fruits de mer, sushis, salade de fruits, desserts légers, foie gras, crevettes, fromage frais<br>Rosé : Apéritif, charcuterie fine, salades estivales, poissons fumés, desserts aux fruits rouges, poulet grillé, fromage de chèvre frais, tapas"
+      },
+      {
+        "name": "Clairette de Die",
+        "type": ["blanc"],
+        "type2": ["doux", "demi-sec"],
+        "cepages": {
+          "mandatory": ["Clairette", "Muscat Blanc à Petits Grains"],
+          "optional": []
+        },
+        "accords": "Foie gras, desserts aux fruits (tarte aux pommes, tarte aux poires), fromages bleus, fruits secs, apéritifs légers, pâtisseries fines, salade de fruits frais, saumon fumé"
+      },
+      {
+        "name": "Châtillon-en-Diois",
+        "type": ["blanc", "rose", "rouge"],
+        "type2": ["sec"],
+        "cepages": {
+            "blanc": {
+              "mandatory" : ["Altesse", "Chardonnay"],
+              "optional" : []
+            },
+            "rose": {
+              "mandatory" : ["Gamay", "Pinot Noir", "Poulsard"],
+              "optional" : []
+            },
+            "rouge": {
+              "mandatory" : ["Gamay", "Pinot Noir", "Poulsard"],
+              "optional" : []
+            }
+        },
+        "accords": "Blanc : Poissons grillés, quiche lorraine, volailles en sauce, fromages doux, salade composée, fruits de mer, risotto, légumes vapeur<br>Rosé : Salades composées, grillades d'été, tapas, charcuterie, ratatouille, poissons en sauce, poulet rôti, fromages frais<br>Rouge : Charcuterie, volailles, champignons sautés, plat du terroir, fromages doux, ragoûts légers, viande blanche, légumes grillés"
+      }
+    ],
+    "appellations_communales": [
+      {
+        "name": "Côte-Rôtie",
+        "type": ["rouge"],
+        "type2": ["sec", "complexe", "puissant"],
+        "cepages": {
+          "mandatory": ["Syrah"],
+          "optional": ["Viognier (petite quantité)"]
+        },
+        "accords": "Gibier à plumes, magret de canard, bœuf grillé, charcuterie, fromages affinés, plats en sauce, truffes, champignons sauvages"
+      },
+      {
+        "name": "Condrieu",
+        "type": ["blanc"],
+        "type2": ["sec", "aromatique", "complexe"],
+        "cepages": {
+          "mandatory": ["Viognier"],
+          "optional": []
+        },
+        "accords": "Poissons en sauce, foie gras, coquilles Saint-Jacques, volailles blanches, fromages doux, risotto aux champignons, plats épicés, salade d'agrumes"
+      },
+      {
+        "name": "Château-Grillet",
+        "type": ["blanc"],
+        "type2": ["sec", "raffiné"],
+        "cepages": {
+          "mandatory": ["Viognier"],
+          "optional": []
+        },
+        "accords": "Homard, langoustines, poissons nobles, volailles à la crème, risotto, fromages doux, cuisine raffinée, plats asiatiques épicés"
+      },
+       {
+        "name": "Saint-Péray",
+        "type": ["blanc"],
+        "type2": ["sec", "tranquille"],
+        "cepages": {
+          "mandatory": ["Marsanne", "Roussanne"],
+          "optional": []
+        },
+        "accords": "Poisson grillé, volaille, fromages à pâte molle, quenelles de brochet."
+      },
+      {
+        "name": "Saint-Péray Mousseux",
+        "type": ["blanc"],
+        "type2": ["brut"],
+        "cepages": {
+          "mandatory": ["Marsanne", "Roussanne"],
+          "optional": []
+        },
+        "accords": "Apéritif, crustacés, feuilletés au fromage, desserts légers."
+      },
+      {
+        "name": "Saint-Joseph",
+        "type": ["rouge", "blanc"],
+        "type2": ["sec"],
+        "cepages": {
+            "rouge": {
+              "mandatory ": ["Syrah"],
+              "optional" : []
+            },
+            "blanc": {
+              "mandatory ": ["Marsanne", "Roussanne"],
+              "optional" : []
+            }
+        },
+        "accords": "Rouge : Viandes rouges, gibier, fromages affinés, plats en sauce, agneau rôti, charcuterie, champignons, terrine<br>Blanc : Poissons en sauce, volailles, fromages doux, crustacés, risotto, légumes vapeur, fruits de mer, plats à la crème"
+      },
+      {
+        "name": "Crozes-Hermitage",
+        "type": ["rouge", "blanc"],
+        "type2": ["sec"],
+        "cepages": {
+            "rouge": {
+              "mandatory ": ["Syrah"],
+              "optional" : []
+            },
+            "blanc": {
+              "mandatory ": ["Marsanne", "Roussanne"],
+              "optional" : []
+            }
+        },
+        "accords": "Rouge : Viande grillée, agneau, charcuterie, champignons, fromages affinés, plats mijotés, gibier, terrine<br>Blanc : Volaille, poissons, fromages doux, crustacés, risotto, plats crémeux, légumes verts, coquilles Saint-Jacques"
+      },
+      {
+        "name": "Hermitage",
+        "type": ["rouge", "blanc"],
+        "type2": ["sec", "prestigieux"],
+        "cepages": {
+            "rouge": {
+              "mandatory ": ["Syrah"],
+              "optional" : []
+            },
+            "blanc": {
+              "mandatory ": ["Marsanne", "Roussanne"],
+              "optional" : []
+            }
+        },
+        "accords": "Rouge : Gibier, bœuf, agneau, fromages puissants, plats en sauce, truffes, champignons, charcuterie<br>Blanc : Foie gras, poissons nobles, volailles en sauce, fromages affinés, crustacés, plats raffinés, risotto, asperges"
+      },
+      {
+        "name": "Cornas",
+        "type": ["rouge"],
+        "type2": ["sec", "corsé", "puissant"],
+        "cepages": {
+          "mandatory": ["Syrah"],
+          "optional": []
+        },
+        "accords": "Gibier, viande rouge, plats en sauce, charcuterie, fromages affinés, truffes, bœuf braisé, champignons sauvages"
+      },
+      {
+        "name": "Châteauneuf-du-Pape",
+        "type": ["rouge", "blanc"],
+        "type2": ["sec", "complexe"],
+        "cepages": {
+            "rouge": {
+              "mandatory" : ["Grenache", "Syrah", "Mourvèdre"],
+              "optional" : []
+            },
+            "blanc": {
+              "mandatory" : ["Grenache Blanc", "Clairette", "Roussanne", "Bourboulenc", "Picpoul"],
+              "optional" : []
+            }
+        },
+        "accords": "Rouge : Daube provençale, gigot d’agneau, bœuf braisé, truffes, fromages affinés, ratatouille, cassoulet, champignons sauvages<br>Blanc : Fruits de mer, poissons en sauce, volailles, fromages frais, plats méditerranéens, risotto, soupe de poissons, légumes grillés"
+      },
+      {
+        "name": "Gigondas",
+        "type": ["rouge"],
+        "type2": ["sec", "corsé"],
+        "cepages": {
+          "mandatory": ["Grenache", "Syrah", "Mourvèdre"],
+          "optional": []
+        },
+        "accords": "Agneau rôti, daube, bœuf grillé, charcuterie, fromages affinés, plats épicés, terrines, champignons"
+      },
+      {
+        "name": "Vacqueyras",
+        "type": ["rouge", "rose", "blanc"],
+        "type2": ["sec"],
+        "cepages": {
+            "rouge": {
+              "mandatory" : ["Grenache", "Syrah", "Mourvèdre"],
+              "optional" : []
+            },
+            "rose": {
+              "mandatory" : ["Grenache", "Cinsault", "Syrah"],
+              "optional" : []
+            },
+            "blanc": {
+              "mandatory" : ["Grenache Blanc", "Clairette", "Roussanne"],
+              "optional" : []
+            }
+        },
+        "accords": "Rouge : Agneau, bœuf, charcuterie, ratatouille, champignons, fromages affinés, terrines, plats méditerranéens<br>Rosé : Tapas, salades, grillades, charcuterie, poissons, légumes grillés, pizza, fromages frais<br>Blanc : Fruits de mer, volailles, poissons en sauce, fromages doux, salades composées, risotto, légumes vapeur, plats méditerranéens"
+      },
+      {
+        "name": "Beaumes-de-Venise",
+        "type": ["rouge", "vin doux naturel"],
+        "type2": ["sec", "doux"],
+        "cepages": {
+            "blanc": {
+              "mandatory" : ["Muscat Blanc à Petits Grains"],
+              "optional": []
+            },
+            "rouge": {
+              "mandatory" : ["Grenache", "Syrah", "Mourvèdre"],
+              "optional": []
+            }
+        },
+        "accords": "Rouge : Agneau rôti, charcuterie, fromages affinés, plats en sauce, gibier, ratatouille, terrines, champignons<br>Vin doux naturel : Foie gras, desserts aux fruits secs, pâtisseries, fromages bleus, apéritifs, tarte aux abricots, salades de fruits, fromages doux"
+      },
+      {
+        "name": "Muscat de Beaumes-de-Venise",
+        "type": ["vin doux naturel"],
+        "type2": ["doux", "aromatique"],
+        "cepages": {
+          "mandatory": ["Muscat Blanc à Petits Grains"],
+          "optional": []
+        },
+        "accords": "Foie gras, desserts aux fruits, pâtisseries, fromages bleus, apéritifs, salades de fruits, tarte aux abricots, cuisine asiatique épicée"
+      },
+      {
+        "name": "Rasteau",
+        "type": ["rouge", "vin doux naturel"],
+        "type2": ["sec", "doux"],
+        "cepages": {
+            "rouge": {
+              "mandatory" : ["Grenache", "Syrah", "Mourvèdre"],
+              "optional" : []
+            },
+            "blanc": {
+              "mandatory" : ["Grenache"],
+              "optional" : []
+            }
+        },
+        "accords": "Rouge : Viandes rouges, gibier, plats en sauce, charcuterie, fromages puissants, truffes, terrines, ratatouille<br>Vin doux naturel : Foie gras, desserts aux fruits secs, pâtisseries, fromages bleus, apéritifs, tarte aux fruits, salades de fruits, cuisine épicée"
+      },
+      {
+        "name": "Vinsobres",
+        "type": ["rouge"],
+        "type2": ["sec", "puissant"],
+        "cepages": {
+          "mandatory": ["Grenache", "Syrah", "Mourvèdre"],
+          "optional": []
+        },
+        "accords": "Agneau rôti, bœuf braisé, gibier, charcuterie, fromages affinés, plats mijotés, champignons, terrines"
+      },
+      {
+        "name": "Cairanne",
+        "type": ["rouge", "blanc"],
+        "type2": ["sec"],
+        "cepages": {
+            "blanc": {
+              "mandatory" : ["Grenache Blanc", "Clairette", "Roussanne"],
+              "optional" : []
+            },
+            "rouge": {
+              "mandatory" : ["Grenache", "Syrah", "Mourvèdre"],
+              "optional" : []
+            }
+        },
+        "accords": "Rouge : Gigot d’agneau, bœuf en daube, charcuterie, champignons, fromages affinés, plats méditerranéens, ratatouille, terrines<br>Blanc : Fruits de mer, volailles, poissons en sauce, fromages doux, risotto, salade composée, plats à la crème, légumes vapeur"
+      },
+      {
+        "name": "Beaujolais",
+        "type": ["rouge", "rose", "blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "rouge": {
+            "mandatory": ["Gamay"],
+            "optional": []
+          },
+          "rose": {
+            "mandatory": ["Gamay"],
+            "optional": []
+          },
+          "blanc": {
+            "mandatory": ["Chardonnay"],
+            "optional": []
+          }
+        },
+        "accords": "Rouge : Charcuterie lyonnaise, saucisson brioché, poulet rôti, quenelles, fromages à pâte molle, gratins<br>Rosé : Salades estivales, grillades, tartes salées, apéritifs, cuisine légère<br>Blanc : Poissons grillés, fruits de mer, volailles, fromages de chèvre, plats végétariens"
+      },
+      {
+        "name": "Beaujolais villages",
+        "type": ["rouge", "rose", "blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "rouge": {
+            "mandatory": ["Gamay"],
+            "optional": []
+          },
+          "rose": {
+            "mandatory": ["Gamay"],
+            "optional": []
+          },
+          "blanc": {
+            "mandatory": ["Chardonnay"],
+            "optional": []
+          }
+        },
+        "accords": "Rouge : Charcuterie lyonnaise, saucisson brioché, poulet rôti, quenelles, fromages à pâte molle, gratins<br>Rosé : Salades estivales, grillades, tartes salées, apéritifs, cuisine légère<br>Blanc : Poissons grillés, fruits de mer, volailles, fromages de chèvre, plats végétariens"
+      },
+       {
+        "name": "Beaujolais cru",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Gamay"],
+          "optional": []
+        },
+        "accords": "Gibier, charcuteries, viandes rouges, plats en sauce, fromages affinés, terrine aux champignons"
+      },
+      {
+        "name": "Lirac",
+        "type": ["rouge", "rose", "blanc"],
+        "type2": ["sec"],
+        "cepages": {
+            "rouge": {
+              "mandatory" : ["Grenache", "Syrah", "Mourvèdre"],
+              "optional" : []
+            },
+            "rose": {
+              "mandatory" : ["Grenache", "Cinsault", "Syrah"],
+              "optional" : []
+            },
+            "blanc": {
+              "mandatory" : ["Grenache Blanc", "Clairette", "Roussanne"],
+              "optional" : []
+            }
+        },
+        "accords": "Rouge : Agneau grillé, daube provençale, charcuterie, fromages affinés, plats en sauce, terrines, ratatouille, champignons<br>Rosé : Salades, grillades, tapas, poissons, charcuterie, légumes grillés, pizza, fromages frais<br>Blanc : Fruits de mer, volailles, poissons en sauce, fromages doux, risotto, plats méditerranéens, salades composées, légumes vapeur"
+      },
+      {
+        "name": "Tavel",
+        "type": ["rose"],
+        "type2": ["sec", "puissant", "corsé"],
+        "cepages": {
+          "mandatory": ["Grenache", "Cinsault", "Mourvèdre"],
+          "optional": []
+        },
+        "accords": "Salades composées, grillades, plats méditerranéens, charcuterie, pizza, poissons grillés, ratatouille, cuisine provençale"
+      },
+      {
+        "name": "Costières de Nîmes",
+        "type": ["rouge", "rose", "blanc"],
+        "type2": ["sec"],
+        "cepages": {
+            "rouge": {
+              "mandatory" : ["Syrah", "Grenache", "Mourvèdre"],
+              "optional" : []
+            },
+            "rose": {
+              "mandatory" : ["Grenache", "Cinsault"],
+              "optional" : []
+            },
+            "blanc": {
+              "mandatory" : ["Grenache Blanc", "Roussanne", "Clairette"],
+              "optional" : []
+            }
+        },
+        "accords": "Rouge : Viandes rouges, agneau, charcuterie, plats en sauce, fromages affinés, ratatouille, terrines, champignons<br>Rosé : Salades, grillades, poissons, tapas, charcuterie, légumes grillés, pizza, fromages frais<br>Blanc : Fruits de mer, volailles, poissons en sauce, fromages doux, salades composées, risotto, plats méditerranéens, légumes vapeur"
+      },
+      {
+        "name": "Grignan-les-Adhémar",
+        "type": ["rouge", "rose", "blanc"],
+        "type2": ["sec"],
+        "cepages": {
+            "rouge": {
+              "mandatory" : ["Grenache", "Syrah", "Mourvèdre"],
+              "optional" : []
+            },
+            "rose": {
+              "mandatory" : ["Grenache", "Cinsault"],
+              "optional" : []
+            },
+            "blanc": {
+              "mandatory" : ["Grenache Blanc", "Clairette", "Roussanne"],
+              "optional" : []
+            }
+        },
+        "accords": "Rouge : Agneau rôti, bœuf braisé, charcuterie, plats mijotés, fromages affinés, terrines, ratatouille, champignons<br>Rosé : Salades, grillades, tapas, poissons, charcuterie, légumes grillés, pizza, fromages frais<br>Blanc : Fruits de mer, volailles, poissons en sauce, fromages doux, risotto, plats méditerranéens, salades composées, légumes vapeur"
+      },
+      {
+        "name": "Ventoux",
+        "type": ["rouge", "rose", "blanc"],
+        "type2": ["sec"],
+        "cepages": {
+            "rouge": {
+              "mandatory" : ["Grenache", "Syrah", "Mourvèdre"],
+              "optional" : []
+            },
+            "rose": {
+              "mandatory" : ["Grenache", "Cinsault", "Syrah"],
+              "optional" : []
+            },
+            "blanc": {
+              "mandatory" : ["Grenache Blanc", "Clairette", "Roussanne"],
+              "optional" : []
+            }
+        },
+        "accords": "Rouge : Gigot d’agneau, bœuf, charcuterie, plats en sauce, fromages affinés, ratatouille, terrines, champignons<br>Rosé : Salades, grillades, poissons, tapas, charcuterie, légumes grillés, pizza, fromages frais<br>Blanc : Fruits de mer, volailles, poissons en sauce, fromages doux, risotto, plats méditerranéens, salades composées, légumes vapeur"
+      },
+      {
+        "name": "Lubéron",
+        "type": ["rouge", "rose", "blanc"],
+        "type2": ["sec"],
+        "cepages": {
+            "rouge": {
+              "mandatory" : ["Grenache", "Syrah", "Mourvèdre"],
+              "optional" : []
+            },
+            "rose": {
+              "mandatory" : ["Grenache", "Cinsault"],
+              "optional" : []
+            },
+            "blanc": {
+              "mandatory" : ["Grenache Blanc", "Clairette", "Roussanne"],
+              "optional" : []
+            }
+        },
+        "accords": "Rouge : Agneau rôti, bœuf braisé, charcuterie, plats en sauce, fromages affinés, terrines, ratatouille, champignons<br>Rosé : Salades, grillades, tapas, poissons, charcuterie, légumes grillés, pizza, fromages frais<br>Blanc : Fruits de mer, volailles, poissons en sauce, fromages doux, risotto, plats méditerranéens, salades composées, légumes vapeur"
+      }
+    ]
+  }
+}

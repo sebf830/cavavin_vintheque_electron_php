@@ -1,0 +1,333 @@
+[
+  {
+    "Galicia": [
+      {
+        "name": "Albariño Rías Baixas",
+        "vignoble": "Val do Salnés",
+        "type": ["blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Albariño"],
+          "optional": ["Treixadura", "Loureira Blanca"]
+        },
+        "accords": "Fruits de mer, poissons grillés, ceviche. Spécialité locale : percebes, empanada gallega, pulpo a la gallega."
+      },
+      {
+        "name": "Rías Baixas O Rosal",
+        "vignoble": "O Rosal",
+        "type": ["blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Albariño"],
+          "optional": ["Loureira Blanca", "Caiño Blanco"]
+        },
+        "accords": "Poisson d’eau douce, fruits de mer iodés. Spécialité locale : pescados al horno, mariscos."
+      },
+      {
+        "name": "Mencía Ribeira Sacra",
+        "vignoble": "Amandi",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Mencía"],
+          "optional": ["Brancellao", "Sousón"]
+        },
+        "accords": "Viande grillée, stoof, champignons. Spécialité locale : caldo gallego, cecina."
+      }
+    ]
+  },
+  {
+    "Rioja": [
+      {
+        "name": "Rioja Reserva",
+        "vignoble": "Rioja Alta",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Tempranillo"],
+          "optional": ["Graciano", "Mazuelo", "Garnacha"]
+        },
+        "accords": "Viandes rouges, fromages affinés. Spécialité locale : chorizo riojano, patatas a la riojana."
+      },
+      {
+        "name": "Rioja Blanco Crianza",
+        "vignoble": "Rioja Alavesa",
+        "type": ["blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Viura"],
+          "optional": ["Garnacha Blanca"]
+        },
+        "accords": "Poisson, poulet rôti. Spécialité locale : bacalao al pil pil, txacoli (bien qu’il ne soit pas de Rioja), fromage local."
+      },
+      {
+        "name": "Rioja Gran Reserva",
+        "vignoble": "Rioja Oriental", 
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Tempranillo"],
+          "optional": ["Graciano", "Mazuelo"]
+        },
+        "accords": "Gibier, plats en sauce, fromages très affinés. Spécialité locale : rabo de toro, cochon de lait rôti."
+      }
+    ]
+  },
+  {
+   "Andalucía": [
+      {
+        "name": "Sherry Fino",
+        "vignoble": "Jerez de la Frontera",
+        "type": ["blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Palomino"],
+          "optional": []
+        },
+        "accords": "Tapas salées, huîtres, poisson frit. Spécialité locale : pescaíto frito, jamón ibérico."
+      },
+      {
+        "name": "Sherry Pedro Ximénez",
+        "vignoble": "Jerez de la Frontera",
+        "type": ["blanc"],
+        "type2": ["doux"],
+        "cepages": {
+          "mandatory": ["Pedro Ximénez"],
+          "optional": []
+        },
+        "accords": "Desserts, chocolat, fruits secs. Spécialité locale : torrijas, arroz con leche."
+      },
+      {
+        "name": "Málaga Dulce",
+        "vignoble": "Málaga DO",
+        "type": ["blanc"],
+        "type2": ["doux"],
+        "cepages": {
+          "mandatory": ["Moscatel", "Pedro Ximénez"],
+          "optional": []
+        },
+        "accords": "Gâteaux, fruits secs, crème glacée. Spécialité locale : espetos, tapas sucrées, sardines grillées."
+      }
+    ]
+  },
+  {
+    "Castilla y León" : [
+      {
+        "name": "Ribera del Duero Crianza",
+        "vignoble": "Ribera del Duero central",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Tempranillo"],
+          "optional": ["Cabernet Sauvignon", "Merlot"]
+        },
+        "accords": "Viande rouge, gibier, plats en sauce. Spécialité locale : morcilla, cochinillo asado (porcelet rôti)."
+      },
+      {
+        "name": "Toro",
+        "vignoble": "Toro DO",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Tinta de Toro"],
+          "optional": []
+        },
+        "accords": "Plats puissants, barbecues, fromage fort. Spécialité locale : embutidos, queso zamorano."
+      },
+      {
+        "name": "Verdejo Rueda",
+        "vignoble": "Rueda DO",
+        "type": ["blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Verdejo"],
+          "optional": []
+        },
+        "accords": "Poissons blancs, tapas légères. Spécialité locale : sopa castellana, bacalao al horno."
+      }
+    ]
+  },
+  {
+   "Navarra":[
+      {
+        "name": "Navarra Rouge",
+        "vignoble": "Ribera Alta (Navarra)",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Garnacha", "Tempranillo"],
+          "optional": []
+        },
+        "accords": "Viandes grillées, charcuterie. Spécialité locale : chistorra, migas navarras."
+      },
+      {
+        "name": "Navarra Rosado",
+        "vignoble": "Navarra DO",
+        "type": ["rosé"],
+        "type2": ["demi-sec", "sec"],
+        "cepages": {
+          "mandatory": ["Garnacha"],
+          "optional": ["Tempranillo"]
+        },
+        "accords": "Tapas, salmorejo, plats légers estivaux. Spécialité locale : espárragos, queso fresco."
+      }
+    ]
+  },
+  {
+    "Cataluña": [
+      {
+        "name": "Priorat",
+        "vignoble": "DOQ Priorat",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Garnacha", "Cariñena"],
+          "optional": ["Syrah", "Cabernet Sauvignon"]
+        },
+        "accords": "Plats riches, viande rouge, fromages puissants. Spécialité locale : escalivada, calcots, pa amb tomàquet."
+      },
+      {
+        "name": "Montsant",
+        "vignoble": "Montsant DO",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Garnacha", "Cariñena"],
+          "optional": ["Syrah"]
+        },
+        "accords": "Plats méditerranéens, tapas, plats rôtis. Spécialité locale : paella, fideuá."
+      },
+      {
+        "name": "Cava Brut",
+        "vignoble": "Penedès",
+        "type": ["blanc", "rosé"],
+        "type2": ["brut", "méthode traditionnelle"],
+        "cepages": {
+          "mandatory": ["Macabeo", "Xarel·lo", "Parellada"],
+          "optional": ["Chardonnay"]
+        },
+        "accords": "Apéritifs, fruits de mer, sushis, tapas. Spécialité locale : calçots, gambas al ajillo."
+      }
+    ]
+  },
+  {
+   "Extremadura":[
+      {
+        "name": "Ribera del Guadiana",
+        "vignoble": "Ribera del Guadiana DO",
+        "type": ["rouge", "blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Tempranillo", "Syrah", "Cayetana Blanca"],
+          "optional": []
+        },
+        "accords": "Viandes rouges, plats de légumes, fromages locaux. Spécialité locale : migas extremeñas, quesos de la Serena."
+      }
+    ]
+  },
+  {
+     "Valencia": [
+      {
+        "name": "Valencia Tinto",
+        "vignoble": "Valencia DO",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Bobal"],
+          "optional": ["Monastrell"]
+        },
+        "accords": "Paella valenciana, viandes grillées. Spécialité locale : fideuà, all i pebre."
+      },
+      {
+        "name": "Moscatel de Valencia",
+        "vignoble": "Valencia DO",
+        "type": ["blanc"],
+        "type2": ["doux"],
+        "cepages": {
+          "mandatory": ["Moscatel"],
+          "optional": []
+        },
+        "accords": "Desserts, fromages doux, apéritifs. Spécialité locale : horchata, bunyols."
+      }
+    ]
+  },
+  {
+    "Castilla-La Mancha": [
+      {
+        "name": "La Mancha",
+        "vignoble": "Mancha DO",
+        "type": ["rouge", "blanc", "rosé"],
+        "type2": ["sec", "demi-sec", "doux"],
+        "cepages": {
+          "mandatory": ["Airén", "Tempranillo"],
+          "optional": ["Garnacha", "Cabernet Sauvignon"]
+        },
+        "accords": "Viandes grillées, fromages affinés, tapas. Spécialité locale : gazpacho manchego, migas ruleras."
+      },
+      {
+        "name": "Valdepeñas",
+        "vignoble": "Valdepeñas DO",
+        "type": ["rouge", "blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Tempranillo", "Airén"],
+          "optional": []
+        },
+        "accords": "Ragoûts, viandes braisées, plats de légumes. Spécialité locale : gachas, pisto manchego."
+      }
+    ]
+  },
+  {
+    "Aragón" : [
+      {
+        "name": "Campo de Borja",
+        "vignoble": "Campo de Borja DO",
+        "type": ["rouge", "blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Garnacha"],
+          "optional": ["Tempranillo"]
+        },
+        "accords": "Viandes rouges, plats épicés, fromages. Spécialité locale : ternasco asado, chilindrón."
+      },
+      {
+        "name": "Somontano",
+        "vignoble": "Somontano DO",
+        "type": ["rouge", "blanc", "rosé"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Garnacha", "Tempranillo", "Chardonnay"],
+          "optional": []
+        },
+        "accords": "Viandes blanches, légumes grillés, poissons. Spécialité locale : migas a la pastora, chireta."
+      }
+    ]
+  },
+  {
+    "País Vasco (Pays Basque)": [
+      {
+        "name": "Txakoli de Getaria",
+        "vignoble": "Getaria DO",
+        "type": ["blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Hondarrabi Zuri"],
+          "optional": []
+        },
+        "accords": "Poissons frais, pintxos, fruits de mer. Spécialité locale : bacalao al pil-pil, marmitako."
+      },
+      {
+        "name": "Txakoli de Bizkaia",
+        "vignoble": "Bizkaia DO",
+        "type": ["blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Hondarrabi Zuri"],
+          "optional": []
+        },
+        "accords": "Tapas, poissons grillés, salades. Spécialité locale : chipirones, txistorra."
+      }
+    ]
+  }
+]
+

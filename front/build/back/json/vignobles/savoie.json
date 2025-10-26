@@ -1,0 +1,251 @@
+{
+  "savoie": {
+    "appellations_regionales": [
+      {
+        "name": "Vin de Savoie",
+        "type": ["rouge", "blanc", "rose"],
+        "type2": ["sec", "moelleux"],
+        "cepages": {
+          "mandatory": [],
+          "optional": ["Jacquère", "Altesse", "Roussanne", "Mondeuse", "Persan", "Gamay", "Pinot Noir"]
+        },
+        "accords": "Rouge : charcuterie savoyarde, diots fumés, gibier.<br> Blanc : poissons de lac, fondue savoyarde, fromages locaux.<br> Rosé : apéritifs, salades, grillades légères."
+      },
+      {
+        "name": "Roussette de Savoie",
+        "type": ["blanc"],
+        "type2": ["sec", "moelleux"],
+        "cepages": {
+          "mandatory": ["Altesse"],
+          "optional": []
+        },
+        "accords": "Fromages locaux (Beaufort, Tomme), volailles rôties, poissons en sauce, desserts légers."
+      },
+      {
+        "name": "Seyssel",
+        "type": ["blanc"],
+        "type2": ["sec", "moelleux"],
+        "cepages": {
+          "mandatory": ["Altesse", "Molette"],
+          "optional": []
+        },
+        "accords": "Apéritif, crustacés, desserts à base de fruits, plats légers et raffinés."
+      },
+      {
+        "name": "Seyssel mousseux",
+        "type": ["blanc"],
+        "type2": ["sec", "moelleux"],
+        "cepages": {
+          "mandatory": ["Altesse", "Molette"],
+          "optional": []
+        },
+        "accords": "Apéritif, crustacés, desserts à base de fruits, plats légers et raffinés."
+      }
+    ],
+    "appellations_communales": [
+      {
+        "name": "Apremont",
+        "type": ["blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Jacquère"],
+          "optional": []
+        },
+        "accords": "Poissons de rivière, raclettes, fondues, volailles, fromages de montagne."
+      },
+      {
+        "name": "Chautagne",
+        "type": ["blanc", "rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": {
+            "blanc": ["Jacquère"],
+            "rouge": ["Mondeuse"]
+          },
+          "optional": []
+        },
+        "accords": "Blanc : poissons, plats légers.<br> Rouge : viandes rouges, gibiers."
+      },
+      {
+        "name": "Chignin",
+        "type": ["blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Jacquère"],
+          "optional": []
+        },
+        "accords": "Apéritif, poissons, volailles, fromages doux."
+      },
+      {
+        "name": "Chignin-Bergeron",
+        "type": ["blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Roussanne"],
+          "optional": []
+        },
+        "accords": "Volailles rôties, poissons en sauce, fromages affinés."
+      },
+      {
+        "name": "Crépy",
+        "type": ["blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Altesse"],
+          "optional": []
+        },
+        "accords": "Poissons, crustacés, volailles, fromages légers."
+      },
+      {
+        "name": "Cruet",
+        "type": ["blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Altesse"],
+          "optional": []
+        },
+        "accords": "Poissons, plats légers, fromages frais."
+      },
+      {
+        "name": "Jongieux",
+        "type": ["blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Altesse"],
+          "optional": []
+        },
+        "accords": "Fruits de mer, poissons, fromages doux."
+      },
+      {
+        "name": "Marignan",
+        "type": ["blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Altesse"],
+          "optional": []
+        },
+        "accords": "Apéritif, poissons, volailles."
+      },
+      {
+        "name": "Marin",
+        "type": ["blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Altesse"],
+          "optional": []
+        },
+        "accords": "Poissons, fromages frais, plats légers."
+      },
+      {
+        "name": "Montmélian",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Mondeuse"],
+          "optional": []
+        },
+        "accords": "Charcuteries, viandes rouges, plats en sauce."
+      },
+      {
+        "name": "Ripaille",
+        "type": ["blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Chasselas"],
+          "optional": []
+        },
+        "accords": "Apéritif, poissons, fromages légers."
+      },
+      {
+        "name": "Saint-Jean-de-la-Porte",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Mondeuse"],
+          "optional": []
+        },
+        "accords": "Viandes rouges, gibiers, plats traditionnels savoyards."
+      },
+      {
+        "name": "Saint-Jeoire-Prieuré",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Persan"],
+          "optional": []
+        },
+        "accords": "Viandes, charcuteries, plats en sauce."
+      },
+      {
+        "name": "Ayze",
+        "type": ["blanc"],
+        "type2": [ "sec"],
+        "cepages": {
+          "mandatory": ["Jacquère"],
+          "optional": []
+        },
+        "accords": "Apéritif, desserts, fruits, foie gras."
+      },
+      {
+        "name": "Bugey-Cerdon",
+        "type": ["rosé"],
+        "type2": [ "demi-sec"],
+        "cepages": {
+          "mandatory": ["Gamay", "Poulsard"],
+          "optional": []
+        },
+        "accords": "Apéritif, tarte aux fruits rouges, desserts légers, brioche."
+      },
+      {
+        "name": "Ayze mousseux",
+        "type": ["blanc"],
+        "type2": [ "sec"],
+        "cepages": {
+          "mandatory": ["Jacquère"],
+          "optional": []
+        },
+        "accords": "Apéritif, desserts, fruits, foie gras."
+      },
+      {
+        "name": "Frangy",
+        "type": ["blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Altesse"],
+          "optional": []
+        },
+        "accords": "Poissons, volailles, fromages frais."
+      },
+      {
+        "name": "Marestel",
+        "type": ["blanc"],
+        "type2": ["moelleux"],
+        "cepages": {
+          "mandatory": ["Altesse"],
+          "optional": []
+        },
+        "accords": "Desserts, foie gras, fromages bleus."
+      },
+      {
+        "name": "Monterminod",
+        "type": ["blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Altesse"],
+          "optional": []
+        },
+        "accords": "Poissons, volailles, fromages affinés."
+      },
+      {
+        "name": "Monthoux",
+        "type": ["blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Altesse"],
+          "optional": []
+        },
+        "accords": "Apéritif, poissons, fromages doux."
+      }
+    ]
+  }
+}

@@ -1,0 +1,354 @@
+{
+  "loire": {
+    "appellations_regionales": [
+      {
+        "name": "Touraine",
+        "type": ["rouge", "blanc", "rose"],
+        "type2": ["sec", "moelleux"],
+        "cepages": {
+          "mandatory": [],
+          "optional": ["Cabernet Franc", "Cabernet Sauvignon", "Gamay", "Pinot Noir", "Chenin Blanc", "Sauvignon Blanc", "Arbois"]
+        },
+        "accords": "Rouge : rillettes de Tours, cochon à la ficelle, civet de lapin, gibier à plume.<br>Blanc : fromage de chèvre frais, saumon fumé, moules à la crème, tarte au fromage blanc.<br>Rosé / petillant / moelleux : salade de fruits rouges, tarte aux fraises, quiche lorraine, foie gras (pour moelleux)."
+      },
+      {
+        "name": "Touraine petillant",
+        "type": ["rouge", "blanc", "rose"],
+        "type2": ["sec", "moelleux"],
+        "cepages": {
+          "mandatory": [],
+          "optional": ["Cabernet Franc", "Cabernet Sauvignon", "Gamay", "Pinot Noir", "Chenin Blanc", "Sauvignon Blanc", "Arbois"]
+        },
+        "accords": "Rouge : rillettes de Tours, cochon à la ficelle, civet de lapin, gibier à plume.<br>Blanc : fromage de chèvre frais, saumon fumé, moules à la crème, tarte au fromage blanc.<br>Rosé / petillant / moelleux : salade de fruits rouges, tarte aux fraises, quiche lorraine, foie gras (pour moelleux)."
+      },
+      {
+        "name": "Anjou",
+        "type": ["rouge", "blanc", "rose"],
+        "type2": ["sec", "moelleux"],
+        "cepages": {
+          "mandatory": [],
+          "optional": ["Cabernet Franc", "Cabernet Sauvignon", "Grolleau", "Chenin Blanc", "Chardonnay"]
+        },
+        "accords": "Rouge : agneau au romarin, terrine de campagne, andouillette grillée.<br>Blanc : fouace angevine, rillettes, tarte aux pommes, champignons à la crème.<br>Rosé / moelleux : salade d’asperges, foie gras, desserts aux fruits jaunes."
+      },
+      {
+        "name": "Saumur",
+        "type": ["rouge", "blanc", "rose"],
+        "type2": ["sec", "moelleux"],
+        "cepages": {
+          "mandatory": [],
+          "optional": ["Cabernet Franc", "Cabernet Sauvignon", "Chenin Blanc", "Chardonnay"]
+        },
+        "accords": "Rouge : coq au vin, ragoût de veau, champignons sauvages.<br>Blanc : choux de mer, poissons en sauce, fromages de chèvre.<br>Rosé / mousseux : apéritif, tartelette aux fruits, foie gras pour les cuvées moelleuses."
+      },
+      {
+      "name": "Jasnières",
+      "type": ["blanc"],
+      "type2": ["sec", "moelleux"],
+      "cepages": {
+        "mandatory": ["Chenin Blanc"],
+        "optional": []
+      },
+      "accords": "Desserts, apéritifs, fruits dorés, foie gras"
+    },
+      {
+        "name": "Saumur mousseux",
+        "type": ["rouge", "blanc", "rose"],
+        "type2": ["sec", "moelleux"],
+        "cepages": {
+          "mandatory": [],
+          "optional": ["Cabernet Franc", "Cabernet Sauvignon", "Chenin Blanc", "Chardonnay"]
+        },
+        "accords": "Rouge : coq au vin, ragoût de veau, champignons sauvages.<br>Blanc : choux de mer, poissons en sauce, fromages de chèvre.<br>Rosé / mousseux : apéritif, tartelette aux fruits, foie gras pour les cuvées moelleuses."
+      },
+      {
+        "name": "Montlouis-sur-Loire Mousseux",
+        "type": ["blanc"],
+        "type2": [ "brut", "demi-sec"],
+        "cepages": {
+          "mandatory": ["Chenin Blanc"],
+          "optional": []
+        },
+        "accords": "Apéritif, fruits de mer, tarte aux pommes, cuisine asiatique légère."
+      },
+      {
+        "name": "Muscadet",
+        "type": ["blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Melon de Bourgogne"],
+          "optional": []
+        },
+        "accords": "Huîtres, moules marinières, poissons blancs grillés, crevettes à l’ail, salade iodée, fromage de chèvre frais, beignets de courgettes."
+      },
+      {
+    "name": "Muscadet Sèvre-et-Maine",
+    "type": ["blanc"],
+    "type2": ["sec"],
+    "cepages": {
+      "mandatory": ["Melon de Bourgogne"],
+      "optional": []
+    },
+    "accords": "Huîtres, moules, poissons grillés, fruits de mer, cuisine légère."
+  },
+  {
+  "name": "Gros Plant du Pays Nantais",
+  "type": ["blanc"],
+  "type2": ["sec"],
+  "cepages": {
+    "mandatory": ["Folle Blanche"],
+    "optional": []
+  },
+  "accords": "Fruits de mer, poissons grillés, apéritifs légers, cuisine iodée."
+},
+  {
+    "name": "Muscadet Coteaux de la Loire",
+    "type": ["blanc"],
+    "type2": ["sec"],
+    "cepages": {
+      "mandatory": ["Melon de Bourgogne"],
+      "optional": []
+    },
+    "accords": "Fruits de mer, poissons, apéritifs frais, cuisine estivale."
+  },
+  {
+    "name": "Muscadet Côtes de Grandlieu",
+    "type": ["blanc"],
+    "type2": ["sec"],
+    "cepages": {
+      "mandatory": ["Melon de Bourgogne"],
+      "optional": []
+    },
+    "accords": "Fruits de mer, poissons, cuisine légère et estivale."
+  },
+      {
+        "name": "Crémant de Loire",
+        "type": ["blanc", "rose", "petillant"],
+        "type2": ["méthode traditionnelle", "sec"],
+        "cepages": {
+          "mandatory": [],
+          "optional": ["Chenin Blanc", "Chardonnay", "Cabernet Franc", "Cabernet Sauvignon", "Gamay"]
+        },
+        "accords": "Apéritif : gougères, amandes grillées. Blanc : saumon fumé, huîtres, coquilles Saint-Jacques. Rosé : desserts aux fruits rouges, tartelettes fines, macarons."
+      },
+      {
+        "name": "rose de Loire",
+        "type": ["rose"],
+        "type2": ["sec", "fruité"],
+        "cepages": {
+          "mandatory": [],
+          "optional": ["Grolleau", "Cabernet Franc", "Cabernet Sauvignon"]
+        },
+        "accords": "Salade estivale, grillades légères, tarte aux tomates, apéritif, viandes blanches grillées, fromage de chèvre frais."
+      }
+    ],
+    "appellations_communales": [
+      {
+        "name": "Vouvray",
+        "type": ["blanc"],
+        "type2": ["sec", "moelleux", "liquoreux"],
+        "cepages": {
+          "mandatory": ["Chenin Blanc"],
+          "optional": []
+        },
+        "accords": "Poissons en sauce, volailles à la crème, fromages de chèvre, foie gras."
+      },
+      {
+        "name": "Vouvray Mousseux",
+        "type": ["blanc"],
+        "type2": ["brut", "demi-sec", "effervescent"],
+        "cepages": {
+          "mandatory": ["Chenin Blanc"],
+          "optional": []
+        },
+        "accords": "Apéritifs, fruits de mer, desserts fruités, pâtisseries légères."
+      },
+      {
+        "name": "Sancerre",
+        "type": ["blanc", "rouge", "rose"],
+        "type2": ["sec"],
+        "cepages": {
+            "blanc": {
+              "mandatory" : ["Sauvignon Blanc"],
+              "optional" : []
+            },
+            "rouge": {
+              "mandatory" : ["Pinot Noir"],
+              "optional" : []
+            },
+            "rose": {
+              "mandatory" : ["Pinot Noir"],
+              "optional" : []
+            }
+        },
+        "accords": "Blanc : chèvre frais (crottin de Chavignol), poisson grillé, huîtres, asperges, salade de chèvre chaud.<br>Rouge : pintade, canard laqué, volailles forestières, champignons grillés.<br>Rosé : salade de betteraves, apéritif d’été, tomates confites."
+      },
+      {
+        "name": "Pouilly-Fumé",
+        "type": ["blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Sauvignon Blanc"],
+          "optional": []
+        },
+        "accords": "Poissons blancs, crustacés, asperges, chèvre (jusqu’à mi-affiné), coquillages, saumon fumé."
+      },
+      {
+        "name": "Pouilly-sur-Loire",
+        "type": ["blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Chasselas"],
+          "optional": []
+        },
+        "accords": "Poissons maigres grillés, crustacés, salade de fruits de mer, fromage frais de chèvre, tarte fine aux légumes."
+      },
+      {
+        "name": "Menetou-Salon",
+        "type": ["blanc", "rouge", "rose"],
+        "type2": ["sec"],
+        "cepages": {
+            "blanc": {
+              "mandatory" : ["Sauvignon Blanc"],
+              "optional" : []
+            },
+            "rouge": {
+              "mandatory" : ["Pinot Noir"],
+              "optional" : []
+            },
+            "rose": {
+              "mandatory" : ["Pinot Noir"],
+              "optional" : []
+            }
+        },
+        "accords": "Blanc : huîtres, poisson en sauce, chèvre frais, coquillages.<br>Rouge : poulet fermier, pintade, champignons en sauce.<br>Rosé : apéritif, salade, escargots."
+      },
+      {
+        "name": "Quincy",
+        "type": ["blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Sauvignon Blanc"],
+          "optional": []
+        },
+        "accords": "Fruits de mer, poissons grillés, fromages de chèvre, asperges, crevettes, salade de fenouil."
+      },
+      {
+        "name": "Reuilly",
+        "type": ["blanc", "rouge", "rose"],
+        "type2": ["sec"],
+        "cepages": {
+            "blanc": {
+              "mandatory" : ["Sauvignon Blanc"],
+              "optional" : []
+            },
+            "rouge": {
+              "mandatory" : ["Pinot Noir", "Pinot Gris"],
+              "optional" : []
+            },
+            "rose": {
+              "mandatory" : ["Pinot Noir"],
+              "optional" : []
+            }
+        },
+        "accords": "Blanc : poisson grillé, huîtres, chèvre frais.<br>Rouge : pintade, viande blanche aux champignons, civet de lapin.<br>Rosé : salade de tomates, grillades légères."
+      },
+      {
+        "name": "Coteaux du Giennois",
+        "type": ["blanc", "rouge", "rose"],
+        "type2": ["sec"],
+        "cepages": {
+            "blanc": {
+              "mandatory" : ["Sauvignon Blanc"],
+              "optional" : []
+            },
+            "rouge": {
+              "mandatory" : ["Pinot Noir", "Gamay"],
+              "optional" : []
+            },
+            "rose": {
+              "mandatory" : ["Gamay"],
+              "optional" : []
+            }
+        },
+        "accords": "Blanc : crustacés, poisson maigre, chèvre frais.<br>Rouge : coq au vin, volaille, ragoûts.<br>Rosé : apéritif, salades, tarte aux légumes."
+      },
+      {
+        "name": "Cour-Cheverny",
+        "type": ["blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Romorantin"],
+          "optional": []
+        },
+        "accords": "Poissons en sauce, truite, volaille blanche, fromage de chèvre local, légumes verts, tarte aux mirabelles."
+      },
+      {
+        "name": "Bourgueil",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Cabernet Franc"],
+          "optional": ["Cabernet Sauvignon"]
+        },
+        "accords": "Rillons, joue de porc braisée, queue de bœuf, charcuterie, fromage de chèvre rôti, civet."
+      },
+      {
+        "name": "Chinon",
+        "type": ["rouge", "rose"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Cabernet Franc"],
+          "optional": ["Cabernet Sauvignon"]
+        },
+        "accords": "Rouge : côte de porc, magret, agneau rôti, champignons.<br>Rosé : salades gourmandes, tarte aux légumes, charcuterie légère."
+      },
+      {
+        "name": "Saint-Nicolas-de-Bourgueil",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": ["Cabernet Franc"],
+          "optional": ["Cabernet Sauvignon"]
+        },
+        "accords": "Gigot d’agneau, cochon rôti, civet, charcuterie, volaille grillée."
+      },
+      {
+        "name": "Coteaux du Layon",
+        "type": ["blanc"],
+        "type2": ["moelleux", "vin liquoreux"],
+        "cepages": {
+          "mandatory": ["Chenin Blanc"],
+          "optional": []
+        },
+        "accords": "Quarts de Chaume, gâteaux aux amandes, tarte Tatin, fromage persillé, foie gras, desserts aux poires."
+      },
+      {
+        "name": "Coteaux du Vendômois",
+        "type": ["rouge", "blanc", "rose"],
+        "type2": ["sec"],
+        "cepages": {
+          "mandatory": [],
+          "optional": ["Pinot Noir", "Gamay", "Sauvignon Blanc", "Chardonnay"]
+        },
+        "accords": "Rouge : ragoût, volaille, terrine. Blanc : poisson, huîtres, fruits de mer. Rosé : apéritif, salade de chèvre frais, grillades."
+      },
+      {
+        "name": "Valençay",
+        "type": ["blanc", "rose"],
+        "type2": ["sec"],
+        "cepages": {
+            "blanc": {
+              "mandatory" : ["Sauvignon Blanc"],
+              "optional" : []
+            },
+            "rose": {
+              "mandatory" : ["Gamay"],
+              "optional" : []
+            }
+        },
+        "accords": "Blanc : fromage Valençay (chèvre), huîtres, poissons grillés.<br>Rosé : tarte aux tomates, salade, fromages frais."
+      }
+    ]
+  }
+}

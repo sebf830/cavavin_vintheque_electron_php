@@ -1,0 +1,678 @@
+{
+  "bourgogne": {
+    "appellations_regionales": [
+      {
+        "name": "Bourgogne",
+        "type": ["rouge", "blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "rouge": {
+            "mandatory": ["Pinot Noir"],
+            "optional": []
+          },
+          "blanc": {
+            "mandatory": ["Chardonnay"],
+            "optional": []
+          }
+        },
+        "accords": "Bœuf bourguignon, coq au vin, escargots, jambon persillé, volaille à la crème, gougères au fromage, œufs en meurette, jambon cru de Bourgogne."
+      },
+      {
+        "name": "Bourgogne Aligoté",
+        "type": ["blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "blanc": {
+            "mandatory": ["Aligoté"],
+            "optional": []
+          }
+        },
+        "accords": "Kir bourguignon (Aligoté + crème de cassis), gougères, salade de champignons, escargots à la bourguignonne, quiche lorraine, plateaux de fruits de mer, chèvre frais."
+      },
+      {
+        "name": "Bourgogne Hautes-Côtes de Beaune",
+        "type": ["rouge", "blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "rouge": {
+            "mandatory": ["Pinot Noir"],
+            "optional": []
+          },
+          "blanc": {
+            "mandatory": ["Chardonnay"],
+            "optional": []
+          }
+        },
+        "accords": "Volaille à la crème, poulet de Bresse, risotto aux morilles, coq au vin, fregola à la truffe (blanc), jambon persillé, champignons sautés."
+      },
+      {
+        "name": "Bourgogne Hautes-Côtes de Nuits",
+        "type": ["rouge", "blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "rouge": {
+            "mandatory": ["Pinot Noir"],
+            "optional": []
+          },
+          "blanc": {
+            "mandatory": ["Chardonnay"],
+            "optional": []
+          }
+        },
+        "accords": "Côte de veau aux morilles, lapin moutarde, suprême de volaille, risotto safrané (blanc), gougères, champignons sauvages, fromages de vache affinés."
+      },
+      {
+        "name": "Bourgogne Passe-Tout-Grains",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "rouge": {
+            "mandatory": ["Pinot Noir", "Gamay"],
+            "optional": []
+          }
+        },
+        "accords": "Charcuterie locale, saucisson sec, jambon persillé, grillades d’été, terrine de campagne, poulet rôti, salade de lentilles, fromage de chèvre."
+      },
+      {
+        "name": "Bourgogne Côte Chalonnaise",
+        "type": ["rouge", "blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "rouge": {
+            "mandatory": ["Pinot Noir"],
+            "optional": []
+          },
+          "blanc": {
+            "mandatory": ["Chardonnay"],
+            "optional": []
+          }
+        },
+        "accords": "Œufs meurette, escargots, jambon persillé, saumon en sauce (blanc), coq au vin rouge, volaille à la crème, fromages régionaux, champignons sautés."
+      },
+      {
+        "name": "Bourgogne Côte d’Or",
+        "type": ["rouge", "blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "rouge": {
+            "mandatory": ["Pinot Noir"],
+            "optional": []
+          },
+          "blanc": {
+            "mandatory": ["Chardonnay"],
+            "optional": []
+          }
+        },
+        "accords": "Pigeon rôti, ris de veau, truffe de Bourgogne, coquille Saint-Jacques (blanc), lièvre à la royale, jambon persillé, volaille de Bresse, gratin de morilles."
+      },
+      {
+        "name": "Bourgogne Mâcon",
+        "type": ["blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "blanc": {
+            "mandatory": ["Chardonnay"],
+            "optional": []
+          }
+        },
+        "accords": "Poulet jaune de Bresse, escalope de veau à la crème, quenelle, fruits de mer, gratin de courgettes, jambon fumé, fromage frais, riz au lait."
+      },
+      {
+        "name": "Bourgogne Tonnerre",
+        "type": ["blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "blanc": {
+            "mandatory": ["Chardonnay"],
+            "optional": []
+          }
+        },
+        "accords": "Poisson de rivière (brochet, perche), truite beurre blanc, escargots au beurre, poulet au vin jaune, soupe à l’oignon (entrée), fromages de chèvre, tarte fine aux fruits."
+      },
+      {
+        "name": "Bourgogne Chitry",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "rouge": {
+            "mandatory": ["Pinot Noir"],
+            "optional": []
+          }
+        },
+        "accords": "Coq au vin, civet de chevreuil, magret de canard, terrine de gibier, volaille rôtie, champignons sauvages, escalope forestière."
+      },
+      {
+        "name": "Bourgogne Côtes d’Auxerre",
+        "type": ["rouge", "blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "rouge": {
+            "mandatory": ["Pinot Noir"],
+            "optional": []
+          },
+          "blanc": {
+            "mandatory": ["Chardonnay"],
+            "optional": []
+          }
+        },
+        "accords": "Gougères, escargots, œufs meurette, truite, volaille crémeuse, coq au vin, champignons, fromage de Bourgogne."
+      },
+      {
+        "name": "Côteaux Bourguignons",
+        "type": ["rouge", "blanc", "rose"],
+        "type2": ["sec"],
+        "cepages": {
+          "rouge": {
+            "mandatory": [],
+            "optional": ["Pinot Noir", "Gamay", "César"]
+          },
+          "blanc": {
+            "mandatory": [],
+            "optional": ["Chardonnay", "Aligoté", "Sacy"]
+          },
+          "rose": {
+            "mandatory": [],
+            "optional": ["Pinot Noir", "Gamay", "César"]
+          }
+        },
+        "accords": "Charcuterie, salade gourmande, volaille rôtie, quiche lorraine, fromages régionaux, terrine, grillades d’été, fruits de saison."
+      },
+      {
+        "name": "Crémant de Bourgogne",
+        "type": ["blanc", "rose"],
+        "type2": ["brut", "extra brut", "nature"],
+        "cepages": {
+          "mandatory": ["Chardonnay", "Pinot Noir", "Pinot Blanc", "Aligoté", "Gamay", "Melon"],
+          "optional": []
+        },
+        "accords": "Apéritif avec gougères, huîtres, sashimi, fruits de mer, foie gras, toasts aux rillettes, tarte fine, saumon fumé."
+      }
+    ],
+    "appellations_communales": [
+      {
+        "name": "Chablis",
+        "type": ["blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "blanc": {
+            "mandatory": ["Chardonnay"],
+            "optional": []
+          }
+        },
+        "accords": "Huîtres, moules marinières, coquilles Saint-Jacques, sole meunière, fruits de mer, gougères, fromage de chèvre jeune."
+      },
+      {
+        "name": "Irancy",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "rouge": {
+            "mandatory": ["Pinot Noir"],
+            "optional": []
+          }
+        },
+        "accords": "Gibier (chevreuil, sanglier), coq au vin, porc fumé, terrine, champignons, volaille forestière, fromage de montagne."
+      },
+      {
+        "name": "Saint-Bris",
+        "type": ["blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "blanc": {
+            "mandatory": ["Sauvignon Blanc"],
+            "optional": []
+          }
+        },
+        "accords": "Fruits de mer, huîtres, salade de chèvre chaud, poisson grillé, asperges, fromage de chèvre, vinaigrette aux herbes."
+      },
+      {
+        "name": "Marsannay-la-Côte",
+        "type": ["rouge", "blanc", "rose"],
+        "type2": ["sec"],
+        "cepages": {
+          "rouge": {
+            "mandatory": ["Pinot Noir"],
+            "optional": []
+          },
+          "blanc": {
+            "mandatory": ["Chardonnay"],
+            "optional": []
+          },
+          "rose": {
+            "mandatory": [],
+            "optional": ["Pinot Noir", "Gamay"]
+          }
+        },
+        "accords": "Coq au vin, escargots, volaille à la crème (blanc), charcuterie, terrine, poisson grillé, fromage régional, salade gourmande."
+      },
+      {
+        "name": "Fixin",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "rouge": {
+            "mandatory": ["Pinot Noir"],
+            "optional": []
+          }
+        },
+        "accords": "Civet de lièvre, canard aux cerises, oie rôtie, terrine, gibier, champignons, volaille savoureuse."
+      },
+      {
+        "name": "Gevrey-Chambertin",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "rouge": {
+            "mandatory": ["Pinot Noir"],
+            "optional": []
+          }
+        },
+        "accords": "Bœuf carottes, civet de cerf, pigeon rôti, ris de veau, truffe noire, bœuf en croûte, fromages puissants."
+      },
+      {
+        "name": "Morey-Saint-Denis",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "rouge": {
+            "mandatory": ["Pinot Noir"],
+            "optional": []
+          }
+        },
+        "accords": "Magret de canard, rôti de porc aux champignons, civet de lièvre, plateau de fromages régionaux, volaille forestière, terrine."
+      },
+      {
+        "name": "Chambolle-Musigny",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "rouge": {
+            "mandatory": ["Pinot Noir"],
+            "optional": []
+          }
+        },
+        "accords": "Filet de bœuf, pigeon rôti, risotto aux truffes, veau aux morilles, fromages doux, cuisse de lapin, champignons sautés."
+      },
+      {
+        "name": "Vougeot",
+        "type": ["rouge", "blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "rouge": {
+            "mandatory": ["Pinot Noir"],
+            "optional": []
+          },
+          "blanc": {
+            "mandatory": ["Chardonnay"],
+            "optional": []
+          }
+        },
+        "accords": "Volaille de Bresse, risotto aux girolles, truffe de Bourgogne, truite en sauce, coq au vin, champignons, fromages affinés."
+      },
+      {
+        "name": "Vosne-Romanée",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "rouge": {
+            "mandatory": ["Pinot Noir"],
+            "optional": []
+          }
+        },
+        "accords": "Filet mignon aux morilles, carré d’agneau rôti, magret de canard, risotto truffé, volaille noble, fromages affines."
+      },
+       {
+      "name": "Blagny",
+      "type": ["rouge"],
+      "type2": ["sec"],
+      "cepages": {
+        "mandatory": ["Pinot Noir"],
+        "optional": []
+      },
+      "accords": "Gibiers, volailles en sauce, fromages de caractère"
+    },
+      {
+        "name": "Nuits-Saint-Georges",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "rouge": {
+            "mandatory": ["Pinot Noir"],
+            "optional": []
+          }
+        },
+        "accords": "Côte de bœuf, civet de sanglier, magret poêlé, gibier en sauce, ris de veau, champignons, fromages typés."
+      },
+      {
+        "name": "Aloxe-Corton",
+        "type": ["rouge", "blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "rouge": {
+            "mandatory": ["Pinot Noir"],
+            "optional": []
+          },
+          "blanc": {
+            "mandatory": ["Chardonnay"],
+            "optional": []
+          }
+        },
+        "accords": "Gibier, rôti de veau, volaille à la crème (blanc), truffe, escargots, risotto, fromages régionaux."
+      },
+      {
+        "name": "Ladoix-Serrigny",
+        "type": ["rouge", "blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "rouge": {
+            "mandatory": ["Pinot Noir"],
+            "optional": []
+          },
+          "blanc": {
+            "mandatory": ["Chardonnay"],
+            "optional": []
+          }
+        },
+        "accords": "Volaille, coq au vin, risotto (blanc), champignons, fromage, truite, gibier en sauce."
+      },
+      {
+        "name": "Savigny-lès-Beaune",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "rouge": {
+            "mandatory": ["Pinot Noir"],
+            "optional": []
+          }
+        },
+        "accords": "Poulet en sauce, civet de lièvre, magret, volaille de Bresse, champignons, terrine, fromage de Bourgogne."
+      },
+      {
+        "name": "Pernand-Vergelesses",
+        "type": ["rouge", "blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "rouge": {
+            "mandatory": ["Pinot Noir"],
+            "optional": []
+          },
+          "blanc": {
+            "mandatory": ["Chardonnay"],
+            "optional": []
+          }
+        },
+        "accords": "Saint‑pierre grillé (blanc), poulet à la crème, filet de bœuf, escargots, volailles forestières, champignons, fromages locaux."
+      },
+      {
+        "name": "Beaune",
+        "type": ["rouge", "blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "rouge": {
+            "mandatory": ["Pinot Noir"],
+            "optional": []
+          },
+          "blanc": {
+            "mandatory": ["Chardonnay"],
+            "optional": []
+          }
+        },
+        "accords": "Charcuterie, œufs en meurette (rouge), truite à l’oseille (blanc), coq au vin, potée bourguignonne, fromages régionaux."
+      },
+      {
+        "name": "Pommard",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "rouge": {
+            "mandatory": ["Pinot Noir"],
+            "optional": []
+          }
+        },
+        "accords": "Rôti de bœuf, civet de lapin, filet mignon, magret de canard, gibier en sauce, ris de veau, fromages affinés."
+      },
+      {
+        "name": "Volnay",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "rouge": {
+            "mandatory": ["Pinot Noir"],
+            "optional": []
+          }
+        },
+        "accords": "Poulet rôti, volaille de Bresse, veau aux morilles, gibier, coq au vin, fromages doux, champignons."
+      },
+      {
+        "name": "Monthelie",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+            "mandatory": ["Pinot Noir"],
+            "optional": []
+        },
+        "accords": "Terrine de campagne, lapin à la moutarde, rôti de porc, volaille, magret grillé, fromage local, champignons."
+      },
+      {
+        "name": "Auxey-Duresses",
+        "type": ["rouge", "blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "rouge": {
+            "mandatory": ["Pinot Noir"],
+            "optional": []
+          },
+          "blanc": {
+            "mandatory": ["Chardonnay"],
+            "optional": []
+          }
+        },
+        "accords": "Quiche lorraine, volaille à la crème, escargots, terrine, poisson grillé (blanc), champignons, fromages régionaux."
+      },
+      {
+        "name": "Saint-Romain",
+        "type": ["blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "blanc": {
+            "mandatory": ["Chardonnay"],
+            "optional": []
+          }
+        },
+        "accords": "Truite, escargots, volaille au vin blanc, moules, poissons grillés, asperges, fromage de chèvre."
+      },
+      {
+        "name": "Meursault",
+        "type": ["blanc"],
+        "type2": ["sec", "moelleux"],
+        "cepages": {
+          "blanc": {
+            "mandatory": ["Chardonnay"],
+            "optional": []
+          }
+        },
+        "accords": "Homard à la vanille, civet de lapin en sauce blanche, coquilles Saint-Jacques, risotto aux champignons, volaille truffée, fromages affinés doux."
+      },
+      {
+        "name": "Puligny-Montrachet",
+        "type": ["blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "blanc": {
+            "mandatory": ["Chardonnay"],
+            "optional": []
+          }
+        },
+        "accords": "Saint-Jacques poêlées, turbot, sole meunière, risotto crémeux, homard, volaille à la crème, fromages légers."
+      },
+      {
+        "name": "Chassagne-Montrachet",
+        "type": ["blanc"],
+        "type2": ["sec", "moelleux"],
+        "cepages": {
+          "blanc": {
+            "mandatory": ["Chardonnay"],
+            "optional": []
+          }
+        },
+        "accords": "Saumon grillé, truite beurre citron, poularde, risotto aux champignons, fromages de chèvre, coquilles Saint-Jacques, asperges."
+      },
+      {
+        "name": "Santenay",
+        "type": ["rouge", "blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "rouge": {
+            "mandatory": ["Pinot Noir"],
+            "optional": []
+          },
+          "blanc": {
+            "mandatory": ["Chardonnay"],
+            "optional": []
+          }
+        },
+        "accords": "Côte de veau, poularde, poisson en sauce (blanc), civet de lapin, charcuterie, omelette forestière, fromages régionaux."
+      },
+      {
+        "name": "Maranges",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "rouge": {
+            "mandatory": ["Pinot Noir"],
+            "optional": []
+          }
+        },
+        "accords": "Magret de canard, ragoût de bœuf, civet de gibier, terrine, volaille, champignons, fromages affinés."
+      },
+      {
+        "name": "Rully",
+        "type": ["rouge", "blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "rouge": {
+            "mandatory": ["Pinot Noir"],
+            "optional": []
+          },
+          "blanc": {
+            "mandatory": ["Chardonnay"],
+            "optional": []
+          }
+        },
+        "accords": "Poulet à la crème, escargots (blanc), coq au vin (rouge), terrine de foie, poisson meunière, champignons, fromage frais."
+      },
+      {
+        "name": "Mercurey",
+        "type": ["rouge", "blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "rouge": {
+            "mandatory": ["Pinot Noir"],
+            "optional": []
+          },
+          "blanc": {
+            "mandatory": ["Chardonnay"],
+            "optional": []
+          }
+        },
+        "accords": "Gibier à plume, magret, volaille rôtie, terrine de campagne, poisson en sauce (blanc), risotto aux champignons, fromages doux."
+      },
+      {
+        "name": "Givry",
+        "type": ["rouge"],
+        "type2": ["sec"],
+        "cepages": {
+          "rouge": {
+            "mandatory": ["Pinot Noir"],
+            "optional": []
+          }
+        },
+        "accords": "Côte de bœuf, civet de lapin, perdrix, gibier, terrine, champignons, fromages typés."
+      },
+      {
+        "name": "Montagny",
+        "type": ["blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "blanc": {
+            "mandatory": ["Chardonnay"],
+            "optional": []
+          }
+        },
+        "accords": "Poisson grillé, fruits de mer, volailles à la crème, truite, escargots, fromage de chèvre, quiche."
+      },
+      {
+        "name": "Mâcon",
+        "type": ["blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "blanc": {
+            "mandatory": ["Chardonnay"],
+            "optional": []
+          }
+        },
+        "accords": "Poulet fermier, poisson de rivière, quenelles, volaille à la crème, fruits de mer, fromage frais, tarte fine."
+      },
+      {
+        "name": "Viré-Clessé",
+        "type": ["blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "blanc": {
+            "mandatory": ["Chardonnay"],
+            "optional": []
+          }
+        },
+        "accords": "Poisson grillé, saumon, coquilles Saint-Jacques, volaille à la crème, risotto, fromages légers, salade de fruits."
+      },
+      {
+        "name": "Pouilly-Fuissé",
+        "type": ["blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "blanc": {
+            "mandatory": ["Chardonnay"],
+            "optional": []
+          }
+        },
+        "accords": "Saint-Jacques poêlées, homard, turbot, volaille noble, risotto à la truffe, fromages doux, escalope de veau."
+      },
+      {
+        "name": "Pouilly-Loché",
+        "type": ["blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "blanc": {
+            "mandatory": ["Chardonnay"],
+            "optional": []
+          }
+        },
+        "accords": "Poisson grillé, fruits de mer, volaille à la crème, salade estivale, fromage frais, risotto léger, asperges."
+      },
+      {
+        "name": "Pouilly-Vinzelles",
+        "type": ["blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "blanc": {
+            "mandatory": ["Chardonnay"],
+            "optional": []
+          }
+        },
+        "accords": "Truite au beurre citronné, escalope de veau, coquilles Saint-Jacques, volaille à la crème, salade, fromages doux."
+      },
+      {
+        "name": "Saint-Véran",
+        "type": ["blanc"],
+        "type2": ["sec"],
+        "cepages": {
+          "blanc": {
+            "mandatory": ["Chardonnay"],
+            "optional": []
+          }
+        },
+        "accords": "Poulet fermier, fruits de mer, escargots, volaille à la crème, risotto, plateau de fromages doux, tarte aux fruits."
+      }
+    ]
+  }
+}
