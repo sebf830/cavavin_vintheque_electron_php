@@ -6,10 +6,10 @@ CAVAVIN est un gestionnaire de cave à vin prêt à l'emploi offrant des outils 
 L'application s'éxecute sur un environnement MACOS ou WINDOWS.
 L'application est libre d'utilisation et gratuite, merci d'en faire un usage non commercial et non public.
 
-<div style="display:flex; gap:30px;">
-<img style="padding:0 10px" width="322" height="180" alt="img1" src="https://github.com/sebf830/cavavin_vintheque_electron_php/blob/master/screenshots/1.png">
-<img style="padding:0 10px" width="322" height="180"alt="img1" src="https://github.com/sebf830/cavavin_vintheque_electron_php/blob/master/screenshots/2.png">
-<img style="padding:0 10px" width="322" height="180" alt="img1" src="https://github.com/sebf830/cavavin_vintheque_electron_php/blob/master/screenshots/3.png">
+<div style="display:flex; gap:10px;">
+<img width="250" height="180" alt="img1" src="https://github.com/sebf830/cavavin_vintheque_electron_php/blob/master/screenshots/1.png">
+<img width="250" height="180"alt="img1" src="https://github.com/sebf830/cavavin_vintheque_electron_php/blob/master/screenshots/2.png">
+<img width="250" height="180" alt="img1" src="https://github.com/sebf830/cavavin_vintheque_electron_php/blob/master/screenshots/3.png">
 </div>
 
 Version BETA :
