@@ -47,13 +47,13 @@ III - Packager l'application
 ``` 
     npx electron-builder --mac
 ```
-Un executable sera crée dans à /front/build/dist/Cavavin.dmg
+Un executable sera crée dans  /front/build/dist/Cavavin.dmg
 
 2. WINDOWS : depuis un environnement windows, aller à 'cd {chemin_vers_le_projet}/front', executer : 
 ``` 
     npx electron-builder --win
 ```
-Un executable sera crée dans à /front/build/dist/Cavavin.exe  
+Un executable sera crée dans  /front/build/dist/Cavavin.exe  
 
 
 
