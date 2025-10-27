@@ -40,6 +40,8 @@ II - Installer les dépendances front du projet
     npm install --production
 ```
 
+
+
 III - Packager l'application 
 1. MAC : depuis un environnement, mac aller à 'cd {chemin_vers_le_projet}/front', executer : 
 ``` 
@@ -51,6 +53,8 @@ Un executable sera crée dans à /front/build/dist/Cavavin.dmg
 ``` 
     npx electron-builder --win
 ```
+Un executable sera crée dans à /front/build/dist/Cavavin.exe  
+
 
 
 <div style="display:flex;justify-content:space-between gap:10px;">
