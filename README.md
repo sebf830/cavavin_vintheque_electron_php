@@ -21,9 +21,9 @@ L'application est libre d'utilisation et gratuite, merci d'en faire un usage non
 Version BETA :
 Cete version Beta est une version test fonctionnelle. 
 L'application est amenée à évoluer dans ses version ultérieures.
-Cela n'affectera pas l'intégrité des données des utilisateurs.
+Cela n'affectera pas l'intégrité des données des utilisateurs.  
 
-Stack technique : php . node . sqlite . alpineJS
+Stack technique : php . node . sqlite . alpineJS  
 
 
 I - Installer les dependances back du projet
