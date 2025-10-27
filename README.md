@@ -77,6 +77,6 @@ Vous serez peut être amené à "Ouvrir quand même" dans vos paramètres de sé
 
 V. RGPD et sécurité : 
 
-L'application est OFFLINE et la stack est embarquée, vos données ne transitent jamais hors.
+L'application est OFFLINE et la stack est embarquée, vos données ne transitent jamais hors de l'application.
 
 
