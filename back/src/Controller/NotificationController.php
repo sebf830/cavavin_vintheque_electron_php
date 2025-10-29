@@ -9,7 +9,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Parameters;
 use App\Entity\Reference;
-
+use App\Repository\NotificationRepository;
+use App\Repository\ReferenceRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,15 +19,14 @@ class NotificationController extends AbstractController
 {
     public function __construct(
         private ParameterBagInterface $params,
-        private EntityManagerInterface $em ){}
-
+        private EntityManagerInterface $em,
+        private NotificationRepository $notificationRepo 
+    ){}
 
     #[Route('/update/stock-notification', name: 'app_update_stock_notifications', methods:['POST'])]
     public function update_stock_notification(): JsonResponse
     {
-        $notifications = $this->em->getRepository(Notification::class)->findBy(
-            ['type' => 'stock']
-        );
+        $notifications = $this->em->getRepository(Notification::class)->findBy(['type' => 'stock']);
 
         foreach($notifications as $el){
             $el->setIsClosedByUser(true);
@@ -39,9 +39,7 @@ class NotificationController extends AbstractController
     #[Route('/update/inspector-notification', name: 'app_update_inspector_notifications', methods:['POST'])]
     public function update_inspector_notification(): JsonResponse
     {
-        $notifications = $this->em->getRepository(Notification::class)->findBy(
-            ['type' => 'inspector']
-        );
+        $notifications = $this->em->getRepository(Notification::class)->findBy(['type' => 'inspector']);
 
         foreach($notifications as $el){
             $el->setIsClosedByUser(true);
@@ -59,12 +57,12 @@ class NotificationController extends AbstractController
 
         if (!$param) return new JsonResponse(['error' => 'User parameters not found'], 404);
 
-        $accessStock = $param->hasStockNotification() == null || !$param->hasStockNotification() ? false : true;
-        $accessInspector = is_null($param->hasInspectorNotification()) || !$param->hasInspectorNotification() ? false : true;
+        $hasStockNotification = $param->hasStockNotification() == null || !$param->hasStockNotification() ? false : true;
+        $hasInspectorNotification = is_null($param->hasInspectorNotification()) || !$param->hasInspectorNotification() ? false : true;
 
         return new JsonResponse([
-            'hasStockNotification' => $accessStock,
-            'hasInspectorNotification' => $accessInspector 
+            'hasStockNotification' => $hasStockNotification,
+            'hasInspectorNotification' => $hasInspectorNotification 
         ]);
     }
 
@@ -72,14 +70,12 @@ class NotificationController extends AbstractController
     public function outofstock(Request $request): JsonResponse{
 
         $data = json_decode($request->getContent(), true);
-
         if($data == null) return new JsonResponse(['error' => 'missing parameters'], 400);
 
         $params = $this->em->getRepository(Parameters::class)->findAll();
         $param = reset($params);
 
         $param->setHasStockNotification($data['enabled']);
-
         $this->em->flush();
 
         return new JsonResponse(['success' => true, 'value' => $data['enabled']], 200);
@@ -89,14 +85,12 @@ class NotificationController extends AbstractController
     public function set_inspector(Request $request): JsonResponse{
 
         $data = json_decode($request->getContent(), true);
-
         if($data == null) return new JsonResponse(['error' => 'missing parameters'], 400);
 
         $params = $this->em->getRepository(Parameters::class)->findAll();
         $param = reset($params);
 
         $param->setHasInspectorNotification($data['enabled']);
-
         $this->em->flush();
 
         return new JsonResponse(['success' => true, 'value' => $data['enabled']], 200);
@@ -114,16 +108,15 @@ class NotificationController extends AbstractController
     }
 
     #[Route('/inspector-notification', name: 'app_inspector_notification', methods:['GET'])]
-    public function getInspectorNotification(): Response{
-
-        $notifRepo = $this->em->getRepository(Notification::class);
+    public function getInspectorNotification(ReferenceRepository $referenceRepo): Response
+    {
         $params = $this->em->getRepository(Parameters::class)->findAll();
         $param = reset($params);
 
         if(!$param->hasInspectorNotification()) return new JsonResponse([], 200);
 
         // On clean les notifications déjà lues et qui plus de 1 mois
-        $notifications = $notifRepo->findBy(['type' => 'inspector','isClosedByUser' => true ]);
+        $notifications = $this->notificationRepo->findBy(['type' => 'inspector','isClosedByUser' => true ]);
         foreach($notifications as $el){
             $age = $el->getDate()->diff(new \DateTime());
             if ($age->days > 30)  $this->em->remove($el);
@@ -173,12 +166,7 @@ class NotificationController extends AbstractController
             }
 
             // Comparaison avec la reference 
-            $names = [$bottle->getName(), strtolower($bottle->getName())];
-            $refs = $this->em->getRepository(Reference::class)
-                ->createQueryBuilder('e')
-                ->where('e.name IN (:names)')
-                ->setParameter('names', $names)
-                ->getQuery()->getResult();
+            $refs = $referenceRepo->compareWithReference([$bottle->getName(), strtolower($bottle->getName())]);
 
             if($refs && count($refs) > 0){
                 $ref = reset($refs);
@@ -216,34 +204,21 @@ class NotificationController extends AbstractController
                      if(!$notifExist) $this->createAndPersistInspectorNotif("{$bottle->getName()} {$bottle->getDomaine()} {$bottle->getYear()} : La note globale du vin semble faible par rapport aux notes de dégustation",$bottle, 'tooLowScore');
                 }
             }
+        }  $this->em->flush();
 
-        }
-        // enregistrer toutes les notifications crées
-        $this->em->flush();
-
-
-        // On récupère les notifs à afficher
-        $datas = $notifRepo->createQueryBuilder('n')
-            ->where('n.type = :type')
-            ->andWhere('n.isClosedByUser = :false')
-            ->setParameter('type', "inspector")
-            ->setParameter('false', false)
-            ->getQuery()->getArrayResult();
-
-        return new JsonResponse($datas , 200);
+        return new JsonResponse($this->notificationRepo->getUnreadNotifications('inspector') ?? [] , 200);
     }
 
     #[Route('/out-of-stock', name: 'app_out_of_stock_bottles', methods:['GET'])]
     public function getOutOfStockBottlesNotification(): Response{
 
-        $notifRepo = $this->em->getRepository(Notification::class);
         $params = $this->em->getRepository(Parameters::class)->findAll();
         $param = reset($params);
 
         if(!$param->hasStockNotification()) return new JsonResponse([], 200);
 
         // On clean les notifications déjà lues et qui plus de 1 mois
-        $notifications = $notifRepo->findBy(['type' => "stock", "isClosedByUser" => true]);
+        $notifications = $this->notificationRepo->findBy(['type' => "stock", "isClosedByUser" => true]);
         foreach($notifications as $el){
 
             $age = $el->getDate()->diff(new \DateTime());
@@ -251,7 +226,6 @@ class NotificationController extends AbstractController
             
         }$this->em->flush();
 
-        // on update en BDD les notifications out of stock
         $bottlesOutOfStock = $this->em->getRepository(Bottle::class)->findBy(['quantity' => 0]);
 
         foreach($bottlesOutOfStock as $bottle){
@@ -270,13 +244,6 @@ class NotificationController extends AbstractController
                 }
         } $this->em->flush();
 
-        $datas = $notifRepo->createQueryBuilder('n')
-            ->where('n.type = :type')
-            ->andWhere('n.isClosedByUser = :false')
-            ->setParameter('type', "stock")
-            ->setParameter('false', false)
-            ->getQuery()->getArrayResult();
-
-        return new JsonResponse($datas , 200);
+        return new JsonResponse($this->notificationRepo->getUnreadNotifications('stock') ?? [] , 200);
     }
 }

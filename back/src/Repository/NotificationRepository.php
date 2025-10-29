@@ -15,4 +15,13 @@ class NotificationRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Notification::class);
     }
+
+    public function getUnreadNotifications(string $type): array {
+        return $this->createQueryBuilder('n')
+            ->where('n.type = :type')
+            ->andWhere('n.isClosedByUser = :false')
+            ->setParameter('type', $type)
+            ->setParameter('false', false)
+            ->getQuery()->getArrayResult();
+    }
 }

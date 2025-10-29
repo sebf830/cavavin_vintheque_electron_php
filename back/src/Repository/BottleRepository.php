@@ -16,6 +16,23 @@ class BottleRepository extends ServiceEntityRepository
         parent::__construct($registry, Bottle::class);
     }
 
+    public function getBottleById(int $id): array {
+        return $this->createQueryBuilder('b')
+            ->leftJoin('b.notes', 'n')
+            ->addSelect('n')
+            ->where('b.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getOneOrNullResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);
+    }
+
+    public function getAllBottles(): array {
+        return $this->createQueryBuilder('b')
+            ->orderBy('b.name', 'ASC')
+            ->getQuery()
+            ->getArrayResult();
+    }
+
     public function findWithPaginationAndSearch(
     int $limit,
     int $offset,

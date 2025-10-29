@@ -34,44 +34,52 @@ class ExportController extends AbstractController
         }
 
         $zip = new \ZipArchive();
+
         $zipFile = sys_get_temp_dir() . '/sauvegarde_cavavin.zip';
         $params = $this->connection->getParams();
         $sqliteFile = $params['path'];
-
+        
         $uploadDir = $this->getParameter('app.root') . '/public/uploads';
         $images = scandir($uploadDir);
-
-        if ($zip->open($zipFile, \ZipArchive::CREATE | \ZipArchive::OVERWRITE) === true) {
         
-            $dumpFilename = '/base_de_donnees_' . time() . '.sql';
-            $dumpFilePath = sys_get_temp_dir() . $dumpFilename;
-            $command = 'sqlite3 ' . escapeshellarg($sqliteFile) . ' .dump > ' . escapeshellarg($dumpFilePath);
-            exec($command, $output, $returnVar);
-            if ($returnVar !== 0 || !file_exists($dumpFilePath)) throw $this->createNotFoundException('Erreur lors de la création du dump SQLite');
+        try {
+            if ($zip->open($zipFile, \ZipArchive::CREATE | \ZipArchive::OVERWRITE) === true) {
+            
+                $dumpFilename = '/base_de_donnees_' . time() . '.sql';
+                $dumpFilePath = sys_get_temp_dir() . $dumpFilename;
+                $command = 'sqlite3 ' . escapeshellarg($sqliteFile) . ' .dump > ' . escapeshellarg($dumpFilePath);
+                exec($command, $output, $returnVar);
+                if ($returnVar !== 0 || !file_exists($dumpFilePath)) throw $this->createNotFoundException('Erreur lors de la création du dump SQLite');
 
-            $zip->addFile($dumpFilePath, $dumpFilename);
+                $zip->addFile($dumpFilePath, $dumpFilename);
 
-            foreach($images as $image){
-                if(in_array($image, ['.', '..', 'DS-STORE', 'DS_STORE']))continue;
+                foreach($images as $image){
+                    if(in_array($image, ['.', '..', 'DS-STORE', 'DS_STORE']))continue;
 
-                $imagePath = $uploadDir . '/' . $image;
-                $zip->addFile($imagePath, $image);
+                    $imagePath = $uploadDir . '/' . $image;
+                    $zip->addFile($imagePath, $image);
+                }
             }
+            $zip->close();
+            unlink($dumpFilePath);
+        } catch (\Throwable $e) {
+
+            if (isset($zip)) @$zip->close();
+            if(isset($dumpFilePath)) @unlink($dumpFilePath);
+            return new JsonResponse(["error" => "Erreur interne lors de l'export"], 500);
         }
-        $zip->close();
-        unlink($dumpFilePath);
 
-        $response =  new BinaryFileResponse($zipFile, 200, [
-            'Content-Type' => 'application/zip',
-            'Content-Disposition' => (new ResponseHeaderBag)->makeDisposition(
-                ResponseHeaderBag::DISPOSITION_ATTACHMENT,
-                'sauvegarde_cavavin.zip'
-            )
-        ]);
-
-        $response->deleteFileAfterSend(true);
-
-        return $response;
+        try {
+            $response =  new BinaryFileResponse($zipFile, 200, [
+                'Content-Type' => 'application/zip',
+                'Content-Disposition' => (new ResponseHeaderBag)->makeDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT,'sauvegarde_cavavin.zip')
+            ]);
+            return $response;
+            $response->deleteFileAfterSend(true);
+        }
+        catch (\Throwable $e) {
+            return new JsonResponse(["error" => "Erreur interne lors de l'export : {$e->getMessage()}"], 500);
+        } 
     }
 
     #[Route('/api/import-sqlite', name: 'import_sqlite', methods: ['POST'])]
@@ -87,9 +95,9 @@ class ExportController extends AbstractController
         try {
             $file->move(dirname($destinationPath), basename($destinationPath));
         } catch (FileException $e) {
-            return new JsonResponse(['error' => 'Échec de l\'import: ' . $e->getMessage()], 500);
+            return new JsonResponse(['error' => "Échec de lors de l'import : '{$e->getMessage()}"], 500);
         }
 
-        return new JsonResponse(['success' => true]);
+        return new JsonResponse(['success' => true], 200);
     }
 }

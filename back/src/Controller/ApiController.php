@@ -25,23 +25,16 @@ class ApiController extends AbstractController
     ){}
     
     #[Route('/api/search-reference', name: 'app_search_reference', methods:(['POST']))]
-    public function search_bottle(Request $request, ReferenceRepository $refRepo): Response
+    public function search_bottle(Request $request, ReferenceRepository $referenceRepo): Response
     {
         $data = json_decode($request->getContent(), true);
         $query = $data['query'];
 
         if (strlen($query) < 2) return new JsonResponse([], 200); 
 
-        $datas = $refRepo->createQueryBuilder('b')
-            ->select('b.id, b.name')
-            ->where('b.name LIKE :query')
-            ->setParameter('query', '%' . $query . '%')
-            ->orderBy('b.name', 'ASC')
-            ->setMaxResults(12)
-            ->getQuery()
-            ->getArrayResult();
-
-        return new JsonResponse($datas, 200);
+        return new JsonResponse(
+            $referenceRepo->searchReference($query) ?? []
+        , 200);
     }
 
     #[Route('/api/bottle-create', name: 'app_create_bottle', methods:(['POST']))]
@@ -105,16 +98,14 @@ class ApiController extends AbstractController
         if ($limit < 1)  $limit = 50;
         if ($page < 1)  $page = 1;
 
-        $offset = ($page - 1) * $limit; // offset
+        $offset = ($page - 1) * $limit; 
 
         $filters = array_filter($filters, fn($f) => in_array($f, ['name', 'domaine', 'year', 'type', 'type2', 'region']));
 
-        // Appel au repository avec filtre & pagination
         [$items, $totalCount] = $bottleRepo->findWithPaginationAndSearch($limit, $offset, $search, $filters);
 
         $totalPages = (int) ceil($totalCount / $limit);
 
-        // Transformer les entités en tableau (ou via le Serializer)
         $data = array_map(function ($b) {
             return [
                 'id' => $b->getId(),
@@ -138,15 +129,9 @@ class ApiController extends AbstractController
     }
 
     #[Route('/api/reference/{id}', name: 'app_get_reference', methods:(['GET']))]
-    public function get_reference(int $id, ReferenceRepository $refRepo): Response
+    public function get_reference(int $id, ReferenceRepository $referenceRepo): Response
     {
-        $reference = $refRepo->createQueryBuilder('b')
-            ->where('b.id = :id')
-            ->setParameter('id', $id)
-            ->getQuery()
-            ->getArrayResult();
-
-        $reference = $reference[0];
+        $reference = $referenceRepo->getReferenceById($id);
 
         $type = array_map(fn($name) => ['name' => $name], $reference['type']);
         $type2 = array_map(fn($name) => ['name' => $name], $reference['type2']);
@@ -157,24 +142,18 @@ class ApiController extends AbstractController
     }
 
     #[Route('/api/bottle/{id}', name: 'api_bottle_show', methods: ['GET'])]
-    public function show(int $id, BottleRepository $repo): JsonResponse
+    public function show(int $id, BottleRepository $bottleRepo): JsonResponse
     {
-        $bottle = $repo->createQueryBuilder('b')
-            ->leftJoin('b.notes', 'n')
-            ->addSelect('n')
-            ->where('b.id = :id')
-            ->setParameter('id', $id)
-            ->getQuery()
-            ->getArrayResult();
-
-        return new JsonResponse($bottle[0], 200);
+        return new JsonResponse(
+            $bottleRepo->getBottleById($id) ?? [], 
+            200);
     }
 
     #[Route('/api/bottle/{id}/rate', name: 'api_bottle_rate', methods: ['POST'])]
     public function rate_bottle(int $id, Request $request): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
-        if (!isset($data['rating']))  return new JsonResponse(['error' => 'Note manquante'], 400);
+        if (!$data['rating']) return new JsonResponse(['error' => 'Note manquante'], 400);
 
         $bottle = $this->em->getRepository(Bottle::class)->find($id);
         $bottle->setNote((int)$data['rating']);
@@ -307,7 +286,6 @@ class ApiController extends AbstractController
             // Enregistrement pour comptage unique
             $uniqueNames[$normalizedName] = true;
 
-
             // Type (sec, doux, brut, moelleux...)
             $type = $bottle->getType2(); // exemple champ "type2"
             $typeStats[$type] = ($typeStats[$type] ?? 0) + 1;
@@ -333,7 +311,7 @@ class ApiController extends AbstractController
                 ];
             }, $topRated);
 
-
+            // Age
             $age = $date - (int)$bottle->getYear();
             if($age >= 10){
                 $warnings[] = [
@@ -343,6 +321,7 @@ class ApiController extends AbstractController
                     'message' => "Déjà {$age} ans dans votre cave"
                 ];
             }
+            // Stock faible
             elseif($bottle->getQuantity() < 5){
                 $warnings[] = [
                     'name' => $bottle->getName(),
@@ -351,6 +330,7 @@ class ApiController extends AbstractController
                     'message' => "Stock faible"
                 ];
             }
+            // epuisé
             elseif($bottle->getQuantity() == 0){
                 $warnings[] = [
                     'name' => $bottle->getName(),
@@ -383,11 +363,10 @@ class ApiController extends AbstractController
             }, $recentBottles);
         }
 
-
         // Recuperer les notes de degustation
         $recentTastings = $noteRepo->findBy([], ['creation_date' => 'DESC'], 3);
         $recentTastingsFormatted = array_map(function ($note) {
-            // Suppose que getBottle() renvoie une entité Bottle avec getId() et getName()
+            
             $bottle = $note->getBottle();
             return [
                 'title' => $note->getTitre(),
@@ -426,12 +405,7 @@ class ApiController extends AbstractController
     #[Route('/api/bottles/stock', name: 'app_list_bottles_stock', methods:(['GET']))]
     public function list_stock(BottleRepository $bottleRepo): Response
     {
-         $bottles = $bottleRepo->createQueryBuilder('b')
-            ->orderBy('b.name', 'ASC')
-            ->getQuery()
-            ->getArrayResult();
-
-        return new JsonResponse($bottles, 200);
+        return new JsonResponse($bottleRepo->getAllBottles() ?? [], 200);
     }
 
     #[Route('/api/bottle/{id}/stock', name: 'api_bottle_stock', methods: ['PATCH'])]
@@ -454,28 +428,13 @@ class ApiController extends AbstractController
     #[Route('/api/notes', name: 'api_notes', methods: ['GET'])]
     public function notes(NoteRepository $noteRep): JsonResponse
     {
-        $notes = $noteRep->createQueryBuilder('n')
-            ->leftJoin('n.bottle', 'b')    
-            ->addSelect('b')  
-            ->orderBy('n.creation_date', 'DESC')
-            ->getQuery()
-            ->getArrayResult();
-
-        return new JsonResponse($notes, 200);
+        return new JsonResponse($noteRep->getAllNotes() ?? [], 200);
     }
 
     #[Route('/api/note/{id}', name: 'api_note', methods: ['GET'])]
     public function note(int $id, NoteRepository $noteRep): JsonResponse
     {
-        $note = $noteRep->createQueryBuilder('n')
-            ->leftJoin('n.bottle', 'b')    
-            ->addSelect('b')  
-            ->andWhere('n.id = :id')
-            ->setParameter('id', $id)
-            ->getQuery()
-            ->getArrayResult();
-
-        return new JsonResponse($note[0], 200);
+        return new JsonResponse($noteRep->getNoteById($id) ?? [], 200);
     }
 
     #[Route('/api/note_create', name: 'api_note_create', methods: ['POST'])]
@@ -525,20 +484,24 @@ class ApiController extends AbstractController
     {
         $cacheDir = $kernel->getCacheDir();
         $fs = new Filesystem();
-        $fs->remove($cacheDir);
 
-        return new JsonResponse(['status' => 'success', 'message' => 'Cache backend vidé']);
+        try {
+            $fs->remove($cacheDir);
+        }catch(\Throwable $e){
+            return new JsonResponse(['error' => 'Probleme lors du vidage de cache'], 500);
+        }
+        return new JsonResponse(['status' => 'success', 'message' => 'Cache backend vidé'], 200);
     }
 
     #[Route('/api/delete-note/{id}', name: 'api_delete_note', methods: ['DELETE'])]
-    public function deleteNote(int $id, EntityManagerInterface $em): JsonResponse {
+    public function deleteNote(int $id, EntityManagerInterface $em): JsonResponse 
+    {
         $note = $em->getRepository(Note::class)->find($id);
-        
         if (!$note)  return new JsonResponse(['error' => 'Note non trouvée'], 404);
 
         $em->remove($note);
         $em->flush();
 
-        return new JsonResponse(['success' => true]);
+        return new JsonResponse(['success' => true], 200);
     }
 }
